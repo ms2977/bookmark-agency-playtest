@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.10</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.11</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -890,6 +890,67 @@ body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:aut
  .vn-dialog-tools button{min-height:44px}
 }
 @media(prefers-reduced-motion:reduce){.vn-node-card{animation:none}}
+
+/* P0-4: complete room artwork with a floor extension on portrait screens. */
+.ba-lobby-stage{position:fixed;inset:var(--lobby-top,72px) 0 0;z-index:8;display:flex;flex-direction:column;overflow:hidden;padding:0;max-width:none;background:#ead7b9}
+.ba-lobby-stage .ba-lobby-header{flex:none;margin:0;padding:6px 16px;min-height:48px;background:#fffaf0;border-bottom:1px solid #d8c8ac}
+.ba-lobby-stage .ba-lobby-header h1{font-size:18px;margin:0}.ba-lobby-stage .ba-lobby-header h1 .ba-txt{font-size:inherit;line-height:1.5}
+.ba-lobby-stage .ba-lobby-header p{display:none}.ba-lobby-stage .ba-lobby-header .ba-button{min-width:44px;min-height:44px;padding:4px 10px}
+.ba-lobby-stage .ba-scene-frame{flex:1;min-height:0;padding:0;margin:0;border:0;border-radius:0;box-shadow:none;overflow:hidden}
+.ba-lobby-stage .ba-lobby-scene{height:100%;width:100%;aspect-ratio:auto;border-radius:0;overflow:hidden;container-type:size;background:linear-gradient(#c39a70bb,#e5c8a0aa),repeating-linear-gradient(0deg,#bb885b 0 2px,#d1a776 3px 43px,#ad7b51 44px 45px)}
+.ba-lobby-stage .ba-lobby-scene::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#d6b58944,#efd5a544),var(--lobby-art);background-size:100% 100%,100% 600%;background-position:center,bottom;background-repeat:no-repeat}
+.ba-lobby-room{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(100cqw,177.68cqh);height:min(56.28cqw,100cqh);isolation:isolate}
+.ba-lobby-stage .ba-scene-image{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;aspect-ratio:auto;border-radius:0}
+.ba-lobby-stage .ba-lobby-room>.ba-hotspot{display:flex;min-height:44px}.ba-lobby-stage .ba-board-paper{display:flex}
+.ba-lobby-stage .ba-hotspot>span{display:block}
+.ba-lobby-stage .ba-shelf-book{display:none}
+.ba-lobby-stage .ba-stone-touch,.ba-lobby-stage .ba-stone-effect{top:58%;left:79.5%;width:14%;height:19%}
+.ba-lobby-stage .ba-lobby-team-card{position:absolute;z-index:6;right:16px;bottom:max(12px,env(safe-area-inset-bottom));width:360px;max-width:calc(100% - 24px);margin:0;padding:10px 12px;background:#fff9edf5}
+.ba-lobby-stage .ba-leader-title{margin:0 0 4px;font-size:14px;text-align:center}.ba-lobby-stage .ba-leader-title .ba-txt{font-size:inherit;line-height:1.5}
+.ba-lobby-stage .ba-leader-options button>span{font-size:14px}.ba-lobby-stage .ba-leader-options .ba-txt{line-height:1.6}
+.ba-lobby-stage .ba-lobby-energy{margin-top:6px;padding-top:6px}.ba-lobby-stage .ba-energy-label .ba-txt{font-size:14px;line-height:1.5}
+.ba-lobby-stage .ba-energy-line{margin-bottom:4px;line-height:1.2}.ba-lobby-stage .ba-energy-value{font-size:18px;line-height:1.2}
+.ba-lobby-stage .ba-leader-options button{padding:2px 0}.ba-lobby-stage .ba-lobby-energy .ba-energy-bars i{height:6px}
+.ba-lobby-stage .ba-stone-bubble{right:2%;left:auto;top:10%;bottom:auto;width:25%;max-width:360px;padding:10px 12px;grid-template-columns:24px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:4px 8px}
+.ba-lobby-stage .ba-stone-bubble p{min-height:0;overflow:auto;overscroll-behavior:contain;font-size:16px}.ba-lobby-stage .ba-stone-bubble .ba-txt{line-height:1.8}
+.ba-lobby-stage .ba-stone-bubble::after{right:34%;bottom:-9px;transform:rotate(45deg)}
+.ba-lobby-stage button:active{filter:brightness(.9)}
+.ba-lobby-stage button:focus-visible{outline:3px solid #285c6a;outline-offset:2px}
+body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:120px;overflow:auto}
+@media(max-width:1100px){
+ .ba-lobby-stage .ba-board-paper{gap:0;padding:4px;box-shadow:inset 0 0 0 3px #efe2c6}
+ .ba-lobby-stage .ba-board-note,.ba-lobby-stage .ba-board-divider,.ba-lobby-stage .ba-board-footer{display:none}
+ .ba-lobby-stage .ba-board-title{font-size:16px}.ba-lobby-stage .ba-board-title .ba-txt{font-size:inherit;line-height:1.5}
+ .ba-lobby-stage .ba-stone-bubble{top:calc(min(56.28cqw,100cqh)*.82);right:16px;width:360px;max-width:70%;max-height:calc(100cqh - min(56.28cqw,100cqh)*.82 - var(--lobby-hud-space,180px))}
+ .ba-lobby-stage .ba-stone-bubble::after{right:16%;top:-9px;bottom:auto;transform:rotate(225deg)}
+}
+@media(max-width:600px){
+ .ba-lobby-stage .ba-lobby-header{padding:4px 12px}.ba-lobby-stage .ba-lobby-header h1{font-size:16px}
+ .ba-lobby-stage .ba-lobby-team-card{right:12px;width:calc(100% - 24px);padding:8px 10px}
+ .ba-lobby-stage .ba-leader-title{display:none}
+ .ba-lobby-stage .ba-board-paper{left:40%;top:7%;width:34%;height:24%;min-height:48px}
+ .ba-lobby-stage .ba-board-title{font-size:13px;gap:4px}.ba-lobby-stage .ba-board-title svg{width:16px;flex:none}
+ .ba-lobby-stage .ba-hotspot{font-size:13px;padding:5px 7px;gap:4px;white-space:nowrap}
+ .ba-lobby-stage .ba-hotspot>span{max-width:60px;white-space:normal}.ba-lobby-stage .ba-hotspot .ba-txt{font-size:inherit;line-height:1.6;white-space:normal}.ba-lobby-stage .ba-hotspot svg{width:16px;height:16px;flex:none}
+ .ba-lobby-stage .ba-hotspot-books{left:16%;top:34%}.ba-lobby-stage .ba-hotspot-parents{left:32%;top:63%}
+ .ba-lobby-stage .ba-hotspot-album{left:61%;top:48%}.ba-lobby-stage .ba-hotspot-stone{left:87%;top:49%}
+ .ba-lobby-stage .ba-stone-bubble{left:12px;right:auto;max-width:none;width:calc(100% - 108px);padding:6px 8px;gap:0 4px;grid-template-columns:18px minmax(0,1fr)}
+ .ba-lobby-stage .ba-stone-bubble p{font-size:14px}.ba-lobby-stage .ba-stone-bubble .ba-stone-avatar svg{width:18px;height:18px}
+ .ba-lobby-stage .ba-stone-bubble::after{right:-9px;top:12px;transform:rotate(-45deg)}
+ .ba-lobby-stage .ba-stone-chat{font-size:12px;padding:3px 6px}
+}
+@media(min-width:601px) and (max-height:520px){
+ .ba-lobby-stage .ba-lobby-header{min-height:40px;padding-block:2px}.ba-lobby-stage .ba-lobby-header h1{font-size:15px}
+ .ba-lobby-stage .ba-lobby-team-card{left:8px;right:auto;bottom:8px;width:184px;padding:6px}
+ .ba-lobby-stage .ba-leader-title,.ba-lobby-stage .ba-leader-options button>span{display:none}
+ .ba-lobby-stage .ba-leader-options{gap:0}.ba-lobby-stage .ba-leader-options button{min-width:44px}.ba-lobby-stage .ba-leader-portrait{width:40px;height:40px}
+ .ba-lobby-stage .ba-stone-bubble{top:12px;left:auto;right:8px;width:180px;max-height:calc(100% - 24px);padding:6px;grid-template-columns:1fr}
+ .ba-lobby-stage .ba-stone-bubble p{font-size:14px}.ba-lobby-stage .ba-stone-avatar{display:none}.ba-lobby-stage .ba-stone-chat{grid-column:1;font-size:12px}
+ .ba-lobby-stage .ba-stone-bubble::after{left:-9px;right:auto;top:50%;transform:rotate(135deg)}
+ .ba-lobby-stage .ba-hotspot{font-size:12px;padding:4px;gap:3px}.ba-lobby-stage .ba-hotspot .ba-txt{font-size:inherit;line-height:1.6}.ba-lobby-stage .ba-hotspot svg{width:14px}
+ .ba-lobby-stage .ba-hotspot-parents{top:66%}.ba-lobby-stage .ba-hotspot-album{top:46%}
+}
+@media(prefers-reduced-motion:reduce){.ba-lobby-stage *{animation:none!important;transition:none!important}}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1192,7 +1253,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.10";
+globalThis.BAVersion = "0.3.11";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -166532,6 +166593,31 @@ Object.assign(globalThis.BAStrings.lobby, {
   }) {
     var s = text();
     var sceneRef = React.useRef(null);
+    var stageRef = React.useRef(null);
+    React.useLayoutEffect(() => {
+      const body = document.body,
+        html = document.documentElement,
+        old = [body.style.overflow, html.style.overflow],
+        bar = document.querySelector('.ba-topbar');
+      body.style.overflow = html.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+      const card = sceneRef.current?.querySelector('.ba-lobby-team-card');
+      const measure = () => {
+        stageRef.current?.style.setProperty('--lobby-top', (bar?.getBoundingClientRect().bottom || 0) + 'px');
+        stageRef.current?.style.setProperty('--lobby-hud-space', (card?.getBoundingClientRect().height || 150) + 24 + 'px');
+      };
+      measure();
+      const observer = new ResizeObserver(measure);
+      if (bar) observer.observe(bar);
+      if (card) observer.observe(card);
+      window.addEventListener('resize', measure);
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('resize', measure);
+        body.style.overflow = old[0];
+        html.style.overflow = old[1];
+      };
+    }, []);
     var [arrival] = React.useState(() => profile?.sessions.lobbyArrival || null);
     var [celebrate, setCelebrate] = React.useState(profile?.mode !== 'unlimited' && !!arrival?.energyDelta);
     React.useEffect(() => {
@@ -166586,30 +166672,11 @@ Object.assign(globalThis.BAStrings.lobby, {
       }, 1800);
     };
     var boardLabel = profile && profile.grade <= 2 ? s.lobby.boardLow : s.lobby.boardFooter;
-    var shortcuts = [{
-      id: "board",
-      icon: "mail",
-      label: boardLabel
-    }, {
-      id: "books",
-      icon: "book",
-      label: s.lobby.books
-    }, {
-      id: "album",
-      icon: "album",
-      label: s.lobby.album
-    }, {
-      id: "stone",
-      icon: "heart",
-      label: s.lobby.stone
-    }, {
-      id: "parents",
-      icon: "door",
-      label: s.lobby.parents
-    }];
     var assets = globalThis.BAAssets || {};
     return /*#__PURE__*/React.createElement("main", {
-      className: "ba-lobby-page ba-page"
+      className: "ba-lobby-page ba-lobby-stage",
+      ref: stageRef,
+      "data-testid": "lobby-stage"
     }, /*#__PURE__*/React.createElement("div", {
       className: "ba-lobby-header"
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(Readable, {
@@ -166639,7 +166706,12 @@ Object.assign(globalThis.BAStrings.lobby, {
       className: "ba-lobby-scene",
       ref: sceneRef,
       role: "group",
-      "aria-label": s.lobby.sceneLabel
+      "aria-label": s.lobby.sceneLabel,
+      style: {
+        '--lobby-art': 'url("' + assets.lobby + '")'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-lobby-room"
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: assets.lobby ? /*#__PURE__*/React.createElement("img", {
         className: "ba-scene-image",
@@ -166757,7 +166829,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         name: reaction.icon,
         size: 17
       })))
-    }), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "ba-stone-response ba-stone-bubble",
       "data-reaction": reaction ? reaction.id : 'idle'
     }, /*#__PURE__*/React.createElement("span", {
@@ -166818,28 +166890,7 @@ Object.assign(globalThis.BAStrings.lobby, {
           value: arrival.energyDelta
         }))
       }))
-    })))), /*#__PURE__*/React.createElement("nav", {
-      className: "ba-scene-shortcuts",
-      "aria-label": s.lobby.shortcutLabel
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: shortcuts.map(function (item) {
-        return /*#__PURE__*/React.createElement("button", {
-          type: "button",
-          key: item.id,
-          onClick: function () {
-            if (item.id === "stone") petStone();else navigate(item.id);
-          }
-        }, /*#__PURE__*/React.createElement(Icon, {
-          name: item.icon,
-          size: 21
-        }), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: item.id === "parents" ? item.label : /*#__PURE__*/React.createElement(Readable, {
-            value: item.label,
-            profile: profile
-          })
-        })));
-      })
-    })));
+    })))));
   }
   function Modal({
     title,
