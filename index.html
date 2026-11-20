@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.18</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.19</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -1042,6 +1042,84 @@ body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:1
 .ba-scope-v2{margin:16px 0;min-width:0}.ba-scope-tabs{display:flex;flex-wrap:wrap;gap:8px}.ba-scope-tabs .ba-button{min-height:44px;padding:10px 18px}.ba-scope-levels{display:grid;gap:12px}.ba-scope-level{border:1px solid var(--line,#d8cfbc);border-radius:16px;padding:12px 16px}.ba-scope-level.selected{background:#f4f4ea;border-color:#839779}.ba-scope-tag{display:inline-block;padding:2px 8px;border-radius:12px;background:#e7eddf;color:#435b49;font-size:.75em}.ba-scope-level summary{cursor:pointer;min-height:44px;padding:10px 0;color:#526957}.ba-scope-concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}.ba-scope-v2 .ba-check{min-height:44px;align-items:flex-start}.ba-scope-v2 input{flex-shrink:0;margin-top:5px}.ba-scope-v2 span{overflow-wrap:anywhere}.ba-scope-notice{padding:16px;border:1px solid #a6b69b;border-radius:14px;background:#edf2e7;margin:16px 0}@media(max-width:600px){.ba-scope-concepts{grid-template-columns:1fr}.ba-scope-v2 .ba-actions{gap:8px}.ba-scope-v2 .ba-actions .ba-button{width:100%;white-space:normal}.ba-scope-level{padding:10px 12px}}
 
 .ba-scope-level-options{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.ba-scope-level-options .ba-scope-level-chip{margin:0;flex:1 1 150px;padding:12px}.ba-scope-level-chip.selected{background:#e7eddf;border-color:#839779}
+
+/* 書籤偵探社 畫面美化層（Claude，2026-11-20）。檔名 99_ 讓它排在所有樣式之後，覆寫不改 Codex 的檔案。 */
+
+/* 1. 桌機舞台：拿掉 62dvh 上限，舞台用滿頂列到對話框之間的高度；黑邊改成深色暗角，像電影畫面而不是米色牆 */
+.vn-stage{max-height:none}
+.vn-stage-space{background:#1b2420 radial-gradient(ellipse at 50% 40%,#2e3b35 0,#1b2420 70%);align-items:center}
+.vn-stage{box-shadow:0 0 0 1px #0006,0 18px 48px #0008}
+@media(min-width:901px){.vn-frame{background:#1b2420}.vn-header{background:#fffaf0}}
+
+/* 2. 進書／出書：四人、升起的書籤、書與書上的一隻小石；移除重複大立繪。 */
+.vn-frame[data-testid=book-entry] .vn-portraits .vn-bust:not(.bookmark),.vn-frame[data-testid=book-exit] .vn-portraits .vn-bust:not(.bookmark){display:none}
+.vn-stage .ba-book-travel{background:radial-gradient(ellipse at 50% 70%,#f4e7c6 0,#d9c7a0 55%,#b9a47d 100%)}
+.vn-stage .ba-travel-halo{background:radial-gradient(circle at 50% 62%,#fff4cf 0,#fff4cf00 55%);opacity:.9}
+.vn-stage .ba-travel-team{height:58%;bottom:30%}
+.ba-travel-book{bottom:8%}
+.ba-travel-book i .ba-book-cover{transform:rotate(-5deg)}
+/* 小書上不印書名與冊別，太小讀不到只會變成雜訊 */
+.ba-travel-book .ba-cover-title,.ba-travel-book .ba-cover-volume{display:none}
+/* 書上只有一隻小石，大小和書成比例 */
+.ba-travel-stone{transform:scale(.8);z-index:6}
+.ba-travel-leader{font-size:14px;opacity:.75;margin:0;position:absolute;bottom:2%;left:0;right:0;text-align:center}
+
+/* 3. 旁白＝書籤：紫金圖示與對話框，造型依較新的 BOOKMARK_CHARACTER_SPEC。 */
+.vn-dialog.vn-narration .vn-avatar{display:flex;align-items:center;justify-content:center}
+.vn-bookmark-glyph{width:52px;height:52px;display:block}
+.vn-dialog.vn-narration .vn-speaker b{color:#ffe9a8}
+
+/* 4. 紀錄特寫／題目卡在桌機改成置中的卡片，大小跟內容走；手機維持底部升起 */
+@media(min-width:901px){
+  .vn-scrim{align-items:center;background:#0008;backdrop-filter:blur(2px)}
+  .vn-sheet{width:min(92%,760px);max-height:min(78dvh,100%);border-radius:22px;box-shadow:0 20px 60px #0007;animation:vn-pop .16s ease-out}
+  .vn-sheet-scroll{padding:16px 4px}
+  .vn-sheet-scroll .ba-story-paper{margin:0;padding:18px 22px}
+  .vn-sheet-scroll .ba-story-paper h3{margin-top:0}
+}
+@keyframes vn-pop{from{transform:scale(.96);opacity:.5}to{transform:none;opacity:1}}
+
+/* 5. 回饋感：熱點與按鈕按下去要有反應，熱點閒置時有一點呼吸光（知識島的手感） */
+.vn-frame .ba-explore-hotspot,.vn-frame .ba-j-node,.vn-frame .ba-j-scene-actor,.vn-frame .ba-j-object-target{transition:scale .12s ease,filter .12s ease}
+.vn-frame .ba-explore-hotspot:hover,.vn-frame .ba-j-scene-actor:hover,.vn-frame .ba-j-object-target:hover{scale:1.04}
+.vn-frame .ba-explore-hotspot:active,.vn-frame .ba-j-scene-actor:active,.vn-frame .ba-j-object-target:active{scale:.98}
+.vn-frame .ba-j-node:not(.completed){animation:vn-node-breathe 1.8s ease-in-out infinite}
+@keyframes vn-node-breathe{0%,100%{box-shadow:0 0 0 0 #f3d59d88}50%{box-shadow:0 0 0 12px #f3d59d00}}
+.vn-dialog-tools button:active,.vn-node-card .ba-button:active{transform:translateY(1px)}
+.vn-dialog-text{animation:vn-fade .18s ease}
+
+/* 6. 對話框在桌機稍微高一點、字稍大，和舞台比例相稱 */
+@media(min-width:901px){.vn-dialog{height:196px}.vn-dialog-text .ba-txt{font-size:22px}.vn-avatar{flex-basis:72px;height:72px}.vn-avatar .ba-j-avatar,.vn-avatar>.ba-portrait{width:72px;height:72px}}
+
+/* 7. 地圖只保留右側書籤；場景旁白的書籤站在人類立繪對側。 */
+.vn-frame[data-testid=journey-map] .vn-portraits .vn-bust:not(.bookmark),.vn-frame:has(.ba-j-map) .vn-portraits .vn-bust:not(.bookmark){display:none}
+/* 書籤立繪（正式圖前用放大的書籤圖示佔位）：飄浮、說話時亮 */
+.vn-portraits.has-bookmark .vn-bust{display:block;filter:brightness(.6);opacity:1}
+.vn-portraits.has-bookmark .vn-bust.speaking{filter:brightness(1)}
+.vn-portraits .vn-bust.bookmark{height:60%;width:24%;display:flex;align-items:center;justify-content:center;animation:vn-float 3s ease-in-out infinite}
+.vn-bust.bookmark .vn-bookmark-glyph{width:100%;height:100%;filter:drop-shadow(0 0 12px #c9a9ff)}
+@keyframes vn-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.vn-avatar .vn-bookmark-glyph{width:100%;height:100%;padding:2px;filter:drop-shadow(0 0 5px #c2a5ef)}
+.vn-dialog.vn-narration{background:#292138f5}.vn-stage-space{background:#1b2420 radial-gradient(ellipse at 50% 40%,#2e3b35 0,#1b2420 70%)}
+.vn-narration .vn-bookmark-eyes,.speaking .vn-bookmark-totem{animation:ba-bookmark-talk 1.6s ease-in-out infinite alternate}
+@keyframes ba-bookmark-talk{to{opacity:.55}}
+.ba-travel-spirit{position:absolute;z-index:5;height:60%;width:18%;left:41%;bottom:22%;pointer-events:none;animation:ba-bookmark-rise 1.1s ease-out both}
+.ba-travel-spirit .vn-bookmark-glyph{width:100%;height:100%;filter:drop-shadow(0 0 18px #d9b4ff)}
+.ba-travel-spirit::before{content:'';position:absolute;inset:-15% -100%;background:radial-gradient(ellipse,#e4d3ff88,transparent 66%);z-index:-1}
+.ba-travel-spirit .vn-bookmark-totem{animation:ba-bookmark-talk .8s ease-in-out infinite alternate}
+@keyframes ba-bookmark-rise{from{transform:translateY(35%) scale(.2);opacity:.2}to{transform:none;opacity:1}}
+.ba-travel-spirit+.ba-travel-book{z-index:4}
+.ba-bookmark-badge{display:flex;align-items:center;justify-content:center;gap:6px;max-width:100%;margin-top:6px;font-size:12px;color:#59466f}
+.ba-bookmark-badge>span[aria-hidden]{width:12px;height:30px;flex-shrink:0}.ba-bookmark-badge svg{width:100%;height:100%}.ba-bookmark-badge .ba-txt{font-size:inherit}
+.ba-bookmark-record{display:flex;gap:14px;align-items:center;padding:10px 12px;background:#eee8f3;border-radius:12px;margin-top:14px;color:#574264}
+.ba-bookmark-record>span{display:block;flex:0 0 28px;height:76px}.ba-bookmark-record svg{width:100%;height:100%}.ba-bookmark-record p{margin:0}
+.ba-bookmark-abilities{padding-left:20px}.ba-bookmark-abilities li{padding:10px 0}.ba-bookmark-abilities li>span{display:inline-block;font-size:13px;margin-left:10px;padding:3px 8px;background:#eee9f4;border-radius:8px}.ba-bookmark-abilities p{margin:6px 0}
+.ba-bookmark-growth-modal{max-width:600px;background:radial-gradient(ellipse at 50% 30%,#eee4f6,#fffaf0)}.ba-bookmark-growth{text-align:center}.ba-bookmark-growth-art{height:min(38dvh,320px)}.ba-bookmark-growth-art svg{height:100%;width:100%;filter:drop-shadow(0 0 16px #b78ed0);animation:vn-float 3s ease-in-out infinite}.ba-bookmark-growth-art .vn-bookmark-totem{animation:ba-bookmark-talk .9s ease-in-out infinite alternate}
+@media(max-width:900px){.ba-bookmark-growth-art{height:28dvh}.ba-bookmark-growth-modal .ba-modal-header h2{font-size:18px}}
+@media(prefers-reduced-motion:reduce){
+ .vn-bust.bookmark,.vn-bookmark-glyph *,.ba-travel-spirit,.ba-bookmark-growth-art svg,.ba-bookmark-growth-art svg *,.vn-dialog-text,.vn-sheet,.vn-frame .ba-j-node{animation:none!important}
+ .vn-frame .ba-explore-hotspot,.vn-frame .ba-j-node,.vn-frame .ba-j-scene-actor,.vn-frame .ba-j-object-target{transition:none!important}
+}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1344,6 +1422,45 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+globalThis.BABookmarkData = {
+  "version": 1,
+  "maxLevel": 5,
+  "legacyExcludedCases": {
+    "sanguo": ["tao_yuan"]
+  },
+  "levels": [{
+    "level": 1,
+    "completedBooks": 0,
+    "totems": 1,
+    "ability": "turnPages",
+    "implemented": true
+  }, {
+    "level": 2,
+    "completedBooks": 1,
+    "totems": 2,
+    "ability": "eye",
+    "implemented": false
+  }, {
+    "level": 3,
+    "completedBooks": 2,
+    "totems": 3,
+    "ability": "travel",
+    "implemented": false
+  }, {
+    "level": 4,
+    "completedBooks": 3,
+    "totems": 4,
+    "ability": "echo",
+    "implemented": false
+  }, {
+    "level": 5,
+    "completedBooks": 4,
+    "totems": 5,
+    "ability": "double",
+    "implemented": false
+  }],
+  "ceremonyTimeoutMs": 15000
+};
 globalThis.BAScopeData = {
   "version": 2,
   "source": {
@@ -2971,7 +3088,7 @@ globalThis.BAClocktowerData = {
     }]
   }
 };
-globalThis.BAVersion = "0.3.18";
+globalThis.BAVersion = "0.3.19";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -3402,7 +3519,13 @@ globalThis.BAJourneyArt = {
     }
   },
   "hotspots": ["child", "notice", "shoes", "zhang", "guan"],
-  "cropUnits": "percent"
+  "cropUnits": "percent",
+  "bookmark": {
+    "talkSide": "auto",
+    "talkScale": 0.7,
+    "float": true,
+    "placeholder": true
+  }
 };
 globalThis.BAJourneyData = {
   "version": 2,
@@ -5143,7 +5266,7 @@ const HINT_RULES = {
       const update = () => {
         const b = area.current.getBoundingClientRect(),
           fill = mobileFill && g.BAStageCamera.mobile(innerWidth, innerHeight),
-          w = fill ? b.width : Math.min(b.width, Math.min(b.height, innerHeight * .62) * aspect);
+          w = fill ? b.width : Math.min(b.width, b.height * aspect);
         const height = fill ? b.height : w / aspect;
         setSize(old => old[0] === w && old[1] === height && old[2] === fill ? old : [w, height, fill]);
       };
@@ -6643,7 +6766,7 @@ globalThis.BALetters = [{
     storyRole: '書中人物',
     mapOptions: '地圖選項',
     child: '小兒',
-    narrator: '旁白',
+    narrator: '書籤',
     stone: '小石',
     ...g.BAStrings.team.labels,
     companion: '同行夥伴',
@@ -7009,6 +7132,49 @@ Object.assign(globalThis.BAStrings.lobby, {
   boardLow: '今天的信'
 });
 
+/* 08_bookmark_strings.js */
+(function (g) {
+  g.BABookmarkCopy = {
+    name: '書籤',
+    role: '說故事的聲音',
+    level: '書籤等級',
+    levelShort: '等級',
+    books: '已完成整本故事書',
+    unit: '本',
+    recorded: '這一頁，記下來了。',
+    introduction: '牠沒有名字，大家都叫牠書籤。',
+    growth: '書籤記起了新的故事',
+    growthLine: '我又記得更多故事了。',
+    continue: '繼續冒險',
+    pending: '準備中',
+    available: '已開放',
+    later: '完成更多故事書，書籤會記得更多故事。',
+    levelNote: '等級依完成的整本故事書計算，重玩不會重複累計。',
+    abilities: {
+      turnPages: {
+        name: '翻頁',
+        description: '帶大家進入故事，再回到偵探社。'
+      },
+      eye: {
+        name: '書籤之眼',
+        description: '找不到可互動的物件時，給你一點微光提醒。'
+      },
+      travel: {
+        name: '書籤傳送',
+        description: '直接前往地圖上已完成的故事地點。'
+      },
+      echo: {
+        name: '書籤回響',
+        description: '連續答對時，每天給一次額外的能量鼓勵。'
+      },
+      double: {
+        name: '書籤分身',
+        description: '陪你在不同的書裡調查案件。'
+      }
+    }
+  };
+})(globalThis);
+
 /* 08_scope_strings.js */
 (function (g) {
   g.BAScopeCopy = {
@@ -7044,6 +7210,43 @@ Object.assign(globalThis.BAStrings.lobby, {
     tabs: '選擇科目'
   };
 })(globalThis);
+
+/* 09_bookmark.js */
+(function (root, factory) {
+  const api = factory(typeof module === 'object' && module.exports ? require('../data/bookmark.json') : root.BABookmarkData);
+  root.BABookmark = api;
+  if (typeof module === 'object' && module.exports) module.exports = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (data) {
+  'use strict';
+
+  function isBookComplete(profile, bookId) {
+    const count = profile?.bookCaseCounts?.[bookId] || 5,
+      excluded = data.legacyExcludedCases[bookId] || [];
+    const cases = Object.values(profile?.cases || {}).filter(c => c.bookId === bookId && !excluded.includes(c.caseId) && c.completedRuns > 0);
+    return new Set(cases.map(c => c.caseId)).size >= count;
+  }
+  function summary(profile) {
+    const ids = [...new Set([...Object.keys(profile?.bookCaseCounts || {}), ...Object.values(profile?.cases || {}).map(c => c.bookId)])];
+    const completed = ids.filter(id => isBookComplete(profile, id)),
+      level = Math.min(data.maxLevel, completed.length + 1),
+      row = data.levels.find(r => r.level === level);
+    return {
+      level,
+      completed,
+      completedBooks: completed.length,
+      totems: row.totems,
+      abilities: data.levels.map(r => ({
+        ...r,
+        unlocked: r.implemented && level >= r.level
+      }))
+    };
+  }
+  return Object.freeze({
+    summary,
+    isBookComplete,
+    data
+  });
+});
 
 /* 09_scope.js */
 (function (root, factory) {
@@ -7159,10 +7362,10 @@ Object.assign(globalThis.BAStrings.lobby, {
   'use strict';
 
   var common = typeof module === 'object' && module.exports;
-  var api = factory(common ? require('../data/energy-rules.json') : root.BAEnergyRules, common ? require('../data/book-catalog.json') : root.BABookCatalogData, common ? require('./09_scope.js') : root.BAScope);
+  var api = factory(common ? require('../data/energy-rules.json') : root.BAEnergyRules, common ? require('../data/book-catalog.json') : root.BABookCatalogData, common ? require('./09_scope.js') : root.BAScope, common ? require('./09_bookmark.js') : root.BABookmark);
   root.BAState = api;
   if (typeof module === 'object' && module.exports) module.exports = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (energyRules, catalog, Scope) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (energyRules, catalog, Scope, Bookmark) {
   'use strict';
 
   var SCHEMA_VERSION = 1;
@@ -7599,11 +7802,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     return profile;
   }
   function isBookComplete(profile, bookId) {
-    var count = profile.bookCaseCounts[bookId] || 5;
-    return Object.keys(profile.cases).filter(function (key) {
-      // The new upper-volume journey is not one of the five legacy bookmark cases.
-      return profile.cases[key].bookId === bookId && (bookId !== 'sanguo' || profile.cases[key].caseId !== 'tao_yuan') && profile.cases[key].completedRuns > 0;
-    }).length >= count;
+    return Bookmark.isBookComplete(profile, bookId);
   }
   function activeCases(profile, bookId) {
     return Object.keys(profile.cases).filter(function (key) {
@@ -7893,6 +8092,7 @@ Object.assign(globalThis.BAStrings.lobby, {
           if (c.step !== RULES.stepsPerCase - 1) return failure('CASE_NOT_READY', {
             step: c.step
           });
+          var bookmarkBefore = Bookmark.summary(next).level;
           c.steps.push({
             step: c.step,
             at: stamp.at
@@ -7920,6 +8120,12 @@ Object.assign(globalThis.BAStrings.lobby, {
             run: c.run,
             phase: 'card',
             energyDelta: first ? RULES.caseReward : 0
+          };
+          var bookmarkAfter = Bookmark.summary(next).level;
+          if (bookmarkAfter > bookmarkBefore) next.sessions.bookmarkRise = {
+            from: next.sessions.bookmarkRise?.from || bookmarkBefore,
+            to: bookmarkAfter,
+            id: key + ':' + c.run
           };
           changed = true;
           code = first ? 'CASE_COMPLETED' : 'CASE_REPLAY_COMPLETED';
@@ -168401,6 +168607,163 @@ Object.assign(globalThis.BAStrings.lobby, {
     cases: CLASSICS_DATA.cases.concat([])
   };
 })();
+/* 22_stage_polish.js */
+(function (g) {
+  'use strict';
+
+  /* 書籤偵探社 畫面美化層（Claude，2026-11-20）
+   * 依 BOOKMARK_CHARACTER_SPEC 調整原骨架；載入在 shared/visual-novel.js 後、54_journey.jsx 前，
+   * 以覆寫 g.BAVisualNovel.DialogueBox 的方式把「旁白」改成「書籤」在說話。
+   * 書籤是紫金色絲帶妖精；兩個光點、無嘴、依等級增加圖騰。正式圖前用 SVG 佔位。
+   */
+  const R = g.React,
+    h = R.createElement,
+    VN = g.BAVisualNovel;
+  if (!VN || !VN.DialogueBox) return;
+  function BookmarkGlyph({
+    level = 1
+  } = {}) {
+    const id = R.useId(),
+      count = Math.min(5, Math.max(1, level));
+    return h('svg', {
+      className: 'vn-bookmark-glyph',
+      viewBox: '0 0 120 480',
+      'aria-hidden': true,
+      'data-totems': count
+    }, h('defs', null, h('linearGradient', {
+      id: id + '-color',
+      x1: '0',
+      y1: '0',
+      x2: '0',
+      y2: '1'
+    }, h('stop', {
+      offset: '0',
+      stopColor: '#4b2e83'
+    }), h('stop', {
+      offset: '1',
+      stopColor: '#8f7bd1'
+    }))), h('path', {
+      d: 'M27 18Q60 7 93 18L88 410L60 389L32 410Z',
+      fill: 'url(#' + id + '-color)',
+      stroke: '#f0d38a',
+      strokeWidth: '2.5',
+      opacity: '.95'
+    }), h('path', {
+      d: 'M37 31Q60 24 83 31L79 384L60 371L41 384Z',
+      fill: 'none',
+      stroke: '#ceb47b',
+      strokeWidth: '1',
+      opacity: '.6'
+    }), h('g', {
+      className: 'vn-bookmark-eyes',
+      fill: '#fff1ba'
+    }, h('ellipse', {
+      cx: 49,
+      cy: 70,
+      rx: 4,
+      ry: 6
+    }), h('ellipse', {
+      cx: 71,
+      cy: 70,
+      rx: 4,
+      ry: 6
+    })), Array.from({
+      length: count
+    }, (_, i) => h('g', {
+      key: i,
+      className: 'vn-bookmark-totem',
+      style: {
+        animationDelay: i * .18 + 's'
+      },
+      transform: 'translate(60 ' + (133 + i * 43) + ')',
+      stroke: '#ffe4a0',
+      strokeWidth: '2',
+      fill: 'none'
+    }, [h('circle', {
+      key: 'circle',
+      r: 12
+    }), h('path', {
+      key: 'glyph',
+      d: ['M0-8L8 0L0 8L-8 0Z', 'M-2-8Q13 0-2 8Q5 0-2-8', 'M0-9L3-3L9 0L3 3L0 9L-3 3L-9 0L-3-3Z', 'M-4-7A4 4 0 1 1 4-7A4 4 0 1 1-4-7M0-3V9M0 5H5', 'M-7-6Q0-9 0-4Q0-9 7-6V6Q0 3 0 8Q0 3-7 6Z'][i]
+    })])), h('path', {
+      className: 'vn-bookmark-tassel',
+      d: 'M60 391Q83 426 62 445M62 440L47 465M62 440L58 468M62 440L69 466M62 440L78 460',
+      fill: 'none',
+      stroke: '#e2bf6d',
+      strokeWidth: '3',
+      strokeLinecap: 'round'
+    }));
+  }
+  const original = VN.DialogueBox;
+  function DialogueBox(props) {
+    const {
+      lines,
+      index,
+      onNext,
+      renderText,
+      renderAvatar,
+      name,
+      role,
+      copy,
+      onSpeak,
+      onHistory,
+      profile
+    } = props;
+    const line = lines[index];
+    if (!line) return null;
+    const narrator = line.speaker === 'narrator';
+    const advance = e => {
+      if (e.detail > 1 || e.target.closest('button,a,input,select,textarea') || g.getSelection()?.toString()) return;
+      onNext();
+    };
+    const who = line.speaker;
+    const speakerName = narrator ? g.BABookmarkCopy.name : name(who);
+    const speakerRole = narrator ? g.BABookmarkCopy.role : role(who);
+    return h('section', {
+      className: 'vn-dialog' + (narrator ? ' vn-narration' : ''),
+      'data-testid': 'journey-dialog',
+      'data-speaker': who,
+      tabIndex: 0,
+      'aria-label': copy.dialogue,
+      onClick: advance,
+      onKeyDown: e => {
+        if ((e.key === 'Enter' || e.key === ' ') && !e.repeat && !e.target.closest('button,a,input,select,textarea')) {
+          e.preventDefault();
+          onNext();
+        }
+      }
+    }, h('div', {
+      className: 'vn-avatar',
+      'aria-hidden': true
+    }, narrator ? h(BookmarkGlyph, {
+      level: g.BABookmark.summary(profile).level
+    }) : renderAvatar(who)), h('div', {
+      className: 'vn-dialog-main'
+    }, h('div', {
+      className: 'vn-speaker'
+    }, h('b', null, renderText(speakerName)), h('small', null, renderText(speakerRole))), h('div', {
+      className: 'vn-dialog-text',
+      key: index
+    }, renderText(line.text)), h('div', {
+      className: 'vn-dialog-tools'
+    }, h('span', null, index + 1 + ' / ' + lines.length), h('button', {
+      type: 'button',
+      onClick: onHistory,
+      'data-testid': 'dialog-history'
+    }, renderText(copy.history)), h('button', {
+      type: 'button',
+      onClick: () => onSpeak(line.text)
+    }, renderText(copy.listen)), h('button', {
+      type: 'button',
+      'data-testid': 'dialog-next',
+      onClick: onNext
+    }, renderText(index === lines.length - 1 ? copy.endDialogue : copy.next)))));
+  }
+  DialogueBox.original = original;
+  VN.DialogueBox = DialogueBox;
+  VN.BookmarkGlyph = BookmarkGlyph;
+})(globalThis);
+
 /* 29_reading.jsx */
 (function (g) {
   'use strict';
@@ -169413,8 +169776,10 @@ Object.assign(globalThis.BAStrings.lobby, {
           value: arrival.energyDelta
         }))
       }))
+    }), /*#__PURE__*/React.createElement(globalThis.BABookmarkUI.Badge, {
+      profile: profile
     })))), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: showGuide && /*#__PURE__*/React.createElement(Modal, {
+      value: !profile?.sessions?.bookmarkRise && showGuide && /*#__PURE__*/React.createElement(Modal, {
         title: /*#__PURE__*/React.createElement(Readable, {
           value: s.lobby.stone,
           profile: profile
@@ -169448,6 +169813,11 @@ Object.assign(globalThis.BAStrings.lobby, {
         value: globalThis.BATutorialCopy.boardLater,
         profile: profile
       })))))
+    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: profile?.sessions?.bookmarkRise && !profile.sessions.bookExit && /*#__PURE__*/React.createElement(globalThis.BABookmarkUI.Growth, {
+        profile: profile,
+        commit: commit
+      })
     }));
   }
   function Modal({
@@ -172069,10 +172439,12 @@ Object.assign(globalThis.BAStrings.lobby, {
         profile: profile
       })))
     }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: earned && /*#__PURE__*/React.createElement(Button, {
+      value: earned && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
         kind: "ghost small",
         onClick: () => setBack(!back)
-      }, back ? S.album.front : S.album.flip)
+      }, back ? S.album.front : S.album.flip), /*#__PURE__*/React.createElement(g.BABookmarkUI.RecordLine, {
+        profile: profile
+      }))
     }));
   }
   function HandsPanel({
@@ -173311,6 +173683,159 @@ Object.assign(globalThis.BAStrings.lobby, {
   g.BAScopePicker = ScopePicker;
 })(globalThis);
 
+/* 49_bookmark.jsx */
+(function (g) {
+  const C = g.BABookmarkCopy,
+    {
+      Txt,
+      Button
+    } = g.BAFlowKit,
+    Glyph = g.BAVisualNovel.BookmarkGlyph;
+  function Bust({
+    profile,
+    side = 'right',
+    speaking = false
+  }) {
+    const info = g.BABookmark.summary(profile);
+    return /*#__PURE__*/React.createElement("div", {
+      className: 'vn-bust bookmark ' + side + (speaking ? ' speaking' : ''),
+      "data-bust": "narrator",
+      "data-bookmark-level": info.level,
+      "data-speaking": speaking,
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(Glyph, {
+      level: info.level
+    }));
+  }
+  function Badge({
+    profile
+  }) {
+    const info = g.BABookmark.summary(profile);
+    return /*#__PURE__*/React.createElement("span", {
+      className: "ba-bookmark-badge",
+      "data-testid": "bookmark-level",
+      "data-level": info.level
+    }, /*#__PURE__*/React.createElement("span", {
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(Glyph, {
+      level: info.level
+    })), /*#__PURE__*/React.createElement(Txt, {
+      text: C.name + ' ' + C.levelShort
+    }), /*#__PURE__*/React.createElement("strong", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: info.level
+    })));
+  }
+  function RecordLine({
+    profile
+  }) {
+    return /*#__PURE__*/React.createElement("aside", {
+      className: "ba-bookmark-record",
+      "data-testid": "bookmark-record-line"
+    }, /*#__PURE__*/React.createElement("span", {
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(Glyph, {
+      level: g.BABookmark.summary(profile).level
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(Txt, {
+      text: C.name
+    })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(Txt, {
+      text: C.recorded
+    })));
+  }
+  function ParentInfo({
+    profile
+  }) {
+    const info = g.BABookmark.summary(profile);
+    return /*#__PURE__*/React.createElement("section", {
+      className: "ba-card ba-parent-section",
+      "data-testid": "bookmark-parent"
+    }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.level
+    }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: info.level
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.books
+    }), "\uFF1A", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: info.completedBooks
+    }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.unit
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.levelNote
+    })), /*#__PURE__*/React.createElement("ul", {
+      className: "ba-bookmark-abilities"
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: info.abilities.map(a => /*#__PURE__*/React.createElement("li", {
+        key: a.ability
+      }, /*#__PURE__*/React.createElement("strong", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.levelShort
+      }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: a.level
+      }), " \xB7 ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.abilities[a.ability].name
+      })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: a.unlocked ? C.available : C.pending
+      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.abilities[a.ability].description
+      }))))
+    })));
+  }
+  function Growth({
+    profile,
+    commit
+  }) {
+    const rise = profile?.sessions?.bookmarkRise,
+      finish = () => commit({
+        type: 'SAVE_SESSION',
+        sessionId: 'bookmarkRise',
+        value: null
+      }),
+      latest = React.useRef(finish);
+    latest.current = finish;
+    React.useEffect(() => {
+      if (!rise) return;
+      const id = setTimeout(() => latest.current(), g.BABookmark.data.ceremonyTimeoutMs);
+      return () => clearTimeout(id);
+    }, [rise?.id]);
+    if (!rise) return null;
+    return /*#__PURE__*/React.createElement(g.BAUI.Modal, {
+      title: /*#__PURE__*/React.createElement(Txt, {
+        text: C.growth
+      }),
+      onClose: finish,
+      dismissOnBackdrop: false,
+      className: "ba-bookmark-growth-modal"
+    }, /*#__PURE__*/React.createElement("section", {
+      className: "ba-bookmark-growth",
+      "data-testid": "bookmark-growth"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-bookmark-growth-art",
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(Glyph, {
+      level: g.BABookmark.summary(profile).level
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+      text: C.name + ' ' + C.levelShort
+    }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: rise.from
+    }), " \u2192 ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: rise.to
+    })), /*#__PURE__*/React.createElement("p", {
+      role: "status"
+    }, /*#__PURE__*/React.createElement(Txt, {
+      text: C.growthLine
+    })), /*#__PURE__*/React.createElement(Button, {
+      kind: "primary",
+      "data-testid": "bookmark-growth-close",
+      onClick: finish
+    }, C.continue)));
+  }
+  g.BABookmarkUI = {
+    Bust,
+    Badge,
+    RecordLine,
+    ParentInfo,
+    Growth
+  };
+})(globalThis);
+
 /* 50_screens.jsx */
 (function (g) {
   'use strict';
@@ -174060,7 +174585,8 @@ Object.assign(globalThis.BAStrings.lobby, {
       value: Object.entries(g.BAJourneys).filter(([, j]) => profile.rewardedCases.includes(j.caseKey)).map(([id]) => {
         const UI = g.BAJourneyUIs[id];
         return /*#__PURE__*/React.createElement(UI.Card, {
-          key: id
+          key: id,
+          profile: profile
         });
       })
     }), /*#__PURE__*/React.createElement("div", {
@@ -174642,7 +175168,9 @@ Object.assign(globalThis.BAStrings.lobby, {
       }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: S.parents.summaryHint
       }))))
-    }), /*#__PURE__*/React.createElement(BackupPanel, {
+    }), /*#__PURE__*/React.createElement(React.Fragment, null, profile && /*#__PURE__*/React.createElement(g.BABookmarkUI.ParentInfo, {
+      profile: profile
+    })), /*#__PURE__*/React.createElement(BackupPanel, {
       profile: profile,
       onRestored: onRestored,
       notify: notify
@@ -175203,7 +175731,10 @@ Object.assign(globalThis.BAStrings.lobby, {
   }) {
     const [index, setIndex] = React.useState(0),
       [history, setHistory] = React.useState(false),
-      lines = g.BAOpeningData.lines;
+      lines = g.BAOpeningData.lines.map((l, i) => i === 1 ? {
+        ...l,
+        text: l.text + ' ' + g.BABookmarkCopy.introduction
+      } : l);
     const speaker = lines[index].speaker;
     return /*#__PURE__*/React.createElement(g.BAVisualNovel.Frame, {
       mobileFill: true,
@@ -175222,9 +175753,10 @@ Object.assign(globalThis.BAStrings.lobby, {
       }), /*#__PURE__*/React.createElement(g.BAUI.FullTeam, {
         profile: null
       }), /*#__PURE__*/React.createElement("div", {
-        className: "ba-opening-stone"
-      }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-        size: 150
+        className: "vn-portraits has-bookmark"
+      }, /*#__PURE__*/React.createElement(g.BABookmarkUI.Bust, {
+        side: "right",
+        speaking: speaker === 'narrator'
       }))),
       footer: /*#__PURE__*/React.createElement(g.BAVisualNovel.DialogueBox, {
         lines: lines,
@@ -175413,6 +175945,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     }) {
       const resolved = lines.map(l => resolve(l, companion || J.book(profile).companion || J.companions[0]));
       return /*#__PURE__*/React.createElement(VN.DialogueBox, {
+        profile: profile,
         lines: resolved,
         index: index,
         onNext: onNext,
@@ -175505,12 +176038,41 @@ Object.assign(globalThis.BAStrings.lobby, {
     }
     function Portraits({
       dialogue,
-      profile
+      profile,
+      map = false
     }) {
       if (!dialogue) return null;
       const partner = J.book(profile).companion || J.companions[0],
-        line = resolve(dialogue.lines[dialogue.index], partner),
-        other = line.speaker === partner ? J.lead : partner,
+        lines = dialogue.lines.map(l => resolve(l, partner)),
+        line = lines[dialogue.index],
+        human = l => l && !['narrator', 'stone'].includes(l.speaker);
+      if (map) return /*#__PURE__*/React.createElement("div", {
+        className: "vn-portraits has-bookmark",
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(g.BABookmarkUI.Bust, {
+        profile: profile,
+        side: "right",
+        speaking: line.speaker === 'narrator'
+      }));
+      if (lines.some(l => l.speaker === 'narrator')) {
+        const person = human(line) ? line : [...lines.slice(0, dialogue.index)].reverse().find(human) || lines.find(human) || {
+          speaker: partner
+        };
+        const side = g.BAJourneyArt.characters[person.speaker]?.talkSide || person.side || 'left';
+        return /*#__PURE__*/React.createElement("div", {
+          className: "vn-portraits has-bookmark",
+          "aria-hidden": "true"
+        }, /*#__PURE__*/React.createElement(Bust, {
+          who: person.speaker,
+          side: side,
+          speaking: line.speaker === person.speaker
+        }), /*#__PURE__*/React.createElement(g.BABookmarkUI.Bust, {
+          profile: profile,
+          side: side === 'left' ? 'right' : 'left',
+          speaking: line.speaker === 'narrator'
+        }));
+      }
+      const other = line.speaker === partner ? J.lead : partner,
         side = g.BAJourneyArt.characters[line.speaker]?.talkSide || line.side || 'right';
       return /*#__PURE__*/React.createElement("div", {
         className: "vn-portraits",
@@ -175606,9 +176168,6 @@ Object.assign(globalThis.BAStrings.lobby, {
           direction: "in",
           reduced: reduced,
           volumeId: D.volumeId
-        }), /*#__PURE__*/React.createElement(Portraits, {
-          dialogue: dialogue,
-          profile: profile
         })),
         footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
           profile: profile,
@@ -175669,7 +176228,11 @@ Object.assign(globalThis.BAStrings.lobby, {
         value: S.background
       })), /*#__PURE__*/React.createElement(Lines, {
         lines: D.background.map(l => normalize(l).text)
-      })), profile.rewardedCases.includes(J.caseKey) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null)));
+      })), profile.rewardedCases.includes(J.caseKey) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Card, {
+        profile: profile
+      }), /*#__PURE__*/React.createElement(Sources, {
+        profile: profile
+      })));
     }
     function Map({
       profile,
@@ -175932,7 +176495,8 @@ Object.assign(globalThis.BAStrings.lobby, {
           }, S.wander)))
         })), /*#__PURE__*/React.createElement(Portraits, {
           dialogue: dialogue,
-          profile: profile
+          profile: profile,
+          map: true
         })),
         footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
           profile: profile,
@@ -176424,7 +176988,9 @@ Object.assign(globalThis.BAStrings.lobby, {
         }
       }, S.listen))));
     }
-    function Card() {
+    function Card({
+      profile
+    }) {
       if (D.placeholder) return /*#__PURE__*/React.createElement("section", {
         className: "ba-card ba-clock-card",
         "data-testid": "achi-card"
@@ -176440,7 +177006,9 @@ Object.assign(globalThis.BAStrings.lobby, {
         value: C.card.quote
       })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: C.card.note
-      }))));
+      })), /*#__PURE__*/React.createElement(g.BABookmarkUI.RecordLine, {
+        profile: profile
+      })));
       return /*#__PURE__*/React.createElement("section", {
         className: "ba-card ba-j-earned",
         "data-testid": "liu-card"
@@ -176458,9 +177026,13 @@ Object.assign(globalThis.BAStrings.lobby, {
         value: C.card.quote
       })), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: C.card.note
-      }))));
+      })), /*#__PURE__*/React.createElement(g.BABookmarkUI.RecordLine, {
+        profile: profile
+      })));
     }
-    function Sources() {
+    function Sources({
+      profile
+    }) {
       return /*#__PURE__*/React.createElement("section", {
         className: "ba-story-paper"
       }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
@@ -176474,6 +177046,8 @@ Object.assign(globalThis.BAStrings.lobby, {
         })), /*#__PURE__*/React.createElement(Lines, {
           lines: s.lines
         })))
+      }), /*#__PURE__*/React.createElement(g.BABookmarkUI.RecordLine, {
+        profile: profile
       }));
     }
     function Manual({
@@ -176698,7 +177272,11 @@ Object.assign(globalThis.BAStrings.lobby, {
           sessionId: J.practiceId(profile, f.stage === 'practice1' ? 1 : 2),
           onComplete: () => go(f.stage === 'practice1' ? 'records' : 'tavern')
         });
-        if (['ending', 'complete'].includes(f.stage)) content = /*#__PURE__*/React.createElement(React.Fragment, null, (f.stage === 'complete' || c.status === 'completed') && /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null), f.stage === 'ending' && c.status !== 'completed' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        if (['ending', 'complete'].includes(f.stage)) content = /*#__PURE__*/React.createElement(React.Fragment, null, (f.stage === 'complete' || c.status === 'completed') && /*#__PURE__*/React.createElement(Card, {
+          profile: profile
+        }), /*#__PURE__*/React.createElement(Sources, {
+          profile: profile
+        }), f.stage === 'ending' && c.status !== 'completed' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
           value: profile.rewardedCases.includes(J.caseKey) ? S.replayReward : S.reward
         })), /*#__PURE__*/React.createElement(Button, {
           kind: "primary",
@@ -176914,6 +177492,12 @@ Object.assign(globalThis.BAStrings.lobby, {
     }), /*#__PURE__*/React.createElement(g.BAUI.FullTeam, {
       profile: profile
     }), /*#__PURE__*/React.createElement("div", {
+      className: "ba-travel-spirit",
+      "data-testid": "travel-bookmark",
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(g.BAVisualNovel.BookmarkGlyph, {
+      level: g.BABookmark.summary(profile).level
+    })), /*#__PURE__*/React.createElement("div", {
       className: "ba-travel-book",
       "aria-hidden": "true"
     }, /*#__PURE__*/React.createElement("i", null, /*#__PURE__*/React.createElement(g.BABookMap.Cover, {
@@ -176924,8 +177508,6 @@ Object.assign(globalThis.BAStrings.lobby, {
       "aria-hidden": "true"
     }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
       size: 80
-    }), /*#__PURE__*/React.createElement("span", {
-      className: "ba-travel-bookmark"
     })), /*#__PURE__*/React.createElement("p", {
       className: "ba-travel-leader"
     }, /*#__PURE__*/React.createElement(Txt, {
@@ -177507,7 +178089,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     function finishExit() {
       return navigate('lobby', {
         transition: 'iris',
-        anchor: document.querySelector('.ba-travel-stone'),
+        anchor: document.querySelector('.ba-travel-spirit'),
         before: () => commit({
           type: 'FINISH_BOOK_EXIT'
         })
@@ -177633,7 +178215,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     });else if (route.page === 'book-entry') screen = /*#__PURE__*/React.createElement(JUI.Entry, _extends({}, shared, {
       onDone: () => navigate(journeyRoute('journey-map'), {
         transition: 'iris',
-        anchor: document.querySelector('.ba-travel-book'),
+        anchor: document.querySelector('.ba-travel-spirit'),
         before: () => commit(J.bookAction(current.current, {
           entrySeen: true,
           entryLine: 0
