@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.16</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.17</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -1778,7 +1778,7 @@ globalThis.BAClocktowerData = {
     }]
   }
 };
-globalThis.BAVersion = "0.3.16";
+globalThis.BAVersion = "0.3.17";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -167446,7 +167446,7 @@ Object.assign(globalThis.BAStrings.lobby, {
   }) {
     var s = text();
     var list = Array.isArray(profiles) ? profiles : Object.values(profiles || {});
-    var first = list[0];
+    var first = list.find(p => p.id === profile?.id) || list[0];
     var readingProfile = profile || first;
     var assets = globalThis.BAAssets || {};
     return /*#__PURE__*/React.createElement("main", {
@@ -167608,12 +167608,12 @@ Object.assign(globalThis.BAStrings.lobby, {
             value: profile.name || s.common.detective
           })), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(Readable, {
             value: gradeLabel(profile.grade),
-            profile: profile
+            profile: readingProfile
           }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
             value: gradeLabel(profile.grade) ? " · " : ""
           }), /*#__PURE__*/React.createElement(Readable, {
             value: s.energy.shortLabel,
-            profile: profile
+            profile: readingProfile
           }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
             value: balance(profile)
           }))), /*#__PURE__*/React.createElement(Icon, {
@@ -175580,6 +175580,15 @@ Object.assign(globalThis.BAStrings.lobby, {
       [day, setDay] = React.useState(() => g.BAState.dayKey());
     const current = React.useRef(null),
       lastRoute = React.useRef('');
+    // Title previews use the active save, without selecting it or writing navigation.
+    const coverProfile = React.useMemo(() => {
+      const id = index.activeId || index.profiles?.[0]?.id;
+      const r = id && g.BAPlatform.storage.loadProfile(id);
+      return r?.ok ? r.profile : null;
+    }, [index]);
+    const readingProfile = profile || coverProfile || {
+      grade: 1
+    };
     const J = g.BAJourneys[route.bookId || 'sanguo'] || g.BAJourney,
       JUI = g.BAJourneyUIs[J.data.bookId],
       journeyRoute = page => ({
@@ -175975,6 +175984,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     };
     let screen;
     if (route.page === 'title' || route.page === 'profiles') screen = /*#__PURE__*/React.createElement(U.Title, {
+      profile: readingProfile,
       profiles: index.profiles || [],
       onContinue: enterProfile,
       onCreate: () => navigate(index.profiles?.length ? 'create' : 'opening'),
@@ -175993,6 +176003,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       onHome: goHome,
       onRestored: restore
     }));else if (!profile) screen = /*#__PURE__*/React.createElement(U.Title, {
+      profile: readingProfile,
       profiles: index.profiles || [],
       onContinue: enterProfile,
       onCreate: () => navigate(index.profiles?.length ? 'create' : 'opening'),
@@ -176135,14 +176146,10 @@ Object.assign(globalThis.BAStrings.lobby, {
       onNavigate: navigate
     });
     return /*#__PURE__*/React.createElement(g.BAReading.Provider, {
-      profile: profile || {
-        grade: 1
-      }
+      profile: readingProfile
     }, /*#__PURE__*/React.createElement("div", {
       inert: energyPrompt ? '' : undefined,
-      className: 'ba-app ' + (profile?.grade <= 2 ? 'ba-low ' : '') + (g.BAReading.enabled(profile || {
-        grade: 1
-      }) ? 'ba-reading-on' : '')
+      className: 'ba-app ' + (profile?.grade <= 2 ? 'ba-low ' : '') + (g.BAReading.enabled(readingProfile) ? 'ba-reading-on' : '')
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: !['title', 'profiles'].includes(route.page) && /*#__PURE__*/React.createElement(U.Topbar, {
         profile: profile,
