@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.13</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.14</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -838,7 +838,7 @@ button.ba-brand { min-height: 44px; }
 .vn-node-card{position:absolute;z-index:9;bottom:8px;left:8px;right:8px;padding:10px 14px;border-radius:16px;background:#fff8e9f5;border:1px solid #c4ac80;box-shadow:0 4px 16px #0003}.vn-node-card h2{font-size:19px;margin:0 0 5px}.vn-node-card p{font-size:14px;margin:0 0 6px}.vn-node-card .ba-button{min-height:40px;padding:4px 12px;font-size:15px}.vn-node-card .ba-actions{gap:8px}
 @keyframes vn-fade{from{opacity:.4}to{opacity:1}}
 @media(max-width:900px){.vn-bust{height:60%}.vn-header{padding:6px 12px}.vn-header h1{font-size:17px}.vn-header .ba-button{font-size:13px;padding:4px 7px}}
-@media(max-width:600px){.vn-header{flex-wrap:wrap;gap:4px}.vn-header h1{font-size:16px}.vn-header .ba-actions{margin-left:auto}.vn-dialog{height:200px;padding:12px;gap:10px}.vn-avatar{flex-basis:44px;height:44px}.vn-avatar .ba-j-avatar{width:44px;height:44px}.vn-dialog-text .ba-txt{font-size:18px}.vn-dialog-tools{gap:4px;font-size:12px;flex-wrap:wrap}.vn-dialog-tools button{padding:5px 7px;min-height:38px}.vn-speaker{gap:7px}.vn-speaker small{font-size:11px}.vn-bust{height:55%;width:44%;left:auto!important;right:3%!important}.vn-bust:not(.speaking){display:none}.vn-dock{padding:10px 12px}.vn-sheet{padding:0 12px 12px}.vn-sheet-header h2{font-size:18px}.vn-stage{max-height:62dvh}.vn-frame .ba-j-node{width:44px;height:44px;border-width:2px}.vn-frame .ba-j-node b{top:42px}.vn-frame .ba-j-party{transform:translate(-50%,-100%)}.vn-node-card p{display:none}}
+@media(max-width:600px){.vn-header{flex-wrap:wrap;gap:4px}.vn-header h1{font-size:16px}.vn-header .ba-actions{margin-left:auto}.vn-dialog{height:200px;padding:12px;gap:10px}.vn-avatar{flex-basis:44px;height:44px}.vn-avatar .ba-j-avatar{width:44px;height:44px}.vn-dialog-text .ba-txt{font-size:18px}.vn-dialog-tools{gap:4px;font-size:12px;flex-wrap:wrap}.vn-dialog-tools button{padding:5px 7px;min-height:38px}.vn-speaker{gap:7px}.vn-speaker small{font-size:11px}.vn-bust{height:55%;width:44%}.vn-bust:not(.speaking){display:none}.vn-dock{padding:10px 12px}.vn-sheet{padding:0 12px 12px}.vn-sheet-header h2{font-size:18px}.vn-stage{max-height:62dvh}.vn-frame .ba-j-node{width:44px;height:44px;border-width:2px}.vn-frame .ba-j-node b{top:42px}.vn-frame .ba-j-party{transform:translate(-50%,-100%)}.vn-node-card p{display:none}}
 @media(prefers-reduced-motion:reduce){.vn-frame *{animation:none!important;transition:none!important}}
 
 body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:auto;z-index:30}
@@ -952,6 +952,70 @@ body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:1
  .ba-lobby-stage .ba-hotspot-parents{top:66%}.ba-lobby-stage .ba-hotspot-album{top:46%}
 }
 @media(prefers-reduced-motion:reduce){.ba-lobby-stage *{animation:none!important;transition:none!important}}
+
+/* A camera crops a native-aspect world; never stretch geography or characters. */
+.vn-mobile-fill .vn-stage{max-height:none}
+.vn-camera{position:absolute;inset:0;overflow:hidden}
+.vn-world{position:absolute;overflow:hidden}
+.vn-world .ba-j-map-image,.vn-world .ba-j-scene-background{width:100%;height:100%;object-fit:cover;display:block}
+.vn-stage .ba-j-scene-section{position:relative}
+.vn-mobile-fill .vn-bust:not(.speaking){display:none}
+.vn-mobile-fill .vn-bust.left{left:3%;right:auto}
+.vn-mobile-fill .vn-bust.right{right:3%;left:auto}
+@media(max-width:600px){
+ .vn-mobile-fill .vn-dialog{display:grid;grid-template-columns:64px minmax(0,1fr);grid-template-rows:32px minmax(0,1fr) auto;column-gap:10px;row-gap:4px}
+ .vn-mobile-fill .vn-avatar{grid-column:1;grid-row:1/3}
+ .vn-mobile-fill .vn-dialog-main{display:contents}
+ .vn-mobile-fill .vn-speaker{grid-column:2;grid-row:1;min-width:0}
+ .vn-mobile-fill .vn-speaker small{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ .vn-mobile-fill .vn-dialog-text{grid-column:2;grid-row:2;max-width:none}
+ .vn-mobile-fill .vn-dialog-tools{grid-column:1/-1;grid-row:3;flex-wrap:nowrap}
+ .vn-mobile-fill .vn-dialog-tools button{padding:4px 6px}
+}
+@media(max-width:360px){.vn-mobile-fill .vn-dialog-tools>span{display:none}}
+@media(max-width:900px) and (max-height:520px){
+ .vn-mobile-fill .vn-header{min-height:44px;flex-wrap:nowrap;padding:2px 8px}
+ .vn-mobile-fill .vn-header h1{width:auto;font-size:15px}
+ .vn-mobile-fill .vn-header .ba-actions{width:auto;flex-wrap:nowrap}
+ .vn-mobile-fill .vn-dialog{height:126px;padding:6px 12px;gap:10px}
+ .vn-mobile-fill .vn-avatar,.vn-mobile-fill .vn-avatar .ba-j-avatar{width:44px;height:44px;flex-basis:44px}
+ .vn-mobile-fill .vn-dialog-text{padding:0;line-height:1.5}
+ .vn-mobile-fill .vn-dialog-tools{font-size:12px;gap:4px}
+ .vn-mobile-fill .vn-dialog-tools button{min-height:40px;padding:3px 8px}
+ .vn-mobile-fill .vn-dock{padding:4px 12px;max-height:24dvh}
+ .vn-mobile-fill .vn-dock p{margin:0 0 4px;font-size:13px}
+}
+
+.ba-modal-backdrop:has(.ba-stone-energy-modal){align-items:flex-end;background:#1d2c3470}
+.ba-stone-energy-modal{width:min(960px,100%);max-width:960px;background:#fffaf0;border:2px solid #b8c6ad}
+.ba-stone-energy-modal .ba-modal-header{padding:10px 22px}
+.ba-stone-energy-modal .ba-modal-header h2{color:#4d6853}
+.ba-stone-energy-modal .ba-modal-content{padding:18px 24px}
+.ba-stone-energy-body{display:grid;grid-template-columns:144px minmax(0,1fr);gap:24px;align-items:center}
+.ba-stone-energy-portrait svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 6px #4b403526)}
+.ba-stone-energy-speech h3{margin:0 0 8px;font-size:23px;color:#3d5845}
+.ba-stone-energy-speech p{margin:8px 0;line-height:1.9;font-size:18px}
+.ba-stone-energy-speech .ba-txt{font-size:inherit;max-width:none;letter-spacing:0}
+.ba-stone-energy-actions{margin-top:18px;justify-content:flex-end}
+.ba-stone-energy-actions .ba-button{min-height:48px}
+@media(max-width:600px){
+ .ba-modal-backdrop:has(.ba-stone-energy-modal){padding:12px}
+ .ba-stone-energy-modal .ba-modal-header{padding:8px 12px}
+ .ba-stone-energy-modal .ba-modal-content{padding:12px}
+ .ba-stone-energy-body{grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:start}
+ .ba-stone-energy-portrait{padding-top:12px}
+ .ba-stone-energy-speech h3{font-size:19px}
+ .ba-stone-energy-speech p{font-size:16px;line-height:1.9}
+ .ba-stone-energy-actions{gap:8px;margin-top:12px;display:grid;grid-template-columns:1fr}
+ .ba-stone-energy-actions .ba-button{padding:8px;font-size:16px}
+}
+@media(max-height:520px) and (min-width:601px){
+ .ba-stone-energy-modal .ba-modal-content{padding:10px 18px}
+ .ba-stone-energy-body{grid-template-columns:86px minmax(0,1fr);gap:16px}
+ .ba-stone-energy-speech p{margin:2px 0;font-size:16px}
+ .ba-stone-energy-speech h3{font-size:18px;margin:0}
+ .ba-stone-energy-actions{margin-top:8px}
+}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1254,7 +1318,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.13";
+globalThis.BAVersion = "0.3.14";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -1508,7 +1572,7 @@ globalThis.BAHeroes = [{
   "lead": ["sanguo_2", "xiyouji-2"]
 }];
 globalThis.BAJourneyArt = {
-  "version": 3,
+  "version": 4,
   "canvas": [1672, 941],
   "files": {
     "market": "taoyuan/zhuoxian-market-v1.png",
@@ -1523,22 +1587,30 @@ globalThis.BAJourneyArt = {
     "liu": {
       "frame": [14.0625, 0.0, 71.875, 100.0],
       "avatar": [30.76171875, 0.0, 37.109375, 24.7395833333],
-      "sourceAspectRatio": 0.6666666666666666
+      "sourceAspectRatio": 0.6666666666666666,
+      "talkScale": 0.85,
+      "talkSide": "right"
     },
     "zhang": {
       "frame": [14.16015625, 0.0, 73.33984375, 100.0],
       "avatar": [27.83203125, 0.0, 42.48046875, 28.3203125],
-      "sourceAspectRatio": 0.6666666666666666
+      "sourceAspectRatio": 0.6666666666666666,
+      "talkScale": 0.85,
+      "talkSide": "left"
     },
     "guan": {
       "frame": [17.08984375, 0.0, 58.0078125, 100.0],
       "avatar": [27.34375, 0.0, 38.0859375, 25.390625],
-      "sourceAspectRatio": 0.6666666666666666
+      "sourceAspectRatio": 0.6666666666666666,
+      "talkScale": 0.85,
+      "talkSide": "right"
     },
     "child": {
       "frame": [25.78125, 0.0, 45.80078125, 100.0],
       "avatar": [26.3671875, 0.0, 40.0390625, 26.6927083333],
-      "sourceAspectRatio": 0.6666666666666666
+      "sourceAspectRatio": 0.6666666666666666,
+      "talkScale": 0.85,
+      "talkSide": "left"
     },
     "hero1": {
       "frame": [4.5572916667, 0.0, 21.484375, 100.0],
@@ -1546,7 +1618,9 @@ globalThis.BAJourneyArt = {
       "source": "assets/team-named-age12-v2.png",
       "cropOnly": true,
       "avatar": [9.4401041667, 0.9765625, 14.9739583333, 22.4609375],
-      "sourceAspectRatio": 1.5
+      "sourceAspectRatio": 1.5,
+      "talkScale": 0.85,
+      "talkSide": "left"
     },
     "hero2": {
       "frame": [26.3671875, 0.0, 21.1588541667, 100.0],
@@ -1554,7 +1628,9 @@ globalThis.BAJourneyArt = {
       "source": "assets/team-named-age12-v2.png",
       "cropOnly": true,
       "avatar": [28.9713541667, 0.0, 14.9739583333, 22.4609375],
-      "sourceAspectRatio": 1.5
+      "sourceAspectRatio": 1.5,
+      "talkScale": 0.85,
+      "talkSide": "right"
     },
     "hero3": {
       "frame": [47.5260416667, 0.0, 24.7395833333, 100.0],
@@ -1562,7 +1638,9 @@ globalThis.BAJourneyArt = {
       "source": "assets/team-named-age12-v2.png",
       "cropOnly": true,
       "avatar": [51.1067708333, 0.0, 18.2291666667, 27.34375],
-      "sourceAspectRatio": 1.5
+      "sourceAspectRatio": 1.5,
+      "talkScale": 0.85,
+      "talkSide": "left"
     },
     "hero4": {
       "frame": [72.9166666667, 0.0, 21.484375, 100.0],
@@ -1570,7 +1648,9 @@ globalThis.BAJourneyArt = {
       "source": "assets/team-named-age12-v2.png",
       "cropOnly": true,
       "avatar": [75.7161458333, 2.44140625, 15.8854166667, 23.828125],
-      "sourceAspectRatio": 1.5
+      "sourceAspectRatio": 1.5,
+      "talkScale": 0.85,
+      "talkSide": "right"
     }
   },
   "scenes": {
@@ -3153,15 +3233,67 @@ const HINT_RULES = {
 (function (g) {
   'use strict';
 
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  // World percentages remain save-compatible. Cover changes only presentation.
+  function cover(width, height, aspect, focus = [50, 50]) {
+    const w = Math.max(width, height * aspect),
+      h = w / aspect;
+    return {
+      width: w,
+      height: h,
+      left: clamp(width / 2 - w * focus[0] / 100, width - w, 0),
+      top: clamp(height / 2 - h * focus[1] / 100, height - h, 0)
+    };
+  }
+  const point = (x, y, rect) => [(x - rect.left) / rect.width * 100, (y - rect.top) / rect.height * 100];
+  const mobile = (w, h) => w <= 600 || w <= 900 && h <= 520;
+  g.BAStageCamera = {
+    cover,
+    point,
+    mobile
+  };
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+(function (g) {
+  'use strict';
+
   // Presentation only. Hosts inject localized text, portraits, dialogue and actions.
   const R = g.React,
     h = R.createElement;
+  const Stage = R.createContext({
+    width: 0,
+    height: 0,
+    mobile: false
+  });
+  const useStage = () => R.useContext(Stage);
+  function Camera({
+    aspect = 16 / 9,
+    focus = [50, 50],
+    children,
+    worldProps = {}
+  }) {
+    const stage = useStage(),
+      box = stage.mobile ? g.BAStageCamera.cover(stage.width, stage.height, aspect, focus) : {
+        width: stage.width,
+        height: stage.height,
+        left: 0,
+        top: 0
+      };
+    return h('div', {
+      className: 'vn-camera'
+    }, h('div', {
+      ...worldProps,
+      className: 'vn-world ' + (worldProps.className || ''),
+      style: box,
+      'data-camera-focus': focus.join(',')
+    }, children));
+  }
   function Frame({
     header,
     stage,
     footer,
     sheet,
     aspect = 16 / 9,
+    mobileFill = false,
     ...props
   }) {
     const root = R.useRef(null),
@@ -3190,14 +3322,20 @@ const HINT_RULES = {
     R.useLayoutEffect(() => {
       const update = () => {
         const b = area.current.getBoundingClientRect(),
-          w = Math.min(b.width, Math.min(b.height, innerHeight * .62) * aspect);
-        setSize([w, w / aspect]);
+          fill = mobileFill && g.BAStageCamera.mobile(innerWidth, innerHeight),
+          w = fill ? b.width : Math.min(b.width, Math.min(b.height, innerHeight * .62) * aspect);
+        const height = fill ? b.height : w / aspect;
+        setSize(old => old[0] === w && old[1] === height && old[2] === fill ? old : [w, height, fill]);
       };
       const ro = new ResizeObserver(update);
       ro.observe(area.current);
       update();
-      return () => ro.disconnect();
-    }, [aspect]);
+      window.addEventListener('resize', update);
+      return () => {
+        ro.disconnect();
+        window.removeEventListener('resize', update);
+      };
+    }, [aspect, mobileFill]);
     R.useLayoutEffect(() => {
       if (!sheet) return;
       const bar = document.querySelector('.ba-topbar');
@@ -3208,9 +3346,14 @@ const HINT_RULES = {
         bar.inert = old;
       };
     }, [!!sheet]);
+    const stageSize = R.useMemo(() => ({
+      width: size[0],
+      height: size[1],
+      mobile: !!size[2]
+    }), [size[0], size[1], size[2]]);
     return h('main', {
       ...props,
-      className: 'vn-frame ' + (props.className || ''),
+      className: 'vn-frame ' + (size[2] ? 'vn-mobile-fill ' : '') + (props.className || ''),
       style: {
         top
       },
@@ -3229,7 +3372,9 @@ const HINT_RULES = {
         width: size[0],
         height: size[1]
       }
-    }, stage)), h('div', {
+    }, h(Stage.Provider, {
+      value: stageSize
+    }, size[0] > 0 && size[1] > 0 ? stage : null))), h('div', {
       className: 'vn-footer'
     }, footer)), sheet);
   }
@@ -3372,7 +3517,9 @@ const HINT_RULES = {
   g.BAVisualNovel = {
     Frame,
     Sheet,
-    DialogueBox
+    DialogueBox,
+    Camera,
+    useStage
   };
 })(globalThis);
 (function (g) {
@@ -4349,6 +4496,13 @@ globalThis.BALetters = [{
       notStarted: '還沒開始',
       strictFee: '今天第一次進入這本書需要',
       energyLow: '能量還不夠。可以先回委託板幫忙。',
+      stone: '小石',
+      energyTitle: '能量還不夠！',
+      energyMissing: '還差 {missing} 點能量。',
+      energyHelp: '先讀來信、幫個忙，收集能量吧！',
+      energyTomorrow: '今天的來信都完成了，明天再來收集能量吧。',
+      energyBoard: '去看今天的來信',
+      energyStay: '先留在書架',
       tooMany: '這本書已有兩個調查中的案件，先繼續其中一案吧。',
       caseCount: '案件',
       bookBookmark: '三國演義紀念書籤',
@@ -6756,7 +6910,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       nodes
     };
     const size = () => {
-      const r = element.current?.getBoundingClientRect();
+      const r = (element.current?.querySelector('[data-map-world]') || element.current)?.getBoundingClientRect();
       return r ? [r.width, r.height] : [100, 100];
     };
     const save = () => {
@@ -6863,6 +7017,30 @@ Object.assign(globalThis.BAStrings.lobby, {
         document.removeEventListener('visibilitychange', blur);
         cancelAnimationFrame(raf.current);
         save();
+      };
+    }, []);
+    React.useLayoutEffect(() => {
+      let frame, ro;
+      const observe = () => {
+        const el = element.current?.querySelector('[data-map-world]') || element.current;
+        if (!el) {
+          frame = requestAnimationFrame(observe);
+          return;
+        }
+        const update = () => {
+          const s = size();
+          if (!latest.current.enabled || !s[0] || !s[1]) return;
+          const n = latest.current.nodes.find(n => N.distance(n.pos, position.current, s) <= 40);
+          latest.current.onNear(n?.id || null);
+        };
+        ro = new ResizeObserver(update);
+        ro.observe(el);
+        update();
+      };
+      observe();
+      return () => {
+        cancelAnimationFrame(frame);
+        ro?.disconnect();
       };
     }, []);
     React.useEffect(() => {
@@ -7032,13 +7210,16 @@ Object.assign(globalThis.BAStrings.lobby, {
         }
       };
       // Use Claude's public timing options without modifying his effect code.
-      // 400ms iris halves leave time for React mount and its first painted frame.
+      // Reserve room for the first layout/paint of the taller mobile stage.
+      // Page turns use 300ms halves; iris keeps its existing 400ms halves.
       if (typeof document.documentElement.animate === 'function') await g.BATransition.play(kind, {
         ...center,
         x: opts.x ?? center.x,
         y: opts.y ?? center.y,
         ...(kind === 'iris' ? {
           duration: 400
+        } : kind === 'page' ? {
+          duration: 300
         } : {}),
         hold: 0,
         midpoint
@@ -166881,7 +167062,9 @@ Object.assign(globalThis.BAStrings.lobby, {
     title,
     onClose,
     children,
-    wide = false
+    wide = false,
+    className = '',
+    dismissOnBackdrop = true
   }) {
     var modalRef = React.useRef(null);
     var onCloseRef = React.useRef(onClose);
@@ -166931,10 +167114,10 @@ Object.assign(globalThis.BAStrings.lobby, {
     return /*#__PURE__*/React.createElement("div", {
       className: "ba-modal-backdrop",
       onClick: function (event) {
-        if (event.target === event.currentTarget && onClose) onClose();
+        if (event.target === event.currentTarget && dismissOnBackdrop && onClose) onClose();
       }
     }, /*#__PURE__*/React.createElement("section", {
-      className: "ba-modal" + (wide ? " wide" : ""),
+      className: "ba-modal" + (wide ? " wide" : "") + (className ? " " + className : ""),
       role: "dialog",
       "aria-modal": "true",
       "aria-labelledby": titleId,
@@ -171992,6 +172175,54 @@ Object.assign(globalThis.BAStrings.lobby, {
       onClick: onHome
     }, S.flow.home)));
   }
+  function EnergyPrompt({
+    profile,
+    missing,
+    onClose,
+    onBoard
+  }) {
+    const allDone = g.BAState.getDay(profile).commissions.length >= g.BAState.RULES.commissionsPerDay;
+    return /*#__PURE__*/React.createElement(g.BAUI.Modal, {
+      title: /*#__PURE__*/React.createElement(Txt, {
+        text: S.books.stone
+      }),
+      className: "ba-stone-energy-modal",
+      dismissOnBackdrop: false,
+      onClose: onClose
+    }, /*#__PURE__*/React.createElement("div", {
+      "data-testid": "book-energy-dialog"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-body"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-portrait",
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+      size: 144
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-speech",
+      role: "status"
+    }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(Txt, {
+      text: S.books.energyTitle
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+      text: S.books.energyMissing.replace('{missing}', missing)
+    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+      text: allDone ? S.books.energyTomorrow : S.books.energyHelp
+    })))), /*#__PURE__*/React.createElement("div", {
+      className: "ba-actions ba-stone-energy-actions"
+    }, /*#__PURE__*/React.createElement(Button, {
+      kind: "primary",
+      "data-testid": "energy-go-board",
+      onClick: onBoard
+    }, /*#__PURE__*/React.createElement(Txt, {
+      text: S.books.energyBoard
+    })), /*#__PURE__*/React.createElement(Button, {
+      kind: "ghost",
+      "data-testid": "energy-stay",
+      onClick: onClose
+    }, /*#__PURE__*/React.createElement(Txt, {
+      text: S.books.energyStay
+    })))));
+  }
   function MapBoard({
     profile,
     volumeId = 'volume-1',
@@ -172237,7 +172468,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     Shelf,
     MapBoard,
     Cover,
-    CoverBack
+    CoverBack,
+    EnergyPrompt
   };
 })(globalThis);
 
@@ -172320,7 +172552,6 @@ Object.assign(globalThis.BAStrings.lobby, {
   const normalize = value => Array.isArray(value) ? {
     speaker: value[0],
     text: value[1],
-    side: 'right',
     mood: 'normal'
   } : value;
   const resolve = (value, companion) => {
@@ -172404,7 +172635,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     speaking
   }) {
     const art = g.BAJourneyArt.characters[who],
-      clip = React.useId();
+      clip = React.useId(),
+      stage = VN.useStage();
     if (who === 'narrator') return null;
     if (who === 'stone') return /*#__PURE__*/React.createElement("div", {
       className: 'vn-bust stone ' + side + (speaking ? ' speaking' : ''),
@@ -172416,8 +172648,14 @@ Object.assign(globalThis.BAStrings.lobby, {
     const frame = G.rect(art);
     frame[3] *= .62;
     const source = art.asset ? g.BAAssets[art.asset] : g.BAAssets.journey[who];
+    const ratio = frame[2] / frame[3],
+      height = Math.min(stage.height * (speaking ? art.talkScale || .85 : .7), stage.width * .94 / ratio);
     return /*#__PURE__*/React.createElement("div", {
-      className: 'vn-bust ' + side + (speaking ? ' speaking' : ''),
+      style: {
+        height,
+        width: height * ratio
+      },
+      className: 'vn-bust ' + (side || art.talkSide || 'right') + (speaking ? ' speaking' : ''),
       "data-bust": who,
       "data-mood": "normal"
     }, /*#__PURE__*/React.createElement("svg", {
@@ -172443,18 +172681,19 @@ Object.assign(globalThis.BAStrings.lobby, {
     if (!dialogue) return null;
     const partner = J.book(profile).companion || J.companions[0],
       line = resolve(dialogue.lines[dialogue.index], partner),
-      other = line.speaker === partner ? J.lead : partner;
+      other = line.speaker === partner ? J.lead : partner,
+      side = g.BAJourneyArt.characters[line.speaker]?.talkSide || line.side || 'right';
     return /*#__PURE__*/React.createElement("div", {
       className: "vn-portraits",
       "aria-hidden": "true"
     }, /*#__PURE__*/React.createElement(Bust, {
       who: other,
-      side: line.side === 'left' ? 'right' : 'left',
+      side: side === 'left' ? 'right' : 'left',
       speaking: false
     }), /*#__PURE__*/React.createElement(Bust, {
       key: line.speaker,
       who: line.speaker,
-      side: line.side || 'right',
+      side: side,
       speaking: true
     }));
   }
@@ -172523,6 +172762,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       }
     } : null;
     return /*#__PURE__*/React.createElement(VN.Frame, {
+      mobileFill: true,
       "data-testid": "book-entry",
       "data-repeat": b.entrySeen,
       header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
@@ -172658,7 +172898,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       }
     });
     React.useEffect(() => {
-      if (!intro && !panel && !history) {
+      if (!intro && !panel && !history && walking.element.current) {
         const node = nodes.find(n => g.BAMapNavigation.distance(n.pos, walking.pos, walking.size()) <= 40);
         setNear(node?.id || null);
       }
@@ -172683,6 +172923,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       }))
     } : null;
     return /*#__PURE__*/React.createElement(VN.Frame, {
+      mobileFill: true,
       aspect: 6 / 5,
       className: dialogue ? 'has-dialog' : '',
       "data-testid": "journey-map",
@@ -172722,69 +172963,71 @@ Object.assign(globalThis.BAStrings.lobby, {
         },
         onClick: e => {
           if (e.target.closest('button,.vn-node-card')) return;
-          const r = e.currentTarget.getBoundingClientRect();
-          if (!walking.walk([(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100]) && !intro) notify(S.water);
+          const r = e.currentTarget.querySelector('[data-map-world]').getBoundingClientRect();
+          if (!walking.walk(g.BAStageCamera.point(e.clientX, e.clientY, r)) && !intro) notify(S.water);
+        }
+      }, /*#__PURE__*/React.createElement(VN.Camera, {
+        aspect: 6 / 5,
+        focus: walking.pos,
+        worldProps: {
+          'data-map-world': true
         }
       }, /*#__PURE__*/React.createElement("img", {
         className: "ba-j-map-image",
         src: g.BAAssets.sanguoMap,
         alt: "",
         draggable: "false"
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: showFactions && /*#__PURE__*/React.createElement("div", {
-          className: "ba-j-factions",
-          "aria-label": S.later
-        }, /*#__PURE__*/React.createElement("svg", {
-          className: "ba-j-route",
-          viewBox: "0 0 1200 1000",
-          "aria-hidden": "true"
-        }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
-          id: "journey-land"
-        }, /*#__PURE__*/React.createElement("path", {
-          d: map.landClip
-        }))), /*#__PURE__*/React.createElement("g", {
-          clipPath: "url(#journey-land)"
-        }, K.data.factions.map(f => /*#__PURE__*/React.createElement("polygon", {
-          key: f.id,
-          points: f.outline.map(K.point).map(p => p.join(',')).join(' '),
-          fill: f.color,
-          opacity: ".24"
-        })))), /*#__PURE__*/React.createElement("span", {
-          className: "wei"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: S.wei
-        })), /*#__PURE__*/React.createElement("span", {
-          className: "shu"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: S.shu
-        })), /*#__PURE__*/React.createElement("span", {
-          className: "wu"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: S.wu
-        })))
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: !intro && nodes.map(n => /*#__PURE__*/React.createElement("button", {
-          type: "button",
-          key: n.id,
-          "data-node": n.id,
-          className: 'ba-j-node ' + (n.id === 'tao_yuan' && done ? 'completed' : ''),
-          style: {
-            left: n.pos[0] + '%',
-            top: n.pos[1] + '%'
-          },
-          onClick: () => {
-            setDismissed(null);
-            walking.walk(n.pos);
-          },
-          "aria-label": n.title
-        }, /*#__PURE__*/React.createElement("span", {
-          "aria-hidden": "true"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: n.id === 'tao_yuan' && done ? '▰' : '•'
-        })), /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: n.place
-        }))))
-      }), /*#__PURE__*/React.createElement("div", {
+      }), showFactions && /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-factions",
+        "aria-label": S.later
+      }, /*#__PURE__*/React.createElement("svg", {
+        className: "ba-j-route",
+        viewBox: "0 0 1200 1000",
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
+        id: "journey-land"
+      }, /*#__PURE__*/React.createElement("path", {
+        d: map.landClip
+      }))), /*#__PURE__*/React.createElement("g", {
+        clipPath: "url(#journey-land)"
+      }, K.data.factions.map(f => /*#__PURE__*/React.createElement("polygon", {
+        key: f.id,
+        points: f.outline.map(K.point).map(p => p.join(',')).join(' '),
+        fill: f.color,
+        opacity: ".24"
+      })))), /*#__PURE__*/React.createElement("span", {
+        className: "wei"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.wei
+      })), /*#__PURE__*/React.createElement("span", {
+        className: "shu"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.shu
+      })), /*#__PURE__*/React.createElement("span", {
+        className: "wu"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.wu
+      }))), !intro && nodes.map(n => /*#__PURE__*/React.createElement("button", {
+        type: "button",
+        key: n.id,
+        "data-node": n.id,
+        className: 'ba-j-node ' + (n.id === 'tao_yuan' && done ? 'completed' : ''),
+        style: {
+          left: n.pos[0] + '%',
+          top: n.pos[1] + '%'
+        },
+        onClick: () => {
+          setDismissed(null);
+          walking.walk(n.pos);
+        },
+        "aria-label": n.title
+      }, /*#__PURE__*/React.createElement("span", {
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: n.id === 'tao_yuan' && done ? '▰' : '•'
+      })), /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: n.place
+      })))), /*#__PURE__*/React.createElement("div", {
         className: "ba-j-place-labels"
       }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: map.labels.map(l => {
@@ -172803,7 +173046,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         pos: walking.pos,
         moving: walking.moving,
         companion: b.companion
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: selected && !intro && /*#__PURE__*/React.createElement("section", {
           className: "vn-node-card",
           "data-testid": "node-detail"
@@ -172929,7 +173172,8 @@ Object.assign(globalThis.BAStrings.lobby, {
   function Scene({
     scene,
     profile,
-    onHotspot
+    onHotspot,
+    speaker
   }) {
     const f = J.flow(profile),
       art = g.BAJourneyArt.scenes[scene],
@@ -172944,8 +173188,13 @@ Object.assign(globalThis.BAStrings.lobby, {
       height: actor.height + '%',
       aspectRatio: G.aspect(g.BAJourneyArt.characters[actor.who || J.book(profile).companion || J.companions[0]])
     });
+    const focusActor = art.cast.find(a => a.who === speaker) || art.hero;
+    const focus = [focusActor.x, focusActor.foot - focusActor.height / 2];
     return /*#__PURE__*/React.createElement("section", {
       className: "ba-j-scene-section"
+    }, /*#__PURE__*/React.createElement(VN.Camera, {
+      aspect: 1672 / 941,
+      focus: focus
     }, /*#__PURE__*/React.createElement("div", {
       className: 'ba-j-scene ' + scene,
       "data-testid": 'scene-' + scene
@@ -173013,7 +173262,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       })), /*#__PURE__*/React.createElement(Txt, {
         text: C.hotspotLabels[object.id]
       })))
-    })));
+    }))));
   }
   function OathPicture({
     index
@@ -173473,6 +173722,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     const helped = !!f.answers.helper?.passed,
       locked = id => id === 'child' && helped || id === 'guan' && J.stages.indexOf(f.stage) < J.stages.indexOf('records');
     return /*#__PURE__*/React.createElement(VN.Frame, {
+      mobileFill: true,
+      aspect: 1672 / 941,
       className: 'ba-j-case ' + (dialogue ? 'has-dialog' : ''),
       "data-testid": "journey-case",
       "data-journey-stage": f.stage,
@@ -173496,7 +173747,8 @@ Object.assign(globalThis.BAStrings.lobby, {
       stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Scene, {
         scene: scene,
         profile: profile,
-        onHotspot: open
+        onHotspot: open,
+        speaker: dialogue ? resolve(dialogue.lines[dialogue.index], J.book(profile).companion || J.companions[0]).speaker : null
       }), /*#__PURE__*/React.createElement(Portraits, {
         dialogue: dialogue,
         profile: profile
@@ -173848,6 +174100,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         page: 'title'
       }),
       [notice, setNotice] = React.useState(''),
+      [energyPrompt, setEnergyPrompt] = React.useState(null),
       [day, setDay] = React.useState(() => g.BAState.dayKey());
     const current = React.useRef(null),
       lastRoute = React.useRef('');
@@ -173971,6 +174224,26 @@ Object.assign(globalThis.BAStrings.lobby, {
     function enterBook(volumeId = 'volume-1') {
       const v = K.volume(volumeId);
       if (!v || v.status !== 'published') return;
+      if (g.BAStage.isBusy()) return Promise.resolve({
+        ok: false,
+        code: 'TRANSITION_BUSY'
+      });
+      const action = {
+        type: 'ENTER_BOOK',
+        bookId: v.storageBookId,
+        caseCount: v.caseIds.length
+      };
+      // Read-only preflight: denied entry never starts decode, a page turn or a transaction.
+      const check = g.BAState.apply(current.current, action).result;
+      if (!check.ok) {
+        if (check.code === 'INSUFFICIENT_ENERGY') {
+          setNotice('');
+          setEnergyPrompt({
+            missing: check.missing
+          });
+        } else notify(S.errors[check.code] || S.flow.genericError);
+        return Promise.resolve(check);
+      }
       return navigate(v.id === 'volume-1' ? {
         page: 'book-entry'
       } : {
@@ -173979,11 +174252,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         factionId: 'cao'
       }, {
         transition: 'page',
-        before: () => commit({
-          type: 'ENTER_BOOK',
-          bookId: v.storageBookId,
-          caseCount: v.caseIds.length
-        })
+        before: () => commit(action)
       });
     }
     function openJourney(anchor) {
@@ -174359,6 +174628,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         grade: 1
       }
     }, /*#__PURE__*/React.createElement("div", {
+      inert: energyPrompt ? '' : undefined,
       className: 'ba-app ' + (profile?.grade <= 2 ? 'ba-low ' : '') + (g.BAReading.enabled(profile || {
         grade: 1
       }) ? 'ba-reading-on' : '')
@@ -174374,7 +174644,15 @@ Object.assign(globalThis.BAStrings.lobby, {
       })
     }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: screen
-    })), notice && /*#__PURE__*/React.createElement("div", {
+    })), energyPrompt && /*#__PURE__*/React.createElement(g.BABookMap.EnergyPrompt, {
+      profile: profile,
+      missing: energyPrompt.missing,
+      onClose: () => setEnergyPrompt(null),
+      onBoard: () => {
+        setEnergyPrompt(null);
+        navigate('board');
+      }
+    }), notice && /*#__PURE__*/React.createElement("div", {
       className: "ba-toast",
       role: "alert"
     }, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
