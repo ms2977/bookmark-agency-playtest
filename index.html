@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.17</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.18</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -1038,6 +1038,10 @@ body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:1
 @media(prefers-reduced-motion:reduce){.ba-tutorial-focus{animation:none}}
 
 @media(max-width:600px){.ba-clock-place{max-width:135px;font-size:16px;padding:6px}.ba-clock-map-label{font-size:16px}.ba-clock-map~.ba-j-party{pointer-events:none}}
+
+.ba-scope-v2{margin:16px 0;min-width:0}.ba-scope-tabs{display:flex;flex-wrap:wrap;gap:8px}.ba-scope-tabs .ba-button{min-height:44px;padding:10px 18px}.ba-scope-levels{display:grid;gap:12px}.ba-scope-level{border:1px solid var(--line,#d8cfbc);border-radius:16px;padding:12px 16px}.ba-scope-level.selected{background:#f4f4ea;border-color:#839779}.ba-scope-tag{display:inline-block;padding:2px 8px;border-radius:12px;background:#e7eddf;color:#435b49;font-size:.75em}.ba-scope-level summary{cursor:pointer;min-height:44px;padding:10px 0;color:#526957}.ba-scope-concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}.ba-scope-v2 .ba-check{min-height:44px;align-items:flex-start}.ba-scope-v2 input{flex-shrink:0;margin-top:5px}.ba-scope-v2 span{overflow-wrap:anywhere}.ba-scope-notice{padding:16px;border:1px solid #a6b69b;border-radius:14px;background:#edf2e7;margin:16px 0}@media(max-width:600px){.ba-scope-concepts{grid-template-columns:1fr}.ba-scope-v2 .ba-actions{gap:8px}.ba-scope-v2 .ba-actions .ba-button{width:100%;white-space:normal}.ba-scope-level{padding:10px 12px}}
+
+.ba-scope-level-options{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.ba-scope-level-options .ba-scope-level-chip{margin:0;flex:1 1 150px;padding:12px}.ba-scope-level-chip.selected{background:#e7eddf;border-color:#839779}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1340,6 +1344,1195 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+globalThis.BAScopeData = {
+  "version": 2,
+  "source": {
+    "path": "data/concepts.json",
+    "sha256": "068ab28ae2d067beaf7e58056bce515484b110b0aa0daba80203b785f37cac5a",
+    "checked": "2026-11-10"
+  },
+  "concepts": [{
+    "id": "g1_count100",
+    "kpId": "g1_count100",
+    "name": "一百以內的數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-1"]
+  }, {
+    "id": "g1_addsub18",
+    "kpId": "g1_addsub18",
+    "name": "十八以內加減",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-2", "N-1-3"]
+  }, {
+    "id": "g1_add10",
+    "kpId": "g1_add10",
+    "name": "十以內加法",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-2", "N-1-3"]
+  }, {
+    "id": "g1_sub10",
+    "kpId": "g1_sub10",
+    "name": "十以內減法",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-2", "N-1-3"]
+  }, {
+    "id": "g1_num30",
+    "kpId": "g1_num30",
+    "name": "三十以內的數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-1"]
+  }, {
+    "id": "g1_bonds",
+    "kpId": "g1_bonds",
+    "name": "分與合",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-2"]
+  }, {
+    "id": "g1_order",
+    "kpId": "g1_order",
+    "name": "順序與第幾個",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-1"]
+  }, {
+    "id": "g1_count10",
+    "kpId": "g1_count10",
+    "name": "數到十",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-1"]
+  }, {
+    "id": "g1_swap",
+    "kpId": "g1_swap",
+    "name": "交換位置再相加",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["R-1-2"]
+  }, {
+    "id": "g1_coins",
+    "kpId": "g1_coins",
+    "name": "一元五元十元",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-4"]
+  }, {
+    "id": "g1_time",
+    "kpId": "g1_time",
+    "name": "幾點與幾點半",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["N-1-6"]
+  }, {
+    "id": "g1_shape",
+    "kpId": "g1_shape",
+    "name": "認識形狀",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["S-1-2"]
+  }, {
+    "id": "g1_record",
+    "kpId": "g1_record",
+    "name": "分類與記錄",
+    "subject": "math",
+    "category": "data",
+    "levels": ["g1"],
+    "grades": [1],
+    "codes": ["D-1-1"]
+  }, {
+    "id": "g1_vocab_1b",
+    "kpId": "g1_vocab_1b",
+    "name": "在短句中認字",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["I"],
+    "grades": [1],
+    "codes": ["Ab-I-1", "Ab-I-3"]
+  }, {
+    "id": "g1_vocab_1a",
+    "kpId": "g1_vocab_1a",
+    "name": "看圖認常用字",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["I"],
+    "grades": [1],
+    "codes": ["Ab-I-1", "Ab-I-3"]
+  }, {
+    "id": "g1_words",
+    "kpId": "g1_words",
+    "name": "看圖選語詞",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["I"],
+    "grades": [1],
+    "codes": ["Ab-I-5"]
+  }, {
+    "id": "g1_zy_tone",
+    "kpId": "g1_zy_tone",
+    "name": "聲調",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["I"],
+    "grades": [1],
+    "codes": ["Aa-I-2"]
+  }, {
+    "id": "g1_marks",
+    "kpId": "g1_marks",
+    "name": "句號與問號",
+    "subject": "chinese",
+    "category": "express",
+    "levels": ["I"],
+    "grades": [1],
+    "codes": ["Ac-I-1"]
+  }, {
+    "id": "j_mult1",
+    "kpId": "j_mult1",
+    "name": "相同數量成組：2、4、5、8",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g2"],
+    "grades": [2],
+    "codes": ["N-2-6", "N-2-7", "R-2-3"]
+  }, {
+    "id": "j_mult2",
+    "kpId": "j_mult2",
+    "name": "相同數量成組：3、6、7、9",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g2"],
+    "grades": [2],
+    "codes": ["N-2-6", "N-2-7", "R-2-3"]
+  }, {
+    "id": "j_addstep",
+    "kpId": "j_addstep",
+    "name": "加減兩步驟",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g2"],
+    "grades": [2],
+    "codes": ["N-2-8", "R-2-2"]
+  }, {
+    "id": "j_time",
+    "kpId": "j_time",
+    "name": "時間：鐘面報讀",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g2"],
+    "grades": [2],
+    "codes": ["N-2-13"]
+  }, {
+    "id": "j_area",
+    "kpId": "j_area",
+    "name": "面的大小：覆蓋與數方格",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g2"],
+    "grades": [2],
+    "codes": ["N-2-12", "S-2-5"]
+  }, {
+    "id": "j_plastic",
+    "kpId": "j_plastic",
+    "name": "比較用品與減少浪費",
+    "subject": "life",
+    "category": "care",
+    "levels": ["I"],
+    "grades": [2],
+    "codes": ["B-I-3", "E-I-3", "F-I-2"]
+  }, {
+    "id": "j_quake",
+    "kpId": "j_quake",
+    "name": "辨認地震風險與避難步驟",
+    "subject": "life",
+    "category": "care",
+    "levels": ["I"],
+    "grades": [2],
+    "codes": ["C-I-4", "E-I-2", "F-I-2"]
+  }, {
+    "id": "j_magnet",
+    "kpId": "j_magnet",
+    "name": "測試磁性與吸引現象",
+    "subject": "life",
+    "category": "observe",
+    "levels": ["I"],
+    "grades": [2],
+    "codes": ["C-I-1", "C-I-3", "C-I-5"]
+  }, {
+    "id": "j_seed",
+    "kpId": "j_seed",
+    "name": "觀察種子與生長條件",
+    "subject": "life",
+    "category": "observe",
+    "levels": ["I"],
+    "grades": [2],
+    "codes": ["A-I-1", "C-I-1", "C-I-3"]
+  }, {
+    "id": "j_color",
+    "kpId": "j_color",
+    "name": "觀察顏色與混色結果",
+    "subject": "life",
+    "category": "observe",
+    "levels": ["I"],
+    "grades": [2],
+    "codes": ["C-I-1", "C-I-2", "C-I-5"]
+  }, {
+    "id": "g3_decimal",
+    "kpId": "g3_decimal",
+    "name": "一位小數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-10"]
+  }, {
+    "id": "g3_place",
+    "kpId": "g3_place",
+    "name": "一萬以內的數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-1"]
+  }, {
+    "id": "g3_addsub",
+    "kpId": "g3_addsub",
+    "name": "四位數加減",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-2"]
+  }, {
+    "id": "g3_fraction",
+    "kpId": "g3_fraction",
+    "name": "同分母分數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-9"]
+  }, {
+    "id": "g3_multiply",
+    "kpId": "g3_multiply",
+    "name": "乘以一位數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-3"]
+  }, {
+    "id": "g3_divide",
+    "kpId": "g3_divide",
+    "name": "除以一位數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-4", "N-3-5"]
+  }, {
+    "id": "g3_twostep",
+    "kpId": "g3_twostep",
+    "name": "兩步驟生活問題",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-6", "N-3-7", "R-3-1"]
+  }, {
+    "id": "g3_pattern",
+    "kpId": "g3_pattern",
+    "name": "數量規律",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["R-3-2"]
+  }, {
+    "id": "g3_capacity",
+    "kpId": "g3_capacity",
+    "name": "公升與毫升",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-15"]
+  }, {
+    "id": "g3_mass",
+    "kpId": "g3_mass",
+    "name": "公斤與公克",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-16"]
+  }, {
+    "id": "g3_time",
+    "kpId": "g3_time",
+    "name": "時間換算與經過時間",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-17"]
+  }, {
+    "id": "g3_length",
+    "kpId": "g3_length",
+    "name": "毫米與公分",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-12"]
+  }, {
+    "id": "g3_area",
+    "kpId": "g3_area",
+    "name": "平方公分與面積",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["N-3-14"]
+  }, {
+    "id": "g3_shape",
+    "kpId": "g3_shape",
+    "name": "直角與四邊形",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["S-3-1", "S-3-2"]
+  }, {
+    "id": "g3_table",
+    "kpId": "g3_table",
+    "name": "讀生活表格",
+    "subject": "math",
+    "category": "data",
+    "levels": ["g3"],
+    "grades": [3],
+    "codes": ["D-3-1"]
+  }, {
+    "id": "g3_words",
+    "kpId": "g3_words",
+    "name": "語境中的詞語",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ab-II-5", "Ab-II-6"]
+  }, {
+    "id": "g3_paragraph",
+    "kpId": "g3_paragraph",
+    "name": "段落順序與主旨",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ad-II-1", "Ad-II-2"]
+  }, {
+    "id": "g3_sentence",
+    "kpId": "g3_sentence",
+    "name": "句子與標點",
+    "subject": "chinese",
+    "category": "express",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ac-II-1", "Ac-II-3"]
+  }, {
+    "id": "g3_water",
+    "kpId": "g3_water",
+    "name": "水的變化與溶解",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["INc-II-6", "INe-II-3"]
+  }, {
+    "id": "g3_magnet",
+    "kpId": "g3_magnet",
+    "name": "磁鐵的吸引與排斥",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["INe-II-7"]
+  }, {
+    "id": "g3_weather",
+    "kpId": "g3_weather",
+    "name": "天氣觀測",
+    "subject": "science",
+    "category": "earth",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["INd-II-4", "INd-II-6", "INd-II-7"]
+  }, {
+    "id": "g3_animal",
+    "kpId": "g3_animal",
+    "name": "動物的身體與環境",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["INb-II-5", "INb-II-7", "INc-II-8"]
+  }, {
+    "id": "g3_plant",
+    "kpId": "g3_plant",
+    "name": "植物的構造與生長",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["INb-II-6", "INe-II-11"]
+  }, {
+    "id": "g3_community",
+    "kpId": "g3_community",
+    "name": "家鄉環境與變遷",
+    "subject": "social",
+    "category": "community",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ab-II-1", "Ca-II-1", "Cb-II-1"]
+  }, {
+    "id": "g3_choice",
+    "kpId": "g3_choice",
+    "name": "需要與消費選擇",
+    "subject": "social",
+    "category": "community",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ad-II-2", "Da-II-1", "Db-II-1"]
+  }, {
+    "id": "g3_cooperation",
+    "kpId": "g3_cooperation",
+    "name": "角色與分工合作",
+    "subject": "social",
+    "category": "civic",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Aa-II-1", "Ad-II-1"]
+  }, {
+    "id": "g3_rules",
+    "kpId": "g3_rules",
+    "name": "班級規範與尊重",
+    "subject": "social",
+    "category": "civic",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ac-II-1", "Dc-II-1"]
+  }, {
+    "id": "g3_letters",
+    "kpId": "g3_letters",
+    "name": "大小寫字母",
+    "subject": "english",
+    "category": "enword",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Aa-II-2"]
+  }, {
+    "id": "g3_enwords",
+    "kpId": "g3_enwords",
+    "name": "生活單字認讀",
+    "subject": "english",
+    "category": "enword",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ac-II-3"]
+  }, {
+    "id": "g3_greetings",
+    "kpId": "g3_greetings",
+    "name": "打招呼與自我介紹",
+    "subject": "english",
+    "category": "enuse",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ac-II-2", "B-II-1"]
+  }, {
+    "id": "g3_classroom",
+    "kpId": "g3_classroom",
+    "name": "教室用語",
+    "subject": "english",
+    "category": "enuse",
+    "levels": ["II"],
+    "grades": [3],
+    "codes": ["Ac-II-1"]
+  }, {
+    "id": "g4_place",
+    "kpId": "g4_place",
+    "name": "一億以內的大數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-1"]
+  }, {
+    "id": "g4_decimal",
+    "kpId": "g4_decimal",
+    "name": "二位小數與整數倍",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-7"]
+  }, {
+    "id": "g4_numberline",
+    "kpId": "g4_numberline",
+    "name": "分數小數在數線上",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-8"]
+  }, {
+    "id": "g4_multiply",
+    "kpId": "g4_multiply",
+    "name": "多位數乘法",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-2"]
+  }, {
+    "id": "g4_divide",
+    "kpId": "g4_divide",
+    "name": "多位數除法與估商",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-2"]
+  }, {
+    "id": "g4_fraction",
+    "kpId": "g4_fraction",
+    "name": "假分數、帶分數與運算",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-5"]
+  }, {
+    "id": "g4_equivalent",
+    "kpId": "g4_equivalent",
+    "name": "等值分數與簡單通分",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-6"]
+  }, {
+    "id": "g4_estimate",
+    "kpId": "g4_estimate",
+    "name": "概數與生活估算",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-4"]
+  }, {
+    "id": "g4_multistep",
+    "kpId": "g4_multistep",
+    "name": "兩步驟併式與計算順序",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-3", "R-4-1", "R-4-2"]
+  }, {
+    "id": "g4_pattern",
+    "kpId": "g4_pattern",
+    "name": "數量圖形與奇偶模式",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["R-4-4"]
+  }, {
+    "id": "g4_length",
+    "kpId": "g4_length",
+    "name": "公里與長度換算",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-9"]
+  }, {
+    "id": "g4_time",
+    "kpId": "g4_time",
+    "name": "跨午跨日的時間計算",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-13"]
+  }, {
+    "id": "g4_triangle",
+    "kpId": "g4_triangle",
+    "name": "三角形的邊與角",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["S-4-7"]
+  }, {
+    "id": "g4_quadrilateral",
+    "kpId": "g4_quadrilateral",
+    "name": "四邊形的特徵",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["S-4-8"]
+  }, {
+    "id": "g4_volume",
+    "kpId": "g4_volume",
+    "name": "立方公分與堆疊",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-12", "S-4-4"]
+  }, {
+    "id": "g4_parallel",
+    "kpId": "g4_parallel",
+    "name": "垂直與平行",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["S-4-5"]
+  }, {
+    "id": "g4_area",
+    "kpId": "g4_area",
+    "name": "長方形面積與周長",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-11", "S-4-3", "R-4-3"]
+  }, {
+    "id": "g4_angle",
+    "kpId": "g4_angle",
+    "name": "量角與指定角度",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["N-4-10", "S-4-1"]
+  }, {
+    "id": "g4_rotation",
+    "kpId": "g4_rotation",
+    "name": "順逆時針與旋轉角",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["S-4-2"]
+  }, {
+    "id": "g4_congruence",
+    "kpId": "g4_congruence",
+    "name": "圖形的疊合與全等",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g4"],
+    "grades": [4],
+    "codes": ["S-4-6"]
+  }, {
+    "id": "g4_words",
+    "kpId": "g4_words",
+    "name": "詞義、語境與成語",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ab-II-4", "Ab-II-5", "Ab-II-6"]
+  }, {
+    "id": "g4_paragraph",
+    "kpId": "g4_paragraph",
+    "name": "段落、摘要與童詩",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ad-II-1", "Ad-II-2", "Ad-II-3"]
+  }, {
+    "id": "g4_reading",
+    "kpId": "g4_reading",
+    "name": "閱讀依據與合理推論",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ad-II-2", "Ac-II-4"]
+  }, {
+    "id": "g4_practical",
+    "kpId": "g4_practical",
+    "name": "書信、通知與修改",
+    "subject": "chinese",
+    "category": "express",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ac-II-2", "Ac-II-3", "Ad-II-2"]
+  }, {
+    "id": "g4_sentence",
+    "kpId": "g4_sentence",
+    "name": "複句、標點與表達",
+    "subject": "chinese",
+    "category": "express",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ac-II-1", "Ac-II-2", "Ac-II-3"]
+  }, {
+    "id": "g4_water",
+    "kpId": "g4_water",
+    "name": "水的三態與物質分離",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INa-II-3", "INa-II-4", "INb-II-2", "INc-II-6", "INe-II-3"]
+  }, {
+    "id": "g4_electric",
+    "kpId": "g4_electric",
+    "name": "電池電路與磁鐵比較",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INe-II-7", "INe-II-8", "INe-II-9"]
+  }, {
+    "id": "g4_force",
+    "kpId": "g4_force",
+    "name": "聲光、力與測量",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INc-II-1", "INc-II-3", "INd-II-9", "INe-II-5", "INe-II-6"]
+  }, {
+    "id": "g4_sky",
+    "kpId": "g4_sky",
+    "name": "月亮、天氣與觀測資料",
+    "subject": "science",
+    "category": "earth",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INc-II-10", "INd-II-6", "INd-II-7"]
+  }, {
+    "id": "g4_ecology",
+    "kpId": "g4_ecology",
+    "name": "棲地、環境變化與行動",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INc-II-8", "INd-II-5", "INf-II-5", "INg-II-2", "INg-II-3"]
+  }, {
+    "id": "g4_plant",
+    "kpId": "g4_plant",
+    "name": "植物構造與生長觀察",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["INb-II-6", "INb-II-7", "INe-II-11"]
+  }, {
+    "id": "g4_economy",
+    "kpId": "g4_economy",
+    "name": "分工、消費與資源選擇",
+    "subject": "social",
+    "category": "community",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ad-II-1", "Ad-II-2", "Da-II-1", "Db-II-1"]
+  }, {
+    "id": "g4_community",
+    "kpId": "g4_community",
+    "name": "家鄉地圖與環境利用",
+    "subject": "social",
+    "category": "community",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ab-II-1", "Ab-II-2", "Bb-II-1"]
+  }, {
+    "id": "g4_culture",
+    "kpId": "g4_culture",
+    "name": "多元文化與生活科技",
+    "subject": "social",
+    "category": "history",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Aa-II-2", "Af-II-1", "Bc-II-1", "Bc-II-2", "Ae-II-1"]
+  }, {
+    "id": "g4_history",
+    "kpId": "g4_history",
+    "name": "家鄉變遷與資料查證",
+    "subject": "social",
+    "category": "history",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ca-II-1", "Ca-II-2", "Cb-II-1", "Cc-II-1"]
+  }, {
+    "id": "g4_rules",
+    "kpId": "g4_rules",
+    "name": "權利、責任與公共討論",
+    "subject": "social",
+    "category": "civic",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ac-II-1", "Ac-II-2", "Dc-II-1"]
+  }, {
+    "id": "g4_enwords",
+    "kpId": "g4_enwords",
+    "name": "生活單字與情境認讀",
+    "subject": "english",
+    "category": "enword",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ac-II-3", "Ac-II-2"]
+  }, {
+    "id": "g4_greetings",
+    "kpId": "g4_greetings",
+    "name": "日常問答與位置句型",
+    "subject": "english",
+    "category": "enuse",
+    "levels": ["II"],
+    "grades": [4],
+    "codes": ["Ac-II-2", "B-II-1"]
+  }, {
+    "id": "g5_expression",
+    "kpId": "g5_expression",
+    "name": "分配律與三步驟生活題",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g5"],
+    "grades": [5],
+    "codes": ["N-5-2", "R-5-1", "R-5-2", "R-5-3"]
+  }, {
+    "id": "g5_word_tools",
+    "kpId": "g5_word_tools",
+    "name": "部件、查詞與詞性",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ab-III-3", "Ab-III-7", "Ab-III-8"]
+  }, {
+    "id": "g5_genre_read",
+    "kpId": "g5_genre_read",
+    "name": "文體閱讀與多文比較",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ad-III-1", "Ad-III-2", "Ad-III-3"]
+  }, {
+    "id": "g5_poems",
+    "kpId": "g5_poems",
+    "name": "現代詩與古典詩賞讀",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ad-III-3", "Ad-III-4", "Ac-III-4"]
+  }, {
+    "id": "g5_writing",
+    "kpId": "g5_writing",
+    "name": "應用寫作與修改",
+    "subject": "chinese",
+    "category": "express",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ac-III-1", "Ac-III-2", "Ac-III-3", "Ad-III-1", "Ad-III-2"]
+  }, {
+    "id": "g5_matter",
+    "kpId": "g5_matter",
+    "name": "物質變化與分離",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INb-III-1", "INb-III-2", "INe-III-2", "INe-III-4"]
+  }, {
+    "id": "g5_energy",
+    "kpId": "g5_energy",
+    "name": "能量形式與轉換",
+    "subject": "science",
+    "category": "matter",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INa-III-5", "INa-III-6", "INa-III-7"]
+  }, {
+    "id": "g5_sky",
+    "kpId": "g5_sky",
+    "name": "四季星空與太陽系",
+    "subject": "science",
+    "category": "earth",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INc-III-14", "INc-III-15"]
+  }, {
+    "id": "g5_earth_water",
+    "kpId": "g5_earth_water",
+    "name": "地表、水與土壤",
+    "subject": "science",
+    "category": "earth",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INc-III-10", "INc-III-12", "INd-III-8", "INd-III-10", "INd-III-11"]
+  }, {
+    "id": "g5_ecosystem",
+    "kpId": "g5_ecosystem",
+    "name": "光合作用與食物鏈",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INa-III-9", "INa-III-10", "INc-III-8", "INe-III-13"]
+  }, {
+    "id": "g5_adaptation",
+    "kpId": "g5_adaptation",
+    "name": "動物行為、繁殖與適應",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INb-III-6", "INd-III-4", "INd-III-5", "INe-III-11", "INe-III-12"]
+  }, {
+    "id": "g5_organisms",
+    "kpId": "g5_organisms",
+    "name": "細胞、器官與生物分類",
+    "subject": "science",
+    "category": "organism",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["INb-III-5", "INb-III-8", "INc-III-7"]
+  }, {
+    "id": "g5_migration",
+    "kpId": "g5_migration",
+    "name": "交通、產業與人口移動",
+    "subject": "social",
+    "category": "community",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ab-III-2", "Cc-III-2"]
+  }, {
+    "id": "g5_settlement",
+    "kpId": "g5_settlement",
+    "name": "聚落、地形與環境風險",
+    "subject": "social",
+    "category": "community",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ab-III-3", "Bb-III-1"]
+  }, {
+    "id": "g5_culture",
+    "kpId": "g5_culture",
+    "name": "文化多樣性與生活交流",
+    "subject": "social",
+    "category": "history",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Aa-III-3", "Bc-III-1", "Cc-III-2"]
+  }, {
+    "id": "g5_history",
+    "kpId": "g5_history",
+    "name": "臺灣歷史與史料探究",
+    "subject": "social",
+    "category": "history",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Cc-III-1", "Cc-III-2"]
+  }, {
+    "id": "g5_rights",
+    "kpId": "g5_rights",
+    "name": "權力、平等與權利保障",
+    "subject": "social",
+    "category": "civic",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ac-III-4", "Bc-III-2"]
+  }, {
+    "id": "g5_enwords",
+    "kpId": "g5_enwords",
+    "name": "五年級生活單字與語境",
+    "subject": "english",
+    "category": "enword",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ac-III-4", "D-III-1"]
+  }, {
+    "id": "g5_enphonics",
+    "kpId": "g5_enphonics",
+    "name": "字母組合與拼讀規律",
+    "subject": "english",
+    "category": "enword",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ab-III-1", "Ab-III-5"]
+  }, {
+    "id": "g5_enpattern",
+    "kpId": "g5_enpattern",
+    "name": "句型、問答與標點",
+    "subject": "english",
+    "category": "enuse",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ad-III-1", "Ad-III-2", "B-III-1", "B-III-2"]
+  }, {
+    "id": "g5_enread",
+    "kpId": "g5_enread",
+    "name": "短文閱讀與事件推論",
+    "subject": "english",
+    "category": "enuse",
+    "levels": ["III"],
+    "grades": [5],
+    "codes": ["Ae-III-1", "D-III-2", "D-III-3"]
+  }, {
+    "id": "m_dec_ops",
+    "kpId": "m_dec_ops",
+    "name": "小數的乘法",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g5"],
+    "grades": [6],
+    "codes": ["N-5-8"]
+  }, {
+    "id": "m_fracdiv",
+    "kpId": "m_fracdiv",
+    "name": "分數的除法",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["N-6-3"]
+  }, {
+    "id": "m_gcd",
+    "kpId": "m_gcd",
+    "name": "最大公因數與最小公倍數",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["N-6-2"]
+  }, {
+    "id": "m_prime",
+    "kpId": "m_prime",
+    "name": "質數與質因數分解",
+    "subject": "math",
+    "category": "number",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["N-6-1"]
+  }, {
+    "id": "m_pattern",
+    "kpId": "m_pattern",
+    "name": "數量模式與關係表示",
+    "subject": "math",
+    "category": "relation",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["R-6-2", "R-6-3"]
+  }, {
+    "id": "m_speed",
+    "kpId": "m_speed",
+    "name": "速度",
+    "subject": "math",
+    "category": "measure",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["N-6-7"]
+  }, {
+    "id": "m_area",
+    "kpId": "m_area",
+    "name": "平面圖形面積",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g5"],
+    "grades": [6],
+    "codes": ["S-5-2"]
+  }, {
+    "id": "m_scale",
+    "kpId": "m_scale",
+    "name": "放大縮小與比例尺",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["S-6-1", "S-6-2"]
+  }, {
+    "id": "m_prism",
+    "kpId": "m_prism",
+    "name": "柱體體積與表面積",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["S-6-4"]
+  }, {
+    "id": "m_circle",
+    "kpId": "m_circle",
+    "name": "圓周率、圓周長、圓面積與扇形",
+    "subject": "math",
+    "category": "space",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["S-6-3"]
+  }, {
+    "id": "m_chance",
+    "kpId": "m_chance",
+    "name": "可能性",
+    "subject": "math",
+    "category": "data",
+    "levels": ["g6"],
+    "grades": [6],
+    "codes": ["D-6-2"]
+  }, {
+    "id": "g6_radicals",
+    "kpId": "g6_radicals",
+    "name": "部首辨字與字典尋寶",
+    "subject": "chinese",
+    "category": "word",
+    "levels": ["III"],
+    "grades": [6],
+    "codes": ["Ab-III-3", "Ab-III-7"]
+  }, {
+    "id": "c_author",
+    "kpId": "c_author",
+    "name": "作者觀點與寫作目的",
+    "subject": "chinese",
+    "category": "read",
+    "levels": ["III"],
+    "grades": [6],
+    "codes": ["Ad-III-2"]
+  }],
+  "unmapped": []
+};
 globalThis.BAOpeningData = {
   "version": 1,
   "lines": [{
@@ -1778,7 +2971,7 @@ globalThis.BAClocktowerData = {
     }]
   }
 };
-globalThis.BAVersion = "0.3.17";
+globalThis.BAVersion = "0.3.18";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -5816,16 +7009,160 @@ Object.assign(globalThis.BAStrings.lobby, {
   boardLow: '今天的信'
 });
 
+/* 08_scope_strings.js */
+(function (g) {
+  g.BAScopeCopy = {
+    subjects: {
+      chinese: '國語',
+      math: '數學',
+      life: '生活',
+      science: '自然',
+      social: '社會',
+      english: '英語'
+    },
+    stage: {
+      I: 'Ⅰ（1–2 年級）',
+      II: 'Ⅱ（3–4 年級）',
+      III: 'Ⅲ（5–6 年級）'
+    },
+    current: '目前',
+    ahead: '超前',
+    earlier: '較早',
+    concepts: '個觀念',
+    all: '全選本年級',
+    only: '只留目前年級',
+    note: '這是本版接入的觀念，不代表完整課綱或學期進度。',
+    review: '勾選範圍決定新題；先前學過且已到期的複習會自動安排，不必勾選較早的年級。',
+    english: '一、二年級英語預設關閉。英語課綱從第二學習階段開始，可依孩子情況提早選用。',
+    empty: '這個階段尚無接入的觀念。',
+    noNew: '請至少勾選一個觀念，才能儲存新題範圍；到期複習仍會自動安排。',
+    grade: '孩子目前年級',
+    promoted: '已加入{grade}的範圍，要關掉較早年級的新題嗎？',
+    keep: '保留原本勾選',
+    reset: '只留各科目前年級',
+    gradeChanged: '已更新孩子年級，請確認各科的新題範圍。',
+    tabs: '選擇科目'
+  };
+})(globalThis);
+
+/* 09_scope.js */
+(function (root, factory) {
+  const api = factory(typeof module === 'object' && module.exports ? require('../data/scope-catalog.json') : root.BAScopeData);
+  root.BAScope = api;
+  if (typeof module === 'object' && module.exports) module.exports = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (data) {
+  'use strict';
+
+  const subjects = ['chinese', 'math', 'life', 'science', 'social', 'english'],
+    stages = ['I', 'II', 'III'];
+  const clone = v => JSON.parse(JSON.stringify(v)),
+    rows = data.concepts;
+  const current = (subject, grade) => subject === 'math' ? 'g' + grade : subject === 'english' && grade <= 2 ? 'II' : stages[Math.floor((grade - 1) / 2)];
+  const levels = subject => subject === 'math' ? ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'] : subject === 'english' ? ['II', 'III'] : stages;
+  const visible = grade => subjects.filter(s => grade > 2 || !['science', 'social'].includes(s));
+  function defaults(grade) {
+    return {
+      version: 2,
+      subjects: Object.fromEntries(subjects.map(s => [s, {
+        levels: grade <= 2 && ['science', 'social', 'english'].includes(s) || grade > 2 && s === 'life' ? [] : [current(s, grade)],
+        excluded: []
+      }]))
+    };
+  }
+  function valid(value) {
+    const object = v => v && typeof v === 'object' && !Array.isArray(v),
+      unique = (a, p) => Array.isArray(a) && a.length <= 600 && new Set(a).size === a.length && a.every(p);
+    return object(value) && value.version === 2 && Object.keys(value).every(k => ['version', 'subjects'].includes(k)) && object(value.subjects) && Object.keys(value.subjects).length === 6 && subjects.every(s => {
+      const x = value.subjects[s];
+      return object(x) && Object.keys(x).every(k => ['levels', 'excluded'].includes(k)) && unique(x.levels, l => levels(s).includes(l)) && unique(x.excluded, id => typeof id === 'string' && id.length > 0 && id.length <= 160);
+    });
+  }
+  function migrate(value, grade) {
+    if (valid(value)) return clone(value);
+    if (!Array.isArray(value)) return defaults(grade);
+    const selected = new Set(value),
+      allowed = rows.filter(r => r.grades.includes(grade) && (!selected.size || selected.has(r.kpId) || selected.has(r.category)));
+    const scope = defaults(grade);
+    for (const subject of subjects) {
+      const chosen = allowed.filter(r => r.subject === subject),
+        ls = [...new Set(chosen.flatMap(r => r.levels))];
+      scope.subjects[subject] = {
+        levels: ls,
+        excluded: rows.filter(r => r.subject === subject && r.levels.some(l => ls.includes(l)) && !chosen.includes(r)).map(r => r.id)
+      };
+    }
+    return scope;
+  }
+  function selected(value, grade) {
+    const s = migrate(value, grade);
+    return rows.filter(r => s.subjects[r.subject].levels.some(l => r.levels.includes(l)) && !s.subjects[r.subject].excluded.includes(r.id));
+  }
+  function gradeFor(kpId, preferred) {
+    const r = rows.find(r => r.kpId === kpId);
+    return r ? r.grades.includes(preferred) ? preferred : r.grades.reduce((a, b) => Math.abs(b - preferred) < Math.abs(a - preferred) ? b : a) : preferred;
+  }
+  function promote(value, before, after) {
+    const scope = migrate(value, before),
+      added = [];
+    for (const subject of visible(after)) {
+      if (subject === 'life' && after > 2) continue;
+      if (!scope.subjects[subject].levels.length && !(before <= 2 && after > 2 && ['science', 'social'].includes(subject))) continue;
+      const level = current(subject, after),
+        x = scope.subjects[subject];
+      if (!x.levels.includes(level)) {
+        x.levels.push(level);
+        added.push({
+          subject,
+          level
+        });
+      }
+    }
+    return {
+      scope,
+      added
+    };
+  }
+  function selectAll(value, grade, subject) {
+    const scope = migrate(value, grade),
+      x = scope.subjects[subject],
+      level = current(subject, grade);
+    if (!x.levels.includes(level)) x.levels.push(level);
+    x.excluded = x.excluded.filter(id => !rows.some(r => r.id === id && r.subject === subject && r.levels.includes(level)));
+    return scope;
+  }
+  function onlyCurrent(value, grade, subject) {
+    const scope = migrate(value, grade);
+    scope.subjects[subject].levels = [current(subject, grade)];
+    return scope;
+  }
+  return Object.freeze({
+    version: 2,
+    subjects,
+    rows,
+    current,
+    levels,
+    visible,
+    defaults,
+    valid,
+    migrate,
+    selected,
+    gradeFor,
+    promote,
+    selectAll,
+    onlyCurrent
+  });
+});
+
 /* 10_state.js */
 /* Bookmarks Detective Agency: deterministic, per-child game transactions. */
 (function (root, factory) {
   'use strict';
 
   var common = typeof module === 'object' && module.exports;
-  var api = factory(common ? require('../data/energy-rules.json') : root.BAEnergyRules, common ? require('../data/book-catalog.json') : root.BABookCatalogData);
+  var api = factory(common ? require('../data/energy-rules.json') : root.BAEnergyRules, common ? require('../data/book-catalog.json') : root.BABookCatalogData, common ? require('./09_scope.js') : root.BAScope);
   root.BAState = api;
   if (typeof module === 'object' && module.exports) module.exports = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (energyRules, catalog) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (energyRules, catalog, Scope) {
   'use strict';
 
   var SCHEMA_VERSION = 1;
@@ -5948,9 +7285,9 @@ Object.assign(globalThis.BAStrings.lobby, {
     return clone(profile.daily[dayKey(at)] || emptyDay());
   }
   function validateSettings(s) {
-    return object(s) && allowedKeys(s, ['mode', 'subject', 'scope', 'difficulty', 'allowOvertime']) && (!own(s, 'allowOvertime') || typeof s.allowOvertime === 'boolean') && SETTING_MODES.indexOf(s.mode) !== -1 && identifier(s.subject) && uniqueArray(s.scope, function (v) {
+    return object(s) && allowedKeys(s, ['mode', 'subject', 'scope', 'difficulty', 'allowOvertime']) && (!own(s, 'allowOvertime') || typeof s.allowOvertime === 'boolean') && SETTING_MODES.indexOf(s.mode) !== -1 && identifier(s.subject) && (Scope.valid(s.scope) || uniqueArray(s.scope, function (v) {
       return typeof v === 'string' && v.length > 0 && v.length <= 160;
-    }) && typeof s.difficulty === 'string' && s.difficulty.length > 0 && s.difficulty.length <= 40;
+    })) && typeof s.difficulty === 'string' && s.difficulty.length > 0 && s.difficulty.length <= 40;
   }
   function validateSteps(steps, count) {
     return Array.isArray(steps) && steps.length === count && steps.every(function (s, i) {
@@ -6177,6 +7514,15 @@ Object.assign(globalThis.BAStrings.lobby, {
       next.settings.allowOvertime = true;
       migrated = true;
     }
+    if (Array.isArray(next.settings.scope)) {
+      next.sessions.scopeMigration = {
+        version: 2,
+        grade: next.grade,
+        legacy: clone(next.settings.scope)
+      };
+      next.settings.scope = Scope.migrate(next.settings.scope, next.grade);
+      migrated = true;
+    }
     var status = commissionStatus(next, at),
       dayState = {
         date: status.date,
@@ -6219,7 +7565,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       settings: {
         mode: 'story',
         subject: 'math',
-        scope: clone(options.scope || []),
+        scope: clone(options.scope || Scope.defaults(options.grade)),
         difficulty: options.difficulty || 'normal',
         allowOvertime: true
       },
@@ -6689,6 +8035,13 @@ Object.assign(globalThis.BAStrings.lobby, {
           if (own(action, 'grade')) {
             if (!Number.isInteger(action.grade) || action.grade < 1 || action.grade > 6) return failure('INVALID_GRADE');
             if (next.grade !== action.grade) {
+              var scopeUpdate = Scope.promote(next.settings.scope, next.grade, action.grade);
+              next.sessions.scopeGradeNotice = {
+                from: next.grade,
+                to: action.grade,
+                added: scopeUpdate.added
+              };
+              next.settings.scope = scopeUpdate.scope;
               next.grade = action.grade;
               changed = true;
             }
@@ -164706,6 +166059,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       unsupported: '這個題型尚未接入操作預覽。'
     });
     const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
+    const Scope = globalThis.BAScope;
     // Local UI gaps checked against the pinned MOE revised dictionary (2026-11-19).
     // The shared source snapshot is unchanged; lexical readings still take precedence.
     Object.assign(ZHUYIN_DATA.chars, {
@@ -164823,7 +166177,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       return {
         mode: ['story', 'mixed', 'single', 'weak'].includes(s.mode) ? s.mode : 'story',
         subject: typeof s.subject === 'string' ? s.subject : 'math',
-        scope: unique(Array.isArray(s.scope) ? s.scope.filter(x => typeof x === 'string') : []),
+        scope: Scope?.valid(s.scope) ? clone(s.scope) : unique(Array.isArray(s.scope) ? s.scope.filter(x => typeof x === 'string') : []),
         difficulty: ['easy', 'normal', 'hard'].includes(s.difficulty) ? s.difficulty : 'normal'
       };
     }
@@ -165096,6 +166450,15 @@ Object.assign(globalThis.BAStrings.lobby, {
       });
     }
     function scopedTopics(grade, settings) {
+      if (Scope?.valid(settings.scope)) return Scope.selected(settings.scope, grade).flatMap(row => {
+        const contentGrade = Scope.gradeFor(row.kpId, grade),
+          topic = catalog(contentGrade).find(k => k.id === row.kpId);
+        return topic?.available && topic.difficulties.includes(settings.difficulty) ? [{
+          ...topic,
+          contentGrade,
+          conceptId: row.id
+        }] : [];
+      });
       const selected = new Set(settings.scope || []);
       return catalog(grade).filter(k => k.available && k.difficulties.includes(settings.difficulty) && (!selected.size || selected.has(k.id) || selected.has(k.category)));
     }
@@ -165114,6 +166477,38 @@ Object.assign(globalThis.BAStrings.lobby, {
     function selectPool(learning, options) {
       const topics = scopedTopics(learning.grade, learning.settings),
         state = islandState(learning, topics.map(k => k.id));
+      if (Scope?.valid(learning.settings.scope)) {
+        let ids = unique(topics.map(t => t.id));
+        if (!options.allSelected && learning.settings.mode === 'single') ids = ids.filter(id => KP_BY_ID[id].subject === learning.settings.subject);
+        if (!options.allSelected && learning.settings.mode === 'story') {
+          const preferred = ids.filter(id => (options.preferredKpIds || []).includes(id));
+          const subject = ids.filter(id => KP_BY_ID[id].subject === (options.subject || learning.settings.subject));
+          ids = preferred.length ? preferred : subject.length ? subject : ids;
+        }
+        if (options.onlyKpId) ids = ids.filter(id => id === options.onlyKpId);
+        const due = state.missions.filter(m => !options.skipDue && (!options.reviewMissionId || m.id === options.reviewMissionId) && (!options.onlyKpId || m.kpId === options.onlyKpId) && missionDueForReview(m) && catalog(Scope.gradeFor(m.kpId, learning.grade)).some(k => k.id === m.kpId && k.available)).sort((a, b) => a.nextReviewAt - b.nextReviewAt);
+        if (due.length) return {
+          ids: unique(due.map(m => m.kpId)),
+          state,
+          due
+        };
+        if (learning.settings.mode === 'weak' && ids.length) {
+          const rank = id => ({
+            review: 0,
+            learning: 1,
+            pending: 2,
+            initial: 3,
+            solid: 4
+          })[masteryOf(state.missions.filter(m => m.kpId === id).at(-1), state).key];
+          const min = Math.min(...ids.map(rank));
+          ids = ids.filter(id => rank(id) === min);
+        }
+        return {
+          ids,
+          state,
+          due: []
+        };
+      }
       if (!topics.length) return {
         ids: [],
         state,
@@ -165150,6 +166545,13 @@ Object.assign(globalThis.BAStrings.lobby, {
       };
     }
     function generatedMission(kpId, seed, state) {
+      if (Scope) state = {
+        ...state,
+        student: {
+          ...state.student,
+          grade: Scope.gradeFor(kpId, state.student.grade)
+        }
+      };
       const old = juniorContext;
       juniorContext = state;
       try {
@@ -165322,7 +166724,8 @@ Object.assign(globalThis.BAStrings.lobby, {
         const items = count === 3 ? pinned.params.items.slice(0, 3) : Array.from({
           length: count
         }, (_, i) => pinned.params.items[(seed + i) % pinned.params.items.length]);
-        const questions = items.map((q, i) => questionFrom(q, pinned, mission.kpId, learning.grade, opts.id, i, seed));
+        const contentGrade = Scope ? Scope.gradeFor(mission.kpId, learning.grade) : learning.grade;
+        const questions = items.map((q, i) => questionFrom(q, pinned, mission.kpId, contentGrade, opts.id, i, seed));
         // Only actually displayed questions consume presentation history.
         const shown = {
           ...pinned,
@@ -165333,12 +166736,12 @@ Object.assign(globalThis.BAStrings.lobby, {
         };
         learning = fromIsland(learning, rememberLearningStage(islandState(learning), mission.kpId, shown, kind, opts.id));
         const keys = items.map(q => q.contentKey).filter(Boolean);
-        if (keys.length && learning.grade === 2) learning.history = {
+        if (keys.length && contentGrade === 2) learning.history = {
           ...learning.history,
           g2Seen: unique([...(learning.history.g2Seen || []), ...keys]).slice(-1000),
           juniorPreviewSeen: unique([...(learning.history.juniorPreviewSeen || []), ...keys]).slice(-1000)
         };
-        if (keys.length && learning.grade === 6) learning.history = {
+        if (keys.length && contentGrade === 6) learning.history = {
           ...learning.history,
           g6Seen: unique([...(learning.history.g6Seen || []), ...keys]).slice(-10000),
           g6Families: unique([...(learning.history.g6Families || []), ...items.map(q => q.variantGroup).filter(Boolean)]).slice(-20),
@@ -165390,6 +166793,14 @@ Object.assign(globalThis.BAStrings.lobby, {
     function createSession(profile, options) {
       const opts = options || {};
       if (opts.kind === 'book-practice') return createBookPractice(profile, opts);
+      if (Scope?.valid(profile?.settings?.scope) && opts.kind === 'commission' && !profile?.sessions?.[opts.id] && (profile.learning?.evidenceReviews || []).some(r => r.nextReviewAt <= (opts.at || now()))) {
+        const session = createBookPractice(profile, opts);
+        return {
+          ...session,
+          kind: 'commission',
+          scopeMixedReview: true
+        };
+      }
       const existing = profile?.sessions?.[opts.id];
       if (existing) {
         const untouched = existing.kind === 'verification' && existing.countPolicy?.version === 2 && !existing.completed && existing.cursor === 0 && !(existing.attempts || []).some(Boolean) && !(existing.hintsUsed || []).some(Boolean);
@@ -165467,7 +166878,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       });
     }
     function completeVerificationReview(learning, session, question, response) {
-      if (!(session.kind === 'verification' && session.countPolicy?.version === 2 || session.kind === 'book-practice') || !question.reviewTarget) return learning;
+      if (!(session.kind === 'verification' && session.countPolicy?.version === 2 || session.kind === 'book-practice' || session.scopeMixedReview) || !question.reviewTarget) return learning;
       const target = question.reviewTarget,
         state = islandState(learning),
         m = state.missions.find(m => m.id === target.missionId);
@@ -165496,7 +166907,8 @@ Object.assign(globalThis.BAStrings.lobby, {
         kind: 'verification-review',
         missionId: m.id,
         kpId: m.kpId,
-        grade: learning.grade,
+        grade: question.grade || learning.grade,
+        learnerGrade: learning.grade,
         stage: question.sourceStageKey,
         passed,
         attempts: attempts.length,
@@ -165646,6 +167058,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       });
     }
     function evidenceInScope(learning, r, topics) {
+      if (Scope?.valid(learning.settings.scope)) return true;
       if (r.grade > learning.grade || Math.ceil(r.grade / 2) !== Math.ceil(learning.grade / 2)) return false;
       const selected = new Set(learning.settings.scope),
         kp = KP_BY_ID[r.kpId];
@@ -165760,7 +167173,6 @@ Object.assign(globalThis.BAStrings.lobby, {
             ...q,
             id: opts.id + ':q' + i,
             subject: chosen.subject,
-            grade: learning.grade,
             review: false,
             sourceStageKey: chosen.sourceStage.key
           });
@@ -165796,7 +167208,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       });
     }
     function completeBookEvidence(learning, session, q, response) {
-      if (session.kind !== 'book-practice' || q.reviewTarget) return learning;
+      if (session.kind !== 'book-practice' && !session.scopeMixedReview || q.reviewTarget) return learning;
       const id = 'book-evidence:' + q.id;
       if (learning.practiceLog.some(e => e.id === id)) return learning;
       const attempts = session.responses.filter(r => r.questionId === q.id),
@@ -165936,7 +167348,8 @@ Object.assign(globalThis.BAStrings.lobby, {
         source: session.review ? 'review' : 'mission',
         missionId: old.id,
         kpId: old.kpId,
-        grade: learning.grade,
+        grade: session.questions[0]?.grade || learning.grade,
+        learnerGrade: learning.grade,
         stage: session.sourceStage.key,
         kind: session.sourceStage.kind,
         passed,
@@ -166029,7 +167442,8 @@ Object.assign(globalThis.BAStrings.lobby, {
           sourceQuestionId: question.sourceQuestionId,
           sourceKey: question.sourceKey,
           kpId: question.kpId,
-          grade: next.grade,
+          grade: question.grade || next.grade,
+          learnerGrade: next.grade,
           source: question.review ? 'review' : next.kind,
           stage: question.sourceStageKey || next.sourceStage.key,
           choiceIndex: question.renderType === 'numeric' ? null : choiceIndex,
@@ -166136,6 +167550,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       mastery,
       ruby,
       contentQuality: () => clone(qualityExclusions),
+      scopedTopics,
       assets: Object.freeze({
         words: clone(GRADE1_WORDS)
       }),
@@ -171754,6 +173169,148 @@ Object.assign(globalThis.BAStrings.lobby, {
   };
 })(globalThis);
 
+/* 48_scope.jsx */
+(function (g) {
+  const {
+      Button
+    } = g.BAFlowKit,
+    Q = g.BAScope,
+    C = g.BAScopeCopy;
+  function ScopePicker({
+    grade,
+    value,
+    onChange
+  }) {
+    const [subject, setSubject] = React.useState('math'),
+      scope = Q.migrate(value, grade),
+      visible = Q.visible(grade);
+    const selected = visible.includes(subject) ? subject : 'math',
+      x = scope.subjects[selected],
+      current = Q.current(selected, grade);
+    function change(fn) {
+      const next = Q.migrate(scope, grade);
+      fn(next.subjects[selected]);
+      onChange(next);
+    }
+    return /*#__PURE__*/React.createElement("section", {
+      className: "ba-scope-v2",
+      "data-testid": "scope-v2"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-scope-tabs",
+      role: "group",
+      "aria-label": C.tabs
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: visible.map(s => /*#__PURE__*/React.createElement(Button, {
+        key: s,
+        kind: selected === s ? 'sage' : 'ghost',
+        "aria-pressed": selected === s,
+        "data-scope-subject": s,
+        onClick: () => setSubject(s)
+      }, C.subjects[s]))
+    })), /*#__PURE__*/React.createElement("p", {
+      className: "ba-muted"
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.review
+    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: selected === 'english' && grade <= 2 && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.english
+      }))
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "ba-actions"
+    }, /*#__PURE__*/React.createElement(Button, {
+      kind: "ghost small",
+      "data-scope-all": selected,
+      onClick: () => onChange(Q.selectAll(scope, grade, selected))
+    }, C.all), /*#__PURE__*/React.createElement(Button, {
+      kind: "ghost small",
+      "data-scope-current": selected,
+      onClick: () => onChange(Q.onlyCurrent(scope, grade, selected))
+    }, C.only)), /*#__PURE__*/React.createElement("div", {
+      className: "ba-scope-level-options"
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: Q.levels(selected).map((level, index) => {
+        const list = Q.rows.filter(r => r.subject === selected && r.levels.includes(level)),
+          enabled = x.levels.includes(level);
+        const label = selected === 'math' ? g.BAStrings.common.grades[index + 1] : C.stage[level],
+          tag = selected === 'english' && grade <= 2 ? C.ahead : level === current ? C.current : index > Q.levels(selected).indexOf(current) ? C.ahead : C.earlier;
+        return /*#__PURE__*/React.createElement("label", {
+          className: 'ba-check ba-scope-level-chip ' + (enabled ? 'selected' : ''),
+          key: selected + level
+        }, /*#__PURE__*/React.createElement("input", {
+          type: "checkbox",
+          "data-scope-level": selected + ':' + level,
+          checked: enabled,
+          disabled: !list.length,
+          onChange: e => change(v => {
+            v.levels = e.target.checked ? [...v.levels, level] : v.levels.filter(l => l !== level);
+          })
+        }), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: label
+        }), " ", /*#__PURE__*/React.createElement("small", {
+          className: "ba-scope-tag"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: tag
+        }))));
+      })
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "ba-scope-levels"
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: Q.levels(selected).filter(level => x.levels.includes(level)).map(level => {
+        const list = Q.rows.filter(r => r.subject === selected && r.levels.includes(level)),
+          count = list.filter(r => !x.excluded.includes(r.id)).length,
+          label = selected === 'math' ? g.BAStrings.common.grades[Number(level.slice(1))] : C.stage[level];
+        return /*#__PURE__*/React.createElement("details", {
+          className: "ba-scope-level selected",
+          key: selected + level,
+          open: level === current,
+          "data-scope-details": selected + ':' + level
+        }, /*#__PURE__*/React.createElement("summary", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: label
+        }), " \xB7 ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: count
+        }), "\uFF0F", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: list.length
+        }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: C.concepts
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "ba-scope-concepts"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: list.map(r => /*#__PURE__*/React.createElement("label", {
+            className: "ba-check",
+            key: r.id
+          }, /*#__PURE__*/React.createElement("input", {
+            type: "checkbox",
+            "data-scope-concept": r.id,
+            checked: !x.excluded.includes(r.id),
+            onChange: e => change(v => {
+              v.excluded = e.target.checked ? v.excluded.filter(id => id !== r.id) : [...new Set([...v.excluded, r.id])];
+            })
+          }), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: r.name
+          }))))
+        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: !list.length && /*#__PURE__*/React.createElement("p", {
+            className: "ba-muted"
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: C.empty
+          }))
+        }));
+      })
+    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: !Q.selected(scope, grade).length && /*#__PURE__*/React.createElement("p", {
+        role: "status"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.noNew
+      }))
+    }), /*#__PURE__*/React.createElement("p", {
+      className: "ba-muted"
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: C.note
+    })));
+  }
+  g.BAScopePicker = ScopePicker;
+})(globalThis);
+
 /* 50_screens.jsx */
 (function (g) {
   'use strict';
@@ -171779,7 +173336,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     return g.BALearning.capabilities(Number(grade)).filter(c => c.available !== false);
   }
   function initialScope(grade) {
-    return caps(grade).filter(c => Number(grade) > 2 || c.subject !== 'english').map(c => c.id);
+    return g.BAScope.defaults(Number(grade));
   }
   function createSession(profile, options) {
     const value = g.BALearning.createSession(profile, options),
@@ -171792,39 +173349,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       learning
     };
   }
-  function ScopePicker({
-    grade,
-    value,
-    onChange
-  }) {
-    const list = caps(grade);
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "ba-actions"
-    }, /*#__PURE__*/React.createElement(Button, {
-      kind: "ghost small",
-      onClick: () => onChange(list.map(c => c.id))
-    }, S.flow.selectAll), /*#__PURE__*/React.createElement(Button, {
-      kind: "ghost small",
-      onClick: () => onChange([])
-    }, S.flow.selectNone)), /*#__PURE__*/React.createElement("p", {
-      className: "ba-muted"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: Number(grade) <= 2 ? g.BAJourneyCopy.englishNote : ""
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "ba-capabilities"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: list.map(c => /*#__PURE__*/React.createElement("label", {
-        className: "ba-check",
-        key: c.id
-      }, /*#__PURE__*/React.createElement("input", {
-        type: "checkbox",
-        checked: value.includes(c.id),
-        onChange: e => onChange(e.target.checked ? [...value, c.id] : value.filter(id => id !== c.id))
-      }), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: c.label || c.name
-      }))))
-    })));
-  }
+  const ScopePicker = g.BAScopePicker;
   function CreateProfile({
     onCreate,
     onBack,
@@ -171837,7 +173362,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       [saving, setSaving] = React.useState(false);
     const submit = e => {
       e.preventDefault();
-      if (!scope.length) {
+      if (!g.BAScope.selected(scope, grade).length) {
         notify(S.flow.needScope);
         return;
       }
@@ -171936,7 +173461,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     }, /*#__PURE__*/React.createElement("button", {
       className: "ba-button primary",
       type: "submit",
-      disabled: saving || !scope.length
+      disabled: saving || !g.BAScope.selected(scope, grade).length
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: S.flow.create
     }), /*#__PURE__*/React.createElement(Icon, {
@@ -172830,34 +174355,62 @@ Object.assign(globalThis.BAStrings.lobby, {
     notify
   }) {
     const [mode, setMode] = React.useState(profile?.mode || 'practice'),
+      [grade, setGrade] = React.useState(profile?.grade || 3),
       [settings, setSettings] = React.useState(profile?.settings || {
         mode: 'story',
         subject: 'math',
-        scope: [],
+        scope: g.BAScope.defaults(3),
         difficulty: 'normal'
       });
     React.useEffect(() => {
       if (profile) {
         setMode(profile.mode);
+        setGrade(profile.grade);
         setSettings(profile.settings);
       }
     }, [profile?.id]);
     const save = () => {
-      if (!settings.scope.length) {
+      if (!g.BAScope.selected(settings.scope, grade).length) {
         notify(S.flow.needScope);
         return;
       }
       const a = commit({
         type: 'UPDATE_SETTINGS',
-        settings
+        settings,
+        grade
       });
       if (a.ok) {
+        setSettings(a.profile.settings);
         const b = commit({
           type: 'SET_MODE',
           mode
         });
         if (b.ok) notify(S.parents.saved);
       }
+    };
+    const gradeNotice = profile?.sessions?.scopeGradeNotice;
+    const dismissGrade = (reset = false) => {
+      if (reset) {
+        let scope = settings.scope;
+        for (const subject of g.BAScope.visible(grade)) {
+          if (subject === 'life' && grade > 2 || subject === 'english' && !scope.subjects.english.levels.length) continue;
+          scope = g.BAScope.onlyCurrent(scope, grade, subject);
+        }
+        const r = commit({
+          type: 'UPDATE_SETTINGS',
+          settings: {
+            ...settings,
+            scope
+          }
+        });
+        if (!r.ok) return;
+        setSettings(r.profile.settings);
+      }
+      commit({
+        type: 'SAVE_SESSION',
+        sessionId: 'scopeGradeNotice',
+        value: null
+      });
     };
     const cut = Date.now() - 7 * 86400000,
       events = (profile?.events || []).filter(e => Date.parse(e.at) >= cut),
@@ -172954,15 +174507,42 @@ Object.assign(globalThis.BAStrings.lobby, {
         }, v))
       }))), /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: S.parents.curriculum
-      })), /*#__PURE__*/React.createElement(ScopePicker, {
-        grade: profile.grade,
+      })), /*#__PURE__*/React.createElement("label", {
+        className: "ba-field",
+        htmlFor: "ba-parent-grade"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: g.BAScopeCopy.grade
+      })), /*#__PURE__*/React.createElement("select", {
+        id: "ba-parent-grade",
+        className: "ba-input",
+        value: grade,
+        onChange: e => setGrade(Number(e.target.value))
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: [1, 2, 3, 4, 5, 6].map(n => /*#__PURE__*/React.createElement("option", {
+          key: n,
+          value: n
+        }, S.common.grades[n]))
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: gradeNotice && /*#__PURE__*/React.createElement("section", {
+          className: "ba-scope-notice",
+          "data-testid": "scope-grade-notice",
+          role: "status"
+        }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: gradeNotice.added.length ? g.BAScopeCopy.promoted.replace('{grade}', S.common.grades[gradeNotice.to]) : g.BAScopeCopy.gradeChanged
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(Button, {
+          kind: "sage",
+          onClick: () => dismissGrade(true)
+        }, g.BAScopeCopy.reset), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          onClick: () => dismissGrade()
+        }, g.BAScopeCopy.keep)))
+      }), /*#__PURE__*/React.createElement(ScopePicker, {
+        grade: grade,
         value: settings.scope,
         onChange: v => mutate('scope', v)
-      }), /*#__PURE__*/React.createElement("p", {
-        className: "ba-muted"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.parents.curriculumNote
-      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: /*#__PURE__*/React.createElement("section", {
           className: "ba-reading-settings"
         }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
