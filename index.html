@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.12</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.13</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -901,11 +901,13 @@ body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:aut
 .ba-lobby-stage .ba-lobby-scene::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#d6b58944,#efd5a544),var(--lobby-art);background-size:100% 100%,100% 600%;background-position:center,bottom;background-repeat:no-repeat}
 .ba-lobby-room{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(100cqw,177.68cqh);height:min(56.28cqw,100cqh);isolation:isolate}
 .ba-lobby-stage .ba-scene-image{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;aspect-ratio:auto;border-radius:0}
-.ba-lobby-stage .ba-lobby-room>.ba-hotspot{display:flex;min-height:44px}.ba-lobby-stage .ba-board-paper{display:flex}
+.ba-lobby-stage .ba-lobby-room>.ba-hotspot{display:flex;min-height:44px}.ba-lobby-stage .ba-board-paper{display:flex;gap:0;padding:4px}
+.ba-lobby-stage .ba-board-title{font-size:clamp(13px,1.65vw,24px);letter-spacing:0;max-width:100%}
+.ba-lobby-stage .ba-board-title .ba-txt{font-size:inherit;line-height:1.5;letter-spacing:0}
 .ba-lobby-stage .ba-hotspot>span{display:block}
 .ba-lobby-stage .ba-shelf-book{display:none}
 .ba-lobby-stage .ba-stone-touch,.ba-lobby-stage .ba-stone-effect{top:58%;left:79.5%;width:14%;height:19%}
-.ba-lobby-stage .ba-lobby-team-card{position:absolute;z-index:6;right:16px;bottom:max(12px,env(safe-area-inset-bottom));width:360px;max-width:calc(100% - 24px);margin:0;padding:10px 12px;background:#fff9edf5}
+.ba-lobby-stage .ba-lobby-team-card{position:absolute;z-index:6;left:16px;right:auto;bottom:max(12px,env(safe-area-inset-bottom));width:360px;max-width:calc(100% - 24px);margin:0;padding:10px 12px;background:#fff9edf5}
 .ba-lobby-stage .ba-leader-title{margin:0 0 4px;font-size:14px;text-align:center}.ba-lobby-stage .ba-leader-title .ba-txt{font-size:inherit;line-height:1.5}
 .ba-lobby-stage .ba-leader-options button>span{font-size:14px}.ba-lobby-stage .ba-leader-options .ba-txt{line-height:1.6}
 .ba-lobby-stage .ba-lobby-energy{margin-top:6px;padding-top:6px}.ba-lobby-stage .ba-energy-label .ba-txt{font-size:14px;line-height:1.5}
@@ -919,14 +921,13 @@ body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:aut
 body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:120px;overflow:auto}
 @media(max-width:1100px){
  .ba-lobby-stage .ba-board-paper{gap:0;padding:4px;box-shadow:inset 0 0 0 3px #efe2c6}
- .ba-lobby-stage .ba-board-note,.ba-lobby-stage .ba-board-divider,.ba-lobby-stage .ba-board-footer{display:none}
  .ba-lobby-stage .ba-board-title{font-size:16px}.ba-lobby-stage .ba-board-title .ba-txt{font-size:inherit;line-height:1.5}
  .ba-lobby-stage .ba-stone-bubble{top:calc(min(56.28cqw,100cqh)*.82);right:16px;width:360px;max-width:70%;max-height:calc(100cqh - min(56.28cqw,100cqh)*.82 - var(--lobby-hud-space,180px))}
  .ba-lobby-stage .ba-stone-bubble::after{right:16%;top:-9px;bottom:auto;transform:rotate(225deg)}
 }
 @media(max-width:600px){
  .ba-lobby-stage .ba-lobby-header{padding:4px 12px}.ba-lobby-stage .ba-lobby-header h1{font-size:16px}
- .ba-lobby-stage .ba-lobby-team-card{right:12px;width:calc(100% - 24px);padding:8px 10px}
+ .ba-lobby-stage .ba-lobby-team-card{left:12px;right:auto;width:calc(100% - 24px);padding:8px 10px}
  .ba-lobby-stage .ba-leader-title{display:none}
  .ba-lobby-stage .ba-board-paper{left:40%;top:7%;width:34%;height:24%;min-height:48px}
  .ba-lobby-stage .ba-board-title{font-size:13px;gap:4px}.ba-lobby-stage .ba-board-title svg{width:16px;flex:none}
@@ -1253,7 +1254,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.12";
+globalThis.BAVersion = "0.3.13";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -4152,7 +4153,7 @@ globalThis.BALetters = [{
       stone: "小石",
       stoneAction: "和小石聊聊",
       stonePet: "摸摸小石",
-      stoneHint: "點一下小石，和牠打個招呼吧！",
+      stoneHint: "點「今天的來信」，讀信幫忙吧！",
       stoneReactions: [{
         id: "happy",
         icon: "heart",
@@ -4521,7 +4522,7 @@ globalThis.BALetters = [{
     }
   });
   Object.assign(g.BAStrings.lobby, {
-    stoneLines: ['每個故事，都有值得細看的地方。', '答錯也沒關係，我們再看看線索。', '先翻書，還是先幫忙？由你決定。']
+    stoneLines: [g.BAStrings.lobby.boardNote, '每個故事，都有值得細看的地方。', '答錯也沒關係，我們再看看線索。', '先翻書，還是先幫忙？由你決定。']
   });
 })(globalThis);
 
@@ -166671,7 +166672,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         reactionTimer.current = null;
       }, 1800);
     };
-    var boardLabel = profile && profile.grade <= 2 ? s.lobby.boardLow : s.lobby.boardFooter;
+    var boardLabel = s.lobby.boardFooter;
     var assets = globalThis.BAAssets || {};
     return /*#__PURE__*/React.createElement("main", {
       className: "ba-lobby-page ba-lobby-stage",
@@ -166744,22 +166745,6 @@ Object.assign(globalThis.BAStrings.lobby, {
     }), /*#__PURE__*/React.createElement(Readable, {
       value: boardLabel,
       profile: profile
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "ba-board-note"
-    }, /*#__PURE__*/React.createElement(Readable, {
-      value: s.lobby.boardNote,
-      profile: profile
-    })), /*#__PURE__*/React.createElement("span", {
-      className: "ba-board-divider",
-      "aria-hidden": "true"
-    }), /*#__PURE__*/React.createElement("span", {
-      className: "ba-board-footer"
-    }, /*#__PURE__*/React.createElement(Readable, {
-      value: boardLabel,
-      profile: profile
-    }), /*#__PURE__*/React.createElement(Icon, {
-      name: "arrow",
-      size: 14
     }))), /*#__PURE__*/React.createElement("button", {
       type: "button",
       className: "ba-hotspot ba-hotspot-books",
