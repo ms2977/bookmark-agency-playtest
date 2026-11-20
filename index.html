@@ -2,7 +2,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.8</title><style>:root {
+<title>書籤偵探社｜操作試玩 v0.3.9</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+.ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
+.ba-transition.active{pointer-events:auto}
+.ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
+.ba-tr-wipe{opacity:1;clip-path:polygon(0 0,0 0,0 100%,0 100%);will-change:clip-path}
+.ba-tr-iris{opacity:1;will-change:mask-image,-webkit-mask-image}
+.ba-tr-page{position:absolute;inset:0;background:#f3ead8 radial-gradient(ellipse at 30% 40%,#fbf6ea 0,#efe3cb 70%,#e2d2b2 100%);box-shadow:-24px 0 40px rgba(0,0,0,.35);backface-visibility:hidden;will-change:transform}
+.ba-tr-page-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0) 45%);pointer-events:none}
+@media (prefers-reduced-motion:reduce){.ba-tr-page,.ba-tr-iris{display:none}}
+
+:root {
   color-scheme: light;
   --cream: #f5f0e4;
   --paper: #fffaf0;
@@ -837,6 +847,12 @@ body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:aut
 
 .ba-low .vn-dialog-text{max-width:18em}.vn-sheet{animation:vn-rise .15s ease-out}@keyframes vn-rise{from{transform:translateY(20px);opacity:.5}to{transform:none;opacity:1}}
 @media(max-width:600px){.vn-avatar{flex-basis:64px;height:64px}.vn-avatar .ba-j-avatar{width:64px;height:64px}}
+
+.ba-stage-wait{position:fixed;inset:0;z-index:8999;cursor:progress;touch-action:none;background:transparent}
+.ba-stage-wait[hidden]{display:none}
+.ba-stage-wait.loading::after{content:'';position:absolute;left:calc(50% - 17px);top:calc(50% - 17px);width:34px;height:34px;border:4px solid #fff8e4;border-top-color:#7a6847;border-radius:50%;box-shadow:0 0 0 12px #f8f0dec9;animation:ba-stage-loading .8s linear infinite}
+@keyframes ba-stage-loading{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ba-stage-wait.loading::after{animation:none}}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1139,7 +1155,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.8";
+globalThis.BAVersion = "0.3.9";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -3229,6 +3245,223 @@ const HINT_RULES = {
     DialogueBox
   };
 })(globalThis);
+(function (g) {
+  'use strict';
+
+  /* 書籤偵探社／知識探索島 共用：畫面過場層（Claude，2026-11-20）
+   *
+   * 用法：
+   *   await BATransition.play('iris', { x, y, midpoint: () => navigate(next) });
+   *   await BATransition.play('page', { midpoint: () => navigate(next) });
+   *   await BATransition.play('fade', { midpoint: () => navigate(next) });
+   *
+   * kind：
+   *   fade  黑色淡入淡出（大廳 ↔ 書架 ↔ 家長區這類一般切換，約 420ms）
+   *   iris  仙劍式圓形收合：畫面縮成一個圓點變黑，再從圓點張開（地圖 → 場景、進書、結案出書，約 900ms）
+   *   page  翻書頁：一張紙從右邊翻過來蓋住畫面，再翻開露出新畫面（書架 → 進書過場，約 800ms）
+   *   wipe  斜向擦除（備用）
+   *
+   * midpoint 在畫面「完全被蓋住」時呼叫，宿主在這一刻切換 route／掛載新畫面，
+   * 所以新畫面第一幀永遠是在遮罩後面畫好的，不會看到「切面」。
+   * play() 回傳 Promise，過場結束才 resolve；過場中再呼叫 play 會先等前一次結束。
+   * 使用者設定「減少動態」或 prefers-reduced-motion 時：只做 120ms 的黑色淡入淡出。
+   * 不依賴 React；自己在 body 下掛一個固定全螢幕的 DOM 節點，宿主不必重新渲染。
+   */
+  const DUR = {
+    fade: 210,
+    iris: 450,
+    page: 400,
+    wipe: 320
+  };
+  let layer = null,
+    busy = Promise.resolve();
+  function ensure() {
+    if (layer && layer.isConnected) return layer;
+    layer = document.createElement('div');
+    layer.className = 'ba-transition';
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(layer);
+    return layer;
+  }
+  function reduced(opts) {
+    if (opts && typeof opts.reduceMotion === 'boolean') return opts.reduceMotion;
+    return !!(g.matchMedia && g.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  function anim(el, frames, ms, easing) {
+    const a = el.animate(frames, {
+      duration: ms,
+      easing: easing || 'ease-in-out',
+      fill: 'forwards'
+    });
+    return a.finished.catch(() => {});
+  }
+  function clear(root) {
+    root.innerHTML = '';
+    root.classList.remove('active');
+  }
+  async function fadeIn(root, ms) {
+    const k = document.createElement('div');
+    k.className = 'ba-tr-black';
+    root.appendChild(k);
+    await anim(k, [{
+      opacity: 0
+    }, {
+      opacity: 1
+    }], ms, 'ease-in');
+    return k;
+  }
+  async function fadeOut(k, ms) {
+    await anim(k, [{
+      opacity: 1
+    }, {
+      opacity: 0
+    }], ms, 'ease-out');
+  }
+  const effects = {
+    async fade(root, opts, mid) {
+      const ms = opts.duration || DUR.fade;
+      const k = await fadeIn(root, ms);
+      await mid();
+      await hold(opts);
+      await fadeOut(k, ms);
+    },
+    async iris(root, opts, mid) {
+      const ms = opts.duration || DUR.iris;
+      const x = opts.x == null ? innerWidth / 2 : opts.x,
+        y = opts.y == null ? innerHeight / 2 : opts.y;
+      // 黑色全幕 + 圓形遮罩（radial-gradient mask）：圓內透明、圓外黑。半徑逐幀縮小＝畫面收成圓點。
+      const k = document.createElement('div');
+      k.className = 'ba-tr-black ba-tr-iris';
+      root.appendChild(k);
+      const R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 8;
+      const setR = (cx, cy, r) => {
+        const m = `radial-gradient(circle at ${cx}px ${cy}px, transparent ${Math.max(0, r - 1.5)}px, #000 ${r + 1.5}px)`;
+        k.style.maskImage = m;
+        k.style.webkitMaskImage = m;
+      };
+      const tween = (from, to, cx, cy, ease) => new Promise(res => {
+        const t0 = performance.now();
+        const step = now => {
+          const p = Math.min(1, (now - t0) / ms);
+          setR(cx, cy, from + (to - from) * ease(p));
+          if (p < 1) requestAnimationFrame(step);else res();
+        };
+        requestAnimationFrame(step);
+      });
+      const easeIn = p => p * p * (1.2 - .2 * p),
+        easeOut = p => 1 - Math.pow(1 - p, 2.2);
+      await tween(R, 0, x, y, easeIn);
+      await mid();
+      await hold(opts);
+      const x2 = opts.x2 == null ? innerWidth / 2 : opts.x2,
+        y2 = opts.y2 == null ? innerHeight / 2 : opts.y2;
+      const R2 = Math.hypot(Math.max(x2, innerWidth - x2), Math.max(y2, innerHeight - y2)) + 8;
+      await tween(0, R2, x2, y2, easeOut);
+    },
+    async page(root, opts, mid) {
+      const ms = opts.duration || DUR.page;
+      const sheet = document.createElement('div');
+      sheet.className = 'ba-tr-page';
+      if (opts.color) sheet.style.background = opts.color;
+      const shade = document.createElement('div');
+      shade.className = 'ba-tr-page-shade';
+      sheet.appendChild(shade);
+      root.appendChild(sheet);
+      // 第一半：紙從右邊緣立起、翻過來蓋住畫面（繞右邊緣轉）
+      sheet.style.transformOrigin = 'right center';
+      await Promise.all([anim(sheet, [{
+        transform: 'perspective(1400px) rotateY(-100deg)'
+      }, {
+        transform: 'perspective(1400px) rotateY(0deg)'
+      }], ms, 'cubic-bezier(.4,0,.7,.4)'), anim(shade, [{
+        opacity: .55
+      }, {
+        opacity: 0
+      }], ms)]);
+      await mid();
+      await hold(opts);
+      // 第二半：同一張紙繞左邊緣翻走，露出新畫面
+      sheet.style.transformOrigin = 'left center';
+      await Promise.all([anim(sheet, [{
+        transform: 'perspective(1400px) rotateY(0deg)'
+      }, {
+        transform: 'perspective(1400px) rotateY(100deg)'
+      }], ms, 'cubic-bezier(.3,.6,.6,1)'), anim(shade, [{
+        opacity: 0
+      }, {
+        opacity: .55
+      }], ms)]);
+    },
+    async wipe(root, opts, mid) {
+      const ms = opts.duration || DUR.wipe;
+      const k = document.createElement('div');
+      k.className = 'ba-tr-black ba-tr-wipe';
+      root.appendChild(k);
+      await anim(k, [{
+        clipPath: 'polygon(0 0,0 0,0 100%,0 100%)'
+      }, {
+        clipPath: 'polygon(0 0,130% 0,100% 100%,0 100%)'
+      }], ms, 'ease-in');
+      await mid();
+      await hold(opts);
+      await anim(k, [{
+        clipPath: 'polygon(0 0,130% 0,100% 100%,0 100%)'
+      }, {
+        clipPath: 'polygon(130% 0,130% 0,100% 100%,100% 100%)'
+      }], ms, 'ease-out');
+    }
+  };
+  function hold(opts) {
+    return new Promise(r => setTimeout(r, opts.hold == null ? 60 : opts.hold));
+  }
+  function play(kind, opts) {
+    opts = opts || {};
+    const run = async () => {
+      const root = ensure();
+      root.classList.add('active');
+      root.innerHTML = '';
+      let midDone = false;
+      const mid = async () => {
+        if (midDone) return;
+        midDone = true;
+        try {
+          await (opts.midpoint && opts.midpoint());
+        } catch (e) {
+          console.error('transition midpoint failed', e);
+        }
+      };
+      try {
+        const effect = !reduced(opts) && effects[kind] || effects.fade;
+        await effect(root, reduced(opts) ? {
+          ...opts,
+          duration: 120
+        } : opts, mid);
+      } finally {
+        await mid();
+        clear(root);
+      }
+    };
+    busy = busy.then(run, run);
+    return busy;
+  }
+  function isBusy() {
+    return !!(layer && layer.classList.contains('active'));
+  }
+  /* 從一個 DOM 元素（例如被點的結點或熱點）取圓心，給 iris 用 */
+  function centerOf(el) {
+    const b = el && el.getBoundingClientRect ? el.getBoundingClientRect() : null;
+    return b ? {
+      x: b.left + b.width / 2,
+      y: b.top + b.height / 2
+    } : {};
+  }
+  g.BATransition = {
+    play,
+    isBusy,
+    centerOf,
+    durations: DUR
+  };
+})(typeof window !== 'undefined' ? window : globalThis);
 globalThis.BAExplorationData = {
   "version": 1,
   "scenes": [{
@@ -3760,6 +3993,7 @@ globalThis.BALetters = [{
       cancel: "取消",
       next: "下一步",
       save: "儲存",
+      loading: "準備下一頁",
       grades: ["", "一年級", "二年級", "三年級", "四年級", "五年級", "六年級"]
     },
     title: {
@@ -6533,6 +6767,212 @@ Object.assign(globalThis.BAStrings.lobby, {
     aspect
   };
 })(typeof globalThis !== 'undefined' ? globalThis : this);
+
+/* 18_stage_navigation.js */
+(function (g) {
+  'use strict';
+
+  const cache = new Map();
+  let pending = false,
+    phase = 'idle',
+    veil = null,
+    lastTarget = null;
+  const frame = () => new Promise(resolve => g.requestAnimationFrame ? g.requestAnimationFrame(() => resolve()) : setTimeout(resolve, 0));
+  const scene = stage => stage === 'tavern' ? 'tavern' : ['garden', 'oath', 'ending', 'complete'].includes(stage) ? 'garden' : 'market';
+  function assetsFor(next, profile) {
+    const a = g.BAAssets || {},
+      p = next.page,
+      values = [];
+    const add = (...xs) => values.push(...xs.filter(Boolean));
+    if (['title', 'profiles', 'create', 'lobby'].includes(p)) add(a.team, a.hero1, p === 'lobby' && a.lobby);
+    if (['books', 'book-entry', 'book-exit'].includes(p)) add(a.team, ...Object.values(a.covers || {}));
+    if (['journey-map', 'cases'].includes(p)) add(a.team, a.sanguoMap, a.caoChong);
+    if (p === 'journey-case') add(a.team, ...['liu', 'zhang', 'guan', 'child'].map(k => a.journey[k]), a.journey[scene(next.stage || g.BAJourney.flow(profile).stage)]);
+    if (['album', 'manual', 'journey-manual'].includes(p)) add(a.caoChong, a.journey?.liu);
+    if (['scene', 'case'].includes(p)) add(a.hero1, a.caoChong, a.riverBoat);
+    if (p === 'commission') add(...Object.values(a.words || {}));
+    return [...new Set(values)];
+  }
+  function decode(src) {
+    if (cache.has(src)) return cache.get(src);
+    // A nonvisual host (e.g. DOM tests) has no image decoder. Browser QA covers decode.
+    if (!g.Image?.prototype.decode) return Promise.resolve();
+    const job = new Promise((resolve, reject) => {
+      const img = new Image();
+      let timer = setTimeout(() => reject(new Error('IMAGE_DECODE_TIMEOUT')), 8000);
+      img.src = src;
+      img.decode().then(() => {
+        clearTimeout(timer);
+        resolve();
+      }, error => {
+        clearTimeout(timer);
+        reject(error);
+      });
+    });
+    cache.set(src, job);
+    job.catch(() => cache.delete(src));
+    return job;
+  }
+  function kindFor(from, to) {
+    if (from === 'books' && to === 'book-entry') return 'page';
+    if (from === 'book-entry' && to === 'journey-map' || from === 'journey-map' && to === 'journey-case' || from === 'journey-case' && to === 'journey-map' || from === 'cases' && ['scene', 'case'].includes(to) || from === 'book-exit' && to === 'lobby') return 'iris';
+    return 'fade';
+  }
+  function ensure() {
+    if (veil?.isConnected) return veil;
+    veil = document.createElement('div');
+    veil.className = 'ba-stage-wait';
+    veil.hidden = true;
+    veil.setAttribute('role', 'status');
+    veil.setAttribute('aria-label', g.BAStrings.common.loading);
+    document.body.append(veil);
+    return veil;
+  }
+  const isBusy = () => pending || g.BATransition.isBusy();
+  function emit(detail) {
+    document.dispatchEvent(new CustomEvent('ba:transition', {
+      detail: {
+        ...detail,
+        at: performance.now()
+      }
+    }));
+  }
+  async function run(next, profile, opts) {
+    if (isBusy()) return {
+      ok: false,
+      code: 'TRANSITION_BUSY'
+    };
+    pending = true;
+    phase = 'preloading';
+    const started = performance.now(),
+      root = document.getElementById('root'),
+      focus = document.activeElement,
+      cover = ensure(),
+      wasInert = root?.inert;
+    const center = opts.anchor ? g.BATransition.centerOf(opts.anchor) : {},
+      kind = opts.transition || 'fade',
+      detail = {
+        kind,
+        destination: next.page,
+        stage: next.stage || null,
+        ...center
+      };
+    if (root) {
+      root.inert = true;
+      root.setAttribute('aria-busy', 'true');
+    }
+    cover.hidden = false;
+    const timer = setTimeout(() => cover.classList.add('loading'), 80);
+    emit({
+      ...detail,
+      phase
+    });
+    let result = {
+        ok: true
+      },
+      failure = null;
+    try {
+      const sources = assetsFor(next, profile);
+      await Promise.all(sources.map(decode));
+      emit({
+        ...detail,
+        phase: 'decoded',
+        images: sources.length
+      });
+      clearTimeout(timer);
+      cover.classList.remove('loading');
+      phase = 'playing';
+      emit({
+        ...detail,
+        phase
+      });
+      const midpoint = async () => {
+        phase = 'midpoint';
+        emit({
+          ...detail,
+          phase
+        });
+        try {
+          const r = await opts.midpoint();
+          if (r?.ok === false) result = r;
+          await frame();
+        } catch (error) {
+          failure = error;
+          throw error;
+        }
+      };
+      // Use Claude's public timing options without modifying his effect code.
+      // 400ms iris halves leave time for React mount and its first painted frame.
+      if (typeof document.documentElement.animate === 'function') await g.BATransition.play(kind, {
+        ...center,
+        x: opts.x ?? center.x,
+        y: opts.y ?? center.y,
+        ...(kind === 'iris' ? {
+          duration: 400
+        } : {}),
+        hold: 0,
+        midpoint
+      });else await midpoint();
+      if (failure) throw failure;
+      return result;
+    } catch (error) {
+      result = {
+        ok: false,
+        code: 'TRANSITION_FAILED'
+      };
+      opts.onError?.(error);
+      emit({
+        ...detail,
+        phase: 'failed'
+      });
+      return result;
+    } finally {
+      clearTimeout(timer);
+      cover.hidden = true;
+      cover.classList.remove('loading');
+      if (root) {
+        root.inert = wasInert;
+        root.removeAttribute('aria-busy');
+      }
+      pending = false;
+      phase = 'idle';
+      if (result.ok === false && focus?.isConnected) focus.focus({
+        preventScroll: true
+      });
+      emit({
+        ...detail,
+        phase: 'idle',
+        ok: result.ok,
+        elapsedMs: performance.now() - started
+      });
+    }
+  }
+  // Capture before React: a second click, held Enter, submit, or scroll cannot
+  // mutate the old screen while decode/animation is pending. Keyup still releases movement.
+  for (const type of ['pointerdown', 'click', 'dblclick', 'keydown', 'submit', 'wheel', 'touchmove']) document.addEventListener(type, e => {
+    if (isBusy()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+    if (type === 'click' || type === 'keydown' && ['Enter', ' '].includes(e.key)) lastTarget = e.target.closest?.('button,a,[data-node]') || e.target;
+  }, {
+    capture: true,
+    passive: false
+  });
+  g.BAStage = {
+    run,
+    isBusy,
+    assetsFor,
+    scene,
+    kindFor,
+    trigger: () => lastTarget,
+    state: () => ({
+      busy: isBusy(),
+      phase
+    })
+  };
+})(globalThis);
 (function () {
   "use strict";
 
@@ -171835,10 +172275,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       [history, setHistory] = React.useState(null),
       line = b.entryLine || 0;
     const done = () => {
-      if (commit(J.bookAction(profile, {
-        entrySeen: true,
-        entryLine: 0
-      })).ok) onDone();
+      if (!g.BAStage.isBusy()) return onDone();
     };
     React.useEffect(() => {
       if (b.entrySeen && !reduced && b.companion) {
@@ -172007,14 +172444,14 @@ Object.assign(globalThis.BAStrings.lobby, {
     }, [!!intro, panel, history]);
     const selected = near !== dismissed ? nodes.find(n => n.id === near) : null;
     function depart() {
-      if (!selected?.implemented) return;
+      if (!selected?.implemented || g.BAStage.isBusy()) return;
       walking.stop();
       const live = latest.current;
       const saved = live.commit(J.bookAction(live.profile, {
         pos: walking.pos,
         currentNode: selected.id
       }));
-      if (saved.ok && onOpen(true)?.ok) onOpen(false);
+      if (saved.ok) onOpen(walking.element.current?.querySelector('[data-node="' + selected.id + '"]'));
     }
     const K = g.BABookCatalog,
       map = K.data.maps[0];
@@ -172614,7 +173051,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     commit,
     notify,
     onBack,
-    onExit
+    onExit,
+    changeScene
   }) {
     const f = J.flow(profile),
       [panel, setPanel] = React.useState(null),
@@ -172629,11 +173067,15 @@ Object.assign(globalThis.BAStrings.lobby, {
       setHistory(null);
     }, [f.stage]);
     const go = stage => {
-      const action = J.advance(profile, stage);
-      if (action && commit(action).ok) {
-        setPanel(null);
-        setClosed(false);
-      }
+      if (g.BAStage.isBusy()) return;
+      const action = J.advance(profile, stage),
+        after = () => {
+          setPanel(null);
+          setClosed(false);
+        };
+      if (!action) return;
+      if (g.BAStage.scene(stage) !== g.BAStage.scene(f.stage)) return changeScene(stage, after);
+      if (commit(action).ok) after();
     };
     const scene = f.stage === 'tavern' ? 'tavern' : ['garden', 'oath', 'ending', 'complete'].includes(f.stage) ? 'garden' : 'market';
     const open = id => {
@@ -172992,10 +173434,10 @@ Object.assign(globalThis.BAStrings.lobby, {
       busy = React.useRef(false),
       callback = React.useRef(onDone);
     callback.current = onDone;
-    const finish = () => {
-      if (busy.current) return;
+    const finish = async () => {
+      if (busy.current || g.BAStage.isBusy()) return;
       busy.current = true;
-      const r = callback.current();
+      const r = await callback.current();
       if (r?.ok === false) busy.current = false;
     };
     React.useEffect(() => {
@@ -173143,14 +173585,65 @@ Object.assign(globalThis.BAStrings.lobby, {
       if (!r.ok) notify(S.errors[r.code] || (r.code === 'DAY_CHANGED' ? S.board.newDay : S.flow.genericError));
       return r;
     }
-    function navigate(next) {
-      g.BAPlatform.speech.cancel();
-      setRoute(typeof next === 'string' ? {
+    function navigate(next, options = {}) {
+      const target = typeof next === 'string' ? {
         page: next
-      } : next);
-      try {
-        window.scrollTo(0, 0);
-      } catch (e) {}
+      } : next;
+      if (g.BAStage.isBusy()) return Promise.resolve({
+        ok: false,
+        code: 'TRANSITION_BUSY'
+      });
+      g.BAPlatform.speech.cancel();
+      return g.BAStage.run({
+        ...target,
+        ...(options.stage ? {
+          stage: options.stage
+        } : {})
+      }, current.current, {
+        ...options,
+        transition: options.transition || g.BAStage.kindFor(route.page, target.page),
+        onError: () => notify(S.flow.genericError),
+        midpoint: () => {
+          let result = {
+            ok: true
+          };
+          ReactDOM.flushSync(() => {
+            const r = options.before?.();
+            if (r === false || r?.ok === false) {
+              result = r || {
+                ok: false
+              };
+              return;
+            }
+            setRoute(target);
+          });
+          return result;
+        }
+      });
+    }
+    function changeScene(stage, after, anchor) {
+      g.BAPlatform.speech.cancel();
+      return g.BAStage.run({
+        page: 'journey-case',
+        stage
+      }, current.current, {
+        transition: 'iris',
+        anchor: anchor || g.BAStage.trigger(),
+        onError: () => notify(S.flow.genericError),
+        midpoint: () => {
+          let result = {
+            ok: false
+          };
+          ReactDOM.flushSync(() => {
+            const action = g.BAJourney.advance(current.current, stage);
+            if (action) {
+              result = commit(action);
+              if (result.ok) after?.();
+            }
+          });
+          return result;
+        }
+      });
     }
     function enterProfile(id) {
       const r = g.BAPlatform.storage.loadProfile(id);
@@ -173191,50 +173684,52 @@ Object.assign(globalThis.BAStrings.lobby, {
     function enterBook(volumeId = 'volume-1') {
       const v = K.volume(volumeId);
       if (!v || v.status !== 'published') return;
-      const r = commit({
-        type: 'ENTER_BOOK',
-        bookId: v.storageBookId,
-        caseCount: v.caseIds.length
-      });
-      if (r.ok) navigate(v.id === 'volume-1' ? {
+      return navigate(v.id === 'volume-1' ? {
         page: 'book-entry'
       } : {
         page: 'cases',
         volumeId: v.id,
         factionId: 'cao'
+      }, {
+        transition: 'page',
+        before: () => commit({
+          type: 'ENTER_BOOK',
+          bookId: v.storageBookId,
+          caseCount: v.caseIds.length
+        })
       });
     }
-    function openJourney(prepare) {
-      if (!prepare) {
-        navigate('journey-case');
-        return {
-          ok: true
-        };
-      }
+    function openJourney(anchor) {
       const p = current.current,
         c = p.cases[g.BAJourney.caseKey];
-      return commit({
-        type: 'OPEN_CASE',
-        bookId: 'sanguo',
-        caseId: 'tao_yuan',
-        replay: c?.status === 'completed'
+      return navigate('journey-case', {
+        transition: 'iris',
+        anchor,
+        stage: c?.status === 'completed' ? 'market' : g.BAJourney.flow(p).stage,
+        before: () => commit({
+          type: 'OPEN_CASE',
+          bookId: 'sanguo',
+          caseId: 'tao_yuan',
+          replay: current.current.cases[g.BAJourney.caseKey]?.status === 'completed'
+        })
       });
     }
     function openCase(id, replay) {
       const context = K.resolveRoute(route),
         v = context && K.volume(context.volumeId);
       if (!v || !v.caseIds.includes(id)) return;
-      const r = commit({
-        type: 'OPEN_CASE',
-        bookId: v.storageBookId,
-        caseId: id,
-        replay: !!replay
-      });
-      if (r.ok) navigate({
+      return navigate({
         page: 'case',
         id,
         volumeId: v.id,
         factionId: context.factionId
+      }, {
+        before: () => commit({
+          type: 'OPEN_CASE',
+          bookId: v.storageBookId,
+          caseId: id,
+          replay: !!replay
+        })
       });
     }
     function enterScene(id) {
@@ -173248,6 +173743,8 @@ Object.assign(globalThis.BAStrings.lobby, {
         factionId: context.factionId,
         panel: null,
         view: 'inspect'
+      }, {
+        anchor: g.BAStage.trigger()
       });
     }
     function openSceneCase(replay) {
@@ -173365,24 +173862,24 @@ Object.assign(globalThis.BAStrings.lobby, {
       return () => clearTimeout(t);
     }, [notice]);
     function finishExit() {
-      const r = commit({
-        type: 'FINISH_BOOK_EXIT'
+      return navigate('lobby', {
+        transition: 'iris',
+        anchor: document.querySelector('.ba-travel-stone'),
+        before: () => commit({
+          type: 'FINISH_BOOK_EXIT'
+        })
       });
-      if (r.ok) navigate('lobby');
-      return r;
     }
     function beginExit() {
-      if (!current.current?.sessions.bookExit) {
-        navigate('lobby');
-        return {
-          ok: true
-        };
-      }
-      const r = commit({
-        type: 'BEGIN_BOOK_EXIT'
+      if (!current.current?.sessions.bookExit) return navigate('lobby', {
+        transition: 'iris',
+        anchor: document.querySelector('.ba-j-scene-stone')
       });
-      if (r.ok) navigate('book-exit');
-      return r;
+      return navigate('book-exit', {
+        before: () => commit({
+          type: 'BEGIN_BOOK_EXIT'
+        })
+      });
     }
     function goHome() {
       if (current.current?.sessions.bookExit?.phase === 'exiting') {
@@ -173419,7 +173916,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     const shared = {
       profile,
       commit,
-      notify
+      notify,
+      changeScene
     };
     let screen;
     if (route.page === 'title' || route.page === 'profiles') screen = /*#__PURE__*/React.createElement(U.Title, {
@@ -173475,7 +173973,14 @@ Object.assign(globalThis.BAStrings.lobby, {
       profile: profile,
       onDone: finishExit
     });else if (route.page === 'book-entry') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Entry, _extends({}, shared, {
-      onDone: () => navigate('journey-map')
+      onDone: () => navigate('journey-map', {
+        transition: 'iris',
+        anchor: document.querySelector('.ba-travel-book'),
+        before: () => commit(g.BAJourney.bookAction(current.current, {
+          entrySeen: true,
+          entryLine: 0
+        }))
+      })
     }));else if (route.page === 'journey-map') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Map, _extends({}, shared, {
       onOpen: openJourney,
       onLegacy: () => navigate({
