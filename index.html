@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.9</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.10</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -853,6 +853,43 @@ body:has(.vn-frame) .ba-toast{top:82px;bottom:auto;max-height:130px;overflow:aut
 .ba-stage-wait.loading::after{content:'';position:absolute;left:calc(50% - 17px);top:calc(50% - 17px);width:34px;height:34px;border:4px solid #fff8e4;border-top-color:#7a6847;border-radius:50%;box-shadow:0 0 0 12px #f8f0dec9;animation:ba-stage-loading .8s linear infinite}
 @keyframes ba-stage-loading{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.ba-stage-wait.loading::after{animation:none}}
+
+/* P0-3: only book screens use this shell. Lobby work remains P0-4. */
+.vn-sheet{max-height:min(80dvh,100%);padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.vn-dialog-text,.vn-dock{overscroll-behavior:contain}
+.vn-sheet-scroll{scrollbar-gutter:stable}
+.vn-node-card{max-height:calc(100% - 16px);overflow:auto;overscroll-behavior:contain;animation:vn-rise .15s ease-out}
+.vn-frame .vn-node-card p{display:block}
+.vn-frame .ba-map-canvas,.vn-frame .ba-explore-canvas{height:100%;width:100%;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}
+.vn-frame .ba-explore-hero{aspect-ratio:var(--hero-aspect);width:auto}
+.vn-frame .ba-explore-hero>svg{width:100%;height:100%;display:block}
+.vn-frame .ba-scene{height:100%;width:100%;margin:0;border-radius:0;border:0;aspect-ratio:16/9}
+.vn-frame .ba-scene>svg{height:100%;width:100%}
+.vn-frame .ba-scene-hero>svg{height:100%;width:100%;display:block}
+.vn-stage .ba-travel-team{height:68%;bottom:24%}
+.vn-frame.has-dialog .ba-explore-hotspot,.vn-frame.has-dialog .ba-explore-hero{visibility:hidden}
+.vn-avatar>.ba-portrait{width:64px;height:64px;object-fit:contain}
+.ba-book-stage-map{height:100%;width:100%;object-fit:contain;display:block}
+.vn-frame .ba-explore-guidance{margin:0;padding:6px 12px;border:0;background:transparent;font-weight:500}
+.vn-frame .ba-explore-hint{margin:4px 0}.vn-frame .ba-map-toolbar{margin:0;justify-content:center;gap:10px}
+.vn-frame .ba-map-toolbar .ba-button{min-height:44px}
+.vn-frame .ba-map-faction:active,.vn-frame .ba-j-node:active,.vn-frame .ba-explore-hotspot:active{filter:brightness(.9)}
+.vn-frame button:active{box-shadow:inset 0 0 0 2px #95826988}
+.vn-sheet-scroll .ba-map-letters{display:block}
+.vn-dock .ba-travel-line{margin:4px 0 8px}
+.vn-dock>.ba-actions .ba-button,.vn-dock>p .ba-txt{font-size:16px}
+.vn-dock>.ba-actions .ba-button .ba-txt{font-size:inherit}
+.vn-dock>.ba-actions{margin-top:8px}
+.vn-dock>.ba-actions .ba-button{padding:6px 10px}
+@media(max-width:600px){
+ .vn-frame .ba-map-faction{padding:5px 7px;min-height:44px}
+ .vn-frame .ba-map-faction strong{font-size:13px}.vn-frame .ba-map-faction small{font-size:10px}
+ .vn-frame .ba-map-city{font-size:10px}
+ .vn-node-card h2{font-size:16px}.vn-node-card p{font-size:12px}.vn-node-card .ba-button{min-height:44px}
+ .vn-sheet-header h2{max-width:calc(100% - 75px)}
+ .vn-dialog-tools button{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){.vn-node-card{animation:none}}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1155,7 +1192,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.9";
+globalThis.BAVersion = "0.3.10";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
@@ -3099,6 +3136,16 @@ const HINT_RULES = {
       update();
       return () => ro.disconnect();
     }, [aspect]);
+    R.useLayoutEffect(() => {
+      if (!sheet) return;
+      const bar = document.querySelector('.ba-topbar');
+      if (!bar) return;
+      const old = bar.inert;
+      bar.inert = true;
+      return () => {
+        bar.inert = old;
+      };
+    }, [!!sheet]);
     return h('main', {
       ...props,
       className: 'vn-frame ' + (props.className || ''),
@@ -3138,7 +3185,17 @@ const HINT_RULES = {
     R.useLayoutEffect(() => {
       const previous = document.activeElement,
         el = ref.current;
-      el.querySelector('button')?.focus();
+      let frame;
+      const focus = () => {
+        if (el.closest('[inert]')) {
+          frame = requestAnimationFrame(focus);
+          return;
+        }
+        el.querySelector('button')?.focus({
+          preventScroll: true
+        });
+      };
+      focus();
       const key = e => {
         if (e.key === 'Escape') {
           e.preventDefault();
@@ -3160,10 +3217,21 @@ const HINT_RULES = {
       };
       el.addEventListener('keydown', key);
       return () => {
+        cancelAnimationFrame(frame);
         el.removeEventListener('keydown', key);
-        if (previous?.isConnected) previous.focus();
+        requestAnimationFrame(() => {
+          if (previous?.isConnected && !previous.closest('[inert]')) previous.focus({
+            preventScroll: true
+          });
+        });
       };
     }, []);
+    R.useLayoutEffect(() => {
+      const el = ref.current;
+      if (!el.contains(document.activeElement) && !el.closest('[inert]')) el.querySelector('button')?.focus({
+        preventScroll: true
+      });
+    });
     return h('div', {
       className: 'vn-scrim'
     }, h('section', {
@@ -6788,8 +6856,8 @@ Object.assign(globalThis.BAStrings.lobby, {
     if (['books', 'book-entry', 'book-exit'].includes(p)) add(a.team, ...Object.values(a.covers || {}));
     if (['journey-map', 'cases'].includes(p)) add(a.team, a.sanguoMap, a.caoChong);
     if (p === 'journey-case') add(a.team, ...['liu', 'zhang', 'guan', 'child'].map(k => a.journey[k]), a.journey[scene(next.stage || g.BAJourney.flow(profile).stage)]);
-    if (['album', 'manual', 'journey-manual'].includes(p)) add(a.caoChong, a.journey?.liu);
-    if (['scene', 'case'].includes(p)) add(a.hero1, a.caoChong, a.riverBoat);
+    if (['album', 'manual', 'journey-manual'].includes(p)) add(a.caoChong, a.journey?.liu, a.sanguoMap);
+    if (['scene', 'case'].includes(p)) add(a.team, a.hero1, a.caoChong, a.riverBoat);
     if (p === 'commission') add(...Object.values(a.words || {}));
     return [...new Set(values)];
   }
@@ -169022,7 +169090,8 @@ Object.assign(globalThis.BAStrings.lobby, {
   function StoryScene({
     scene,
     person,
-    caseId
+    caseId,
+    profile
   }) {
     const art = g.BABookCatalog.entry(caseId);
     if (art?.sceneAsset) return /*#__PURE__*/React.createElement("div", {
@@ -169037,11 +169106,14 @@ Object.assign(globalThis.BAStrings.lobby, {
       className: "ba-scene-shadow"
     }), /*#__PURE__*/React.createElement("span", {
       className: "ba-scene-shadow child"
-    }), /*#__PURE__*/React.createElement("img", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "ba-scene-hero",
-      src: g.BAAssets.hero1,
-      alt: ""
-    }), /*#__PURE__*/React.createElement("img", {
+      style: {
+        aspectRatio: g.BAArtGeometry.aspect(g.BAJourneyArt.characters[g.BAJourney.book(profile).companion || g.BAJourney.companions[0]])
+      }
+    }, /*#__PURE__*/React.createElement(g.BAJourneyUI.Sprite, {
+      who: g.BAJourney.book(profile).companion || g.BAJourney.companions[0]
+    })), /*#__PURE__*/React.createElement("img", {
       className: "ba-scene-cao",
       src: g.BAAssets[art.portraitAsset],
       alt: ""
@@ -169604,7 +169676,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       value: S.story.evidenceOnly
     }))));
   }
-  function StoryCase({
+  function CaseContent({
     profile,
     id,
     bookId = 'sanguo',
@@ -169982,6 +170054,23 @@ Object.assign(globalThis.BAStrings.lobby, {
       }))
     }));
   }
+  function StoryCase(props) {
+    if (props.sceneMode) return /*#__PURE__*/React.createElement(CaseContent, props);
+    const d = definition(props.id);
+    if (!d) return null;
+    return /*#__PURE__*/React.createElement(g.BABookStage.Panel, {
+      title: d.title,
+      onBack: props.onBack,
+      stage: /*#__PURE__*/React.createElement(StoryScene, {
+        scene: d.scene,
+        person: d.person,
+        caseId: props.id,
+        profile: props.profile
+      })
+    }, /*#__PURE__*/React.createElement(CaseContent, _extends({}, props, {
+      sceneMode: true
+    })));
+  }
   g.BAStory = {
     Portrait,
     StoryCase,
@@ -170068,14 +170157,15 @@ Object.assign(globalThis.BAStrings.lobby, {
         alt: "",
         onError: () => setFailed(true)
       })
-    }), /*#__PURE__*/React.createElement("img", {
-      className: "ba-explore-hero",
-      src: g.BAAssets.hero1,
-      alt: "",
-      style: {
-        height: 30 * g.BASceneCore.depthScale(660) / 1.1 + '%'
-      }
     }), /*#__PURE__*/React.createElement("div", {
+      className: "ba-explore-hero",
+      style: {
+        height: 30 * g.BASceneCore.depthScale(660) / 1.1 + '%',
+        '--hero-aspect': g.BAArtGeometry.aspect(g.BAJourneyArt.characters[g.BAJourney.book(profile).companion || g.BAJourney.companions[0]])
+      }
+    }, /*#__PURE__*/React.createElement(g.BAJourneyUI.Sprite, {
+      who: g.BAJourney.book(profile).companion || g.BAJourney.companions[0]
+    })), /*#__PURE__*/React.createElement("div", {
       className: layout.fits ? '' : 'ba-hotspot-fallback'
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: hs.map(h => {
@@ -170213,10 +170303,26 @@ Object.assign(globalThis.BAStrings.lobby, {
     const scene = E.sceneFor(id),
       p = E.progress(profile, id, bookId),
       d = g.BAStory.definition(id);
-    const [message, setMessage] = React.useState('');
+    const [message, setMessage] = React.useState(''),
+      [manual, setManual] = React.useState(false),
+      [npcLine, setNpcLine] = React.useState(0),
+      [history, setHistory] = React.useState(false);
     const state = route.panel ? E.hotspot(profile, id, bookId, route.panel) : null;
     const panel = state?.unlocked ? state.id : null;
     const canWork = panel === 'cao' ? [0, 2, 4, 5, 6].includes(p.step) : state?.active;
+    const talking = panel === 'cao' && !(canWork && route.view === 'work' && p.started),
+      copy = g.BAJourneyCopy,
+      lines = [S.explore.npcHint, scene.goals[p.step]].map(text => ({
+        speaker: 'cao',
+        text
+      }));
+    const advanceLine = () => {
+      if (npcLine === 0) setNpcLine(1);else onPanel(p.step === 1 ? 'waterline' : 'source', 'inspect');
+    };
+    React.useEffect(() => {
+      setNpcLine(0);
+      setHistory(false);
+    }, [panel, p.step]);
     function choose(hotId) {
       const h = E.hotspot(profile, id, bookId, hotId);
       if (!h?.unlocked) {
@@ -170233,72 +170339,134 @@ Object.assign(globalThis.BAStrings.lobby, {
     function stepChanged() {
       onPanel(null);
     }
-    return /*#__PURE__*/React.createElement("main", {
-      className: "ba-page ba-exploration-page",
-      "data-testid": "scene-page"
-    }, /*#__PURE__*/React.createElement(Heading, {
-      title: /*#__PURE__*/React.createElement(Txt, {
-        text: scene.title,
-        profile: profile
-      }),
-      subtitle: /*#__PURE__*/React.createElement(Txt, {
-        text: scene.intro,
-        profile: profile
-      }),
-      action: /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost small",
-        onClick: onBack
-      }, /*#__PURE__*/React.createElement(Txt, {
-        text: S.explore.map,
-        profile: profile
-      }))
-    }), /*#__PURE__*/React.createElement(SceneCanvas, {
-      scene: scene,
-      profile: profile,
-      bookId: bookId,
-      onHotspot: choose
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "ba-explore-guidance",
-      role: "status"
-    }, /*#__PURE__*/React.createElement(Icon, {
-      name: p.completed ? 'check' : 'search'
-    }), /*#__PURE__*/React.createElement(Txt, {
-      text: p.started ? scene.goals[Math.min(6, p.step)] : scene.goals[0],
-      profile: profile
-    })), /*#__PURE__*/React.createElement("p", {
-      className: "ba-explore-hint"
-    }, /*#__PURE__*/React.createElement(Txt, {
-      text: message || S.explore.hint,
-      profile: profile
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: !p.started && /*#__PURE__*/React.createElement("p", {
-        className: "ba-muted"
-      }, /*#__PURE__*/React.createElement(Txt, {
-        text: S.explore.visitFree,
-        profile: profile
-      }))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: p.started && /*#__PURE__*/React.createElement("div", {
-        className: "ba-actions"
-      }, /*#__PURE__*/React.createElement(Button, {
+    return /*#__PURE__*/React.createElement(g.BAVisualNovel.Frame, {
+      className: 'ba-book-exploration ' + (talking ? 'has-dialog' : ''),
+      "data-testid": "scene-page",
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: scene.title
+      })), /*#__PURE__*/React.createElement(Button, {
         kind: "ghost",
-        onClick: onManual
-      }, /*#__PURE__*/React.createElement(Icon, {
-        name: "search"
-      }), /*#__PURE__*/React.createElement(Txt, {
-        text: S.explore.notebook,
-        profile: profile
-      })))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: panel && /*#__PURE__*/React.createElement("div", {
-        className: "ba-explore-modal"
-      }, /*#__PURE__*/React.createElement(Modal, {
-        title: /*#__PURE__*/React.createElement(Txt, {
-          text: state.label,
-          profile: profile
+        onClick: onBack
+      }, S.explore.map)),
+      stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SceneCanvas, {
+        scene: scene,
+        profile: profile,
+        bookId: bookId,
+        onHotspot: choose
+      }), talking && /*#__PURE__*/React.createElement("div", {
+        className: "vn-portraits",
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(g.BAJourneyUI.Bust, {
+        who: g.BAJourney.book(profile).companion || g.BAJourney.companions[0],
+        side: "left",
+        speaking: false
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "vn-bust speaking right"
+      }, /*#__PURE__*/React.createElement("svg", {
+        viewBox: g.BABookCatalog.entry(id).portraitViewBox.split(' ').map((v, i) => Number(v) * (i === 3 ? .62 : 1)).join(' ')
+      }, /*#__PURE__*/React.createElement("image", {
+        href: g.BAAssets.caoChong,
+        width: "1024",
+        height: "1536"
+      }))))),
+      footer: talking ? /*#__PURE__*/React.createElement(g.BAVisualNovel.DialogueBox, {
+        lines: lines,
+        index: npcLine,
+        onNext: advanceLine,
+        renderText: text => /*#__PURE__*/React.createElement(Txt, {
+          text: text
         }),
-        onClose: () => onPanel(null),
-        wide: true
+        renderAvatar: () => /*#__PURE__*/React.createElement("svg", {
+          className: "ba-j-avatar",
+          viewBox: g.BABookCatalog.entry(id).portraitViewBox.split(' ').map((v, i) => Number(v) * (i === 3 ? .3 : 1)).join(' ')
+        }, /*#__PURE__*/React.createElement("image", {
+          href: g.BAAssets.caoChong,
+          width: "1024",
+          height: "1536"
+        })),
+        name: () => d.person,
+        role: () => copy.storyRole,
+        copy: copy,
+        onSpeak: text => {
+          if (!g.BAPlatform.speech.speak(text).ok) notify(S.flow.voiceUnavailable);
+        },
+        onHistory: () => setHistory(true)
+      }) : /*#__PURE__*/React.createElement("div", {
+        className: "vn-dock"
+      }, "   ", /*#__PURE__*/React.createElement("div", {
+        className: "ba-explore-guidance",
+        role: "status"
+      }, /*#__PURE__*/React.createElement(Icon, {
+        name: p.completed ? 'check' : 'search'
+      }), /*#__PURE__*/React.createElement(Txt, {
+        text: p.started ? scene.goals[Math.min(6, p.step)] : scene.goals[0],
+        profile: profile
+      })), /*#__PURE__*/React.createElement("p", {
+        className: "ba-explore-hint"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: message || S.explore.hint,
+        profile: profile
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: !p.started && /*#__PURE__*/React.createElement("p", {
+          className: "ba-muted"
+        }, /*#__PURE__*/React.createElement(Txt, {
+          text: S.explore.visitFree,
+          profile: profile
+        }))
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: p.started && /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          onClick: () => setManual(true)
+        }, /*#__PURE__*/React.createElement(Icon, {
+          name: "search"
+        }), /*#__PURE__*/React.createElement(Txt, {
+          text: S.explore.notebook,
+          profile: profile
+        })))
+      })),
+      sheet: history ? /*#__PURE__*/React.createElement(g.BAVisualNovel.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: copy.history
+        }),
+        label: copy.history,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: copy.close
+        }),
+        onClose: () => setHistory(false)
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "vn-history"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: lines.slice(0, npcLine + 1).map((line, i) => /*#__PURE__*/React.createElement("article", {
+          key: i
+        }, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(Txt, {
+          text: d.person
+        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+          text: line.text
+        }))))
+      }))) : manual ? /*#__PURE__*/React.createElement(g.BAVisualNovel.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: S.explore.notebook
+        }),
+        label: S.explore.notebook,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: S.flow.close
+        }),
+        onClose: () => setManual(false)
+      }, /*#__PURE__*/React.createElement(g.BAAppComponents.Manual, {
+        profile: profile,
+        commit: commit,
+        onBack: () => setManual(false)
+      })) : panel && !talking && /*#__PURE__*/React.createElement(g.BAVisualNovel.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: state.label
+        }),
+        label: state.label,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: S.flow.close
+        }),
+        onClose: () => onPanel(null)
       }, canWork && route.view === 'work' && p.started ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(g.BAStory.StoryCase, {
         profile: profile,
         id: id,
@@ -170380,8 +170548,8 @@ Object.assign(globalThis.BAStrings.lobby, {
       }, /*#__PURE__*/React.createElement(Txt, {
         text: S.explore.investigate,
         profile: profile
-      })))))
-    }));
+      }))))
+    });
   }
   g.BAExplorationUI = {
     Exploration,
@@ -171811,46 +171979,12 @@ Object.assign(globalThis.BAStrings.lobby, {
         top: y / 10 + '%'
       };
     };
-    return /*#__PURE__*/React.createElement("main", {
-      className: "ba-page ba-map-page",
-      "data-testid": "case-board"
-    }, /*#__PURE__*/React.createElement(Heading, {
-      title: S.map.title,
-      subtitle: S.map.subtitle,
-      action: /*#__PURE__*/React.createElement(CoverBack, {
-        volume: v,
-        onClick: onBack,
-        label: S.flow.back
-      })
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "ba-map-toolbar"
-    }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.map.volume
-    }), /*#__PURE__*/React.createElement("select", {
-      value: v.id,
-      onChange: e => onEnter(e.target.value)
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: D.volumes.map(x => /*#__PURE__*/React.createElement("option", {
-        key: x.id,
-        value: x.id,
-        disabled: x.status !== 'published'
-      }, x.name, x.status !== 'published' ? ' · ' + S.books.coming : ''))
-    }))), /*#__PURE__*/React.createElement("label", {
-      className: "ba-map-toggle"
-    }, /*#__PURE__*/React.createElement("input", {
-      type: "checkbox",
-      checked: wash,
-      onChange: e => setWash(e.target.checked)
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.map.wash
-    })), /*#__PURE__*/React.createElement(Button, {
-      kind: factionId === 'all' ? 'sage small' : 'ghost small',
-      "data-map-all": true,
-      "aria-pressed": factionId === 'all',
-      onClick: () => onSelect('all')
-    }, S.map.all)), /*#__PURE__*/React.createElement("div", {
-      className: "ba-map-layout"
-    }, /*#__PURE__*/React.createElement("section", {
+    const [open, setOpen] = React.useState(false);
+    const choose = id => {
+      onSelect(id);
+      setOpen(true);
+    };
+    const stage = /*#__PURE__*/React.createElement("section", {
       className: "ba-map-canvas",
       "aria-label": S.map.mapAlt
     }, /*#__PURE__*/React.createElement("img", {
@@ -171902,7 +172036,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         },
         "aria-pressed": f.id === factionId,
         "aria-controls": "ba-map-letters",
-        onClick: () => onSelect(f.id)
+        onClick: () => choose(f.id)
       }, /*#__PURE__*/React.createElement("strong", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: f.name
       })), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
@@ -171918,7 +172052,8 @@ Object.assign(globalThis.BAStrings.lobby, {
       "aria-hidden": "true"
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: map.seaLabel
-    }))), /*#__PURE__*/React.createElement("section", {
+    })));
+    const letters = /*#__PURE__*/React.createElement("section", {
       id: "ba-map-letters",
       className: "ba-map-letters",
       "aria-labelledby": "ba-map-letter-heading"
@@ -172006,11 +172141,61 @@ Object.assign(globalThis.BAStrings.lobby, {
           }))
         })));
       })
-    }))), /*#__PURE__*/React.createElement("p", {
-      className: "ba-map-note"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.map.hint
-    })));
+    }));
+    return /*#__PURE__*/React.createElement(g.BAVisualNovel.Frame, {
+      "data-testid": "case-board",
+      aspect: 6 / 5,
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.map.title
+      })), /*#__PURE__*/React.createElement(Button, {
+        kind: "ghost",
+        onClick: onBack
+      }, S.flow.back)),
+      stage: stage,
+      footer: /*#__PURE__*/React.createElement("div", {
+        className: "vn-dock"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-map-toolbar"
+      }, /*#__PURE__*/React.createElement("label", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.map.volume
+      }), /*#__PURE__*/React.createElement("select", {
+        value: v.id,
+        onChange: e => onEnter(e.target.value)
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: D.volumes.map(x => /*#__PURE__*/React.createElement("option", {
+          key: x.id,
+          value: x.id,
+          disabled: x.status !== 'published'
+        }, x.name, x.status !== 'published' ? ' · ' + S.books.coming : ''))
+      }))), /*#__PURE__*/React.createElement("label", {
+        className: "ba-map-toggle"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "checkbox",
+        checked: wash,
+        onChange: e => setWash(e.target.checked)
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.map.wash
+      })), /*#__PURE__*/React.createElement(Button, {
+        kind: factionId === 'all' ? 'sage small' : 'ghost small',
+        "data-map-all": true,
+        "aria-pressed": factionId === 'all',
+        onClick: () => choose('all')
+      }, S.map.all)), /*#__PURE__*/React.createElement("p", {
+        className: "ba-map-note"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.map.hint
+      }))),
+      sheet: open && /*#__PURE__*/React.createElement(g.BAVisualNovel.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: selected?.name || S.map.all
+        }),
+        label: selected?.name || S.map.all,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: S.flow.close
+        }),
+        onClose: () => setOpen(false)
+      }, letters)
+    });
   }
   g.BABookMap = {
     Shelf,
@@ -172444,7 +172629,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     }, [!!intro, panel, history]);
     const selected = near !== dismissed ? nodes.find(n => n.id === near) : null;
     function depart() {
-      if (!selected?.implemented || g.BAStage.isBusy()) return;
+      if (intro || !selected?.implemented || g.BAStage.isBusy()) return;
       walking.stop();
       const live = latest.current;
       const saved = live.commit(J.bookAction(live.profile, {
@@ -172463,6 +172648,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     } : null;
     return /*#__PURE__*/React.createElement(VN.Frame, {
       aspect: 6 / 5,
+      className: dialogue ? 'has-dialog' : '',
       "data-testid": "journey-map",
       header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
         value: S.title
@@ -172484,7 +172670,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
         className: "ba-j-map",
         ref: walking.element,
-        tabIndex: 0,
+        tabIndex: intro ? -1 : 0,
         "aria-label": S.mapHelp,
         "data-testid": "walkable-map",
         onKeyDown: e => {
@@ -172541,7 +172727,7 @@ Object.assign(globalThis.BAStrings.lobby, {
           value: S.wu
         })))
       }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: nodes.map(n => /*#__PURE__*/React.createElement("button", {
+        value: !intro && nodes.map(n => /*#__PURE__*/React.createElement("button", {
           type: "button",
           key: n.id,
           "data-node": n.id,
@@ -173013,37 +173199,18 @@ Object.assign(globalThis.BAStrings.lobby, {
     profile,
     onBack
   }) {
-    const f = J.flow(profile);
-    return /*#__PURE__*/React.createElement("main", {
-      className: "ba-page narrow",
-      "data-testid": "journey-manual"
-    }, /*#__PURE__*/React.createElement(Heading, {
+    return /*#__PURE__*/React.createElement(g.BABookStage.Panel, {
       title: S.manual,
-      action: /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        onClick: onBack
-      }, S.close)
-    }), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.records
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: !f.records.length && /*#__PURE__*/React.createElement(Notice, null, S.empty)
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.records.filter(r => f.records.includes(r.id)).map(r => /*#__PURE__*/React.createElement("section", {
-        className: "ba-story-paper",
-        key: r.id
-      }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: r.name
-      })), /*#__PURE__*/React.createElement(Lines, {
-        lines: r.lines
-      })))
-    }), /*#__PURE__*/React.createElement("details", {
-      className: "ba-story-paper"
-    }, /*#__PURE__*/React.createElement("summary", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.background
-    })), /*#__PURE__*/React.createElement(Lines, {
-      lines: D.background.map(l => normalize(l).text)
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: profile.rewardedCases.includes(J.caseKey) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null))
+      testId: "journey-manual",
+      aspect: 6 / 5,
+      onBack: onBack,
+      stage: /*#__PURE__*/React.createElement("img", {
+        className: "ba-book-stage-map",
+        src: g.BAAssets.sanguoMap,
+        alt: ""
+      })
+    }, /*#__PURE__*/React.createElement(ManualContent, {
+      profile: profile
     }));
   }
   function Case({
@@ -173367,7 +173534,9 @@ Object.assign(globalThis.BAStrings.lobby, {
     Manual,
     Card,
     StoryQuestion,
-    SceneArt
+    SceneArt,
+    Sprite,
+    Bust
   };
 })(globalThis);
 
@@ -173446,29 +173615,111 @@ Object.assign(globalThis.BAStrings.lobby, {
       return () => clearTimeout(id);
     }, [reduced]);
     const rewarded = profile.sessions.bookExit?.energyDelta > 0;
-    return /*#__PURE__*/React.createElement("main", {
-      className: "ba-page narrow",
+    return /*#__PURE__*/React.createElement(g.BAVisualNovel.Frame, {
       "data-testid": "book-exit",
-      "data-reduced": reduced
-    }, /*#__PURE__*/React.createElement(Heading, {
-      title: S.title
-    }), /*#__PURE__*/React.createElement(Scene, {
-      profile: profile,
-      reduced: reduced
-    }), /*#__PURE__*/React.createElement("p", {
-      className: "ba-travel-line",
-      role: "status"
-    }, /*#__PURE__*/React.createElement(Txt, {
-      text: rewarded ? S.exit : S.replayExit
-    })), /*#__PURE__*/React.createElement(Button, {
-      kind: "primary",
-      "data-testid": "exit-skip",
-      onClick: finish
-    }, reduced ? S.home : S.skip));
+      "data-reduced": reduced,
+      header: /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.title
+      })),
+      stage: /*#__PURE__*/React.createElement(Scene, {
+        profile: profile,
+        reduced: reduced
+      }),
+      footer: /*#__PURE__*/React.createElement("div", {
+        className: "vn-dock"
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "ba-travel-line",
+        role: "status"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: rewarded ? S.exit : S.replayExit
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "ba-actions"
+      }, /*#__PURE__*/React.createElement(Button, {
+        kind: "primary",
+        "data-testid": "exit-skip",
+        onClick: finish
+      }, reduced ? S.home : S.skip)))
+    });
   }
   g.BABookTravel = {
     Scene,
     Exit
+  };
+})(globalThis);
+
+/* 56_book_stage.jsx */
+(function (g) {
+  'use strict';
+
+  const VN = g.BAVisualNovel,
+    {
+      Button,
+      Txt
+    } = g.BAFlowKit,
+    S = g.BAJourneyCopy;
+  // Host presentation only: the existing case component still owns all transactions.
+  function Panel({
+    title,
+    stage,
+    children,
+    onBack,
+    aspect = 16 / 9,
+    testId = 'book-panel'
+  }) {
+    const [open, setOpen] = React.useState(true);
+    return /*#__PURE__*/React.createElement(VN.Frame, {
+      "data-testid": testId,
+      aspect: aspect,
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: title
+      })), /*#__PURE__*/React.createElement(Button, {
+        kind: "ghost",
+        onClick: onBack
+      }, S.backMapShort)),
+      stage: stage,
+      footer: /*#__PURE__*/React.createElement("div", {
+        className: "vn-dock"
+      }, /*#__PURE__*/React.createElement(Button, {
+        kind: "primary",
+        "data-testid": "reopen-panel",
+        onClick: () => setOpen(true)
+      }, S.openPanel)),
+      sheet: open && /*#__PURE__*/React.createElement(VN.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: title
+        }),
+        label: title,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: S.close
+        }),
+        onClose: () => setOpen(false)
+      }, children)
+    });
+  }
+  function Manual({
+    profile,
+    commit,
+    onBack
+  }) {
+    return /*#__PURE__*/React.createElement(Panel, {
+      title: g.BAStrings.manual.title,
+      aspect: 6 / 5,
+      onBack: onBack,
+      stage: /*#__PURE__*/React.createElement("img", {
+        className: "ba-book-stage-map",
+        src: g.BAAssets.sanguoMap,
+        alt: ""
+      })
+    }, /*#__PURE__*/React.createElement(g.BAAppComponents.Manual, {
+      profile: profile,
+      commit: commit,
+      onHome: onBack,
+      onBack: onBack
+    }));
+  }
+  g.BABookStage = {
+    Panel,
+    Manual
   };
 })(globalThis);
 
@@ -174054,6 +174305,10 @@ Object.assign(globalThis.BAStrings.lobby, {
     }));else if (route.page === 'album') screen = /*#__PURE__*/React.createElement(C.Album, {
       profile: profile,
       onHome: goHome
+    });else if (route.page === 'manual' && route.returnScene) screen = /*#__PURE__*/React.createElement(g.BABookStage.Manual, {
+      profile: profile,
+      commit: commit,
+      onBack: () => navigate(route.returnScene)
     });else if (route.page === 'manual') screen = /*#__PURE__*/React.createElement(C.Manual, {
       profile: profile,
       commit: commit,
