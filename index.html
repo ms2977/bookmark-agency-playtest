@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src data: blob:; base-uri 'none'; form-action 'none'">
-<title>書籤偵探社｜操作試玩 v0.3.15</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
+<title>書籤偵探社｜操作試玩 v0.3.16</title><style>/* 過場層：固定全螢幕，閒置時不接收事件、不佔繪製 */
 .ba-transition{position:fixed;inset:0;z-index:9000;pointer-events:none;overflow:hidden;contain:strict}
 .ba-transition.active{pointer-events:auto}
 .ba-tr-black{position:absolute;inset:0;background:#0b0a08;opacity:0;will-change:opacity}
@@ -1021,6 +1021,23 @@ body:has(.ba-lobby-stage) .ba-toast{top:80px;bottom:auto;z-index:30;max-height:1
 
 .ba-overtime-section{margin-top:28px;scroll-margin-top:16px}.ba-overtime-section>.ba-letter{max-width:560px}.ba-overtime-section:empty{display:none}
 @media(max-width:600px) and (max-height:600px){.ba-stone-energy-modal .ba-modal-content{padding:8px 12px}.ba-stone-energy-body{grid-template-columns:52px minmax(0,1fr)}.ba-stone-energy-speech p{margin:4px 0;font-size:15px}.ba-stone-energy-actions{margin-top:8px;gap:5px}.ba-stone-energy-actions .ba-button{min-height:44px;padding:5px 8px}}
+
+.ba-extra-badge{display:inline-flex;padding:5px 12px;border-radius:20px;color:#603e20;background:#f5dfb8;border:1px solid #a8783a}
+.ba-opening-background{width:100%;height:100%;object-fit:cover}.ba-opening-stone{position:absolute;right:10%;bottom:7%}
+.ba-tutorial-focus{outline:4px solid #f6ce78;outline-offset:5px;box-shadow:0 0 0 9px #f6ce7833}
+.ba-clock-map,.ba-clock-scene{position:absolute;inset:0;background:#d9c6a4;color:#334854;overflow:hidden}
+.ba-clock-map-label{position:absolute;top:5%;left:5%;font-size:18px;opacity:.75}
+.ba-clock-place{position:absolute;transform:translate(-50%,-50%);width:135px;min-height:56px;max-width:160px;padding:8px;background:#faf4e5;border:2px solid #9d805e;border-radius:12px;box-shadow:0 5px 0 #94754c22;color:#344b51;font:inherit;cursor:pointer}
+.ba-clock-map~.ba-j-node{width:56px;height:56px;min-width:56px;min-height:56px}
+.ba-clock-scene{background:#c5b694}.ba-clock-scene h2{position:absolute;top:4%;left:5%;font-size:24px}
+.ba-clock-object{position:absolute;transform:translate(-50%,-50%);min-width:90px;min-height:64px;padding:12px;border-radius:12px;border:2px solid #927c5d;background:#fff9eb;color:#334854;font:inherit;cursor:pointer;box-shadow:0 5px 0 #6f58462b}
+.ba-clock-object[data-scene-target=achi],.ba-clock-object[data-scene-target=gray]{min-height:100px;border-radius:44px 44px 12px 12px;background:#e8d9b8}.ba-clock-object:disabled{opacity:.6}
+.ba-clock-nameplate{display:grid;place-items:center;min-height:180px;width:150px;background:#dfcdb0;color:#4b4538;border:2px solid #aa9070;border-radius:70px 70px 12px 12px}
+.ba-clock-card{display:flex;align-items:center;gap:24px}.ba-clock-card .ba-clock-nameplate{min-width:110px}
+.ba-clock-figure{display:block;max-height:220px;width:min(240px,100%);margin:12px auto}.ba-clock-mixture{display:flex;gap:6px;max-width:300px;margin:14px auto}.ba-clock-mixture i{width:25%;height:55px;background:#e8ce95;border:2px solid #8c7956}.ba-clock-mixture i:first-child{background:#7c9d96}
+@media(prefers-reduced-motion:reduce){.ba-tutorial-focus{animation:none}}
+
+@media(max-width:600px){.ba-clock-place{max-width:135px;font-size:16px;padding:6px}.ba-clock-map-label{font-size:16px}.ba-clock-map~.ba-j-party{pointer-events:none}}
 </style></head>
 <body><div id="root"></div><noscript>請在支援 JavaScript 的瀏覽器開啟書籤偵探社。</noscript><script type="application/json" id="ba-third-party-licenses">{"react": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n", "react-dom": "MIT License\n\nCopyright (c) Facebook, Inc. and its affiliates.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"}</script><script>/**
  * @license React
@@ -1323,11 +1340,449 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
 })();
 
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-globalThis.BAVersion = "0.3.15";
+globalThis.BAOpeningData = {
+  "version": 1,
+  "lines": [{
+    "speaker": "narrator",
+    "text": "書籤偵探社的門，今天早上開了。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "呼……終於有人來了。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "我是小石，灰鴉夫人的紙鎮。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "這枚書籤會發光，表示它選了你。",
+    "mood": "normal"
+  }, {
+    "speaker": "hero1",
+    "text": "你好！我們是偵探社的四個夥伴。",
+    "mood": "normal"
+  }, {
+    "speaker": "hero2",
+    "text": "書架上的每一本書，都有人需要幫忙。",
+    "mood": "normal"
+  }, {
+    "speaker": "hero3",
+    "text": "書籤夾進哪一頁，我們就到那一頁。",
+    "mood": "normal"
+  }, {
+    "speaker": "hero4",
+    "text": "回來的時候，把故事記在手冊裡。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "先告訴我，你叫什麼名字？",
+    "mood": "normal"
+  }]
+};
+globalThis.BAClocktowerData = {
+  "version": 1,
+  "bookId": "clocktower",
+  "volumeId": "clock-town",
+  "title": "鐘塔鎮的十三封信",
+  "leadHeroId": "hero1",
+  "tutorial": true,
+  "placeholder": true,
+  "aspect": 1.3333333333333333,
+  "questionPrefix": "clocktower",
+  "start": [22, 90],
+  "entry": [{
+    "speaker": "stone",
+    "text": "把書籤夾進去，抓緊我！",
+    "mood": "normal"
+  }, {
+    "speaker": "narrator",
+    "text": "書頁翻開，遠處傳來鐘聲。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "到了，這裡就是鐘塔鎮。",
+    "mood": "normal"
+  }],
+  "background": [{
+    "speaker": "narrator",
+    "text": "這是灰鴉夫人留下的案件簿。",
+    "mood": "normal"
+  }, {
+    "speaker": "narrator",
+    "text": "她創辦了書籤偵探社。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "我以前就坐在她的書桌上。",
+    "mood": "normal"
+  }, {
+    "speaker": "narrator",
+    "text": "鐘塔鎮的人，靠鐘聲安排一天。",
+    "mood": "normal"
+  }, {
+    "speaker": "narrator",
+    "text": "可是昨晚，鐘塔突然安靜了。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "我們去問問照顧鐘塔的人吧。",
+    "mood": "normal"
+  }],
+  "discussion": [{
+    "speaker": "lead",
+    "text": "手冊寫著：鐘塔昨晚停了。",
+    "mood": "normal"
+  }, {
+    "speaker": "partner",
+    "text": "阿齒會不會知道發生什麼事？",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "亮起的地方，就是第一個結點。",
+    "mood": "normal"
+  }],
+  "afterCase": [{
+    "speaker": "lead",
+    "text": "看見的時間，不一定是真的。",
+    "mood": "normal"
+  }, {
+    "speaker": "partner",
+    "text": "還要把紀錄和別人的話放一起看。",
+    "mood": "normal"
+  }, {
+    "speaker": "stone",
+    "text": "下次，再查查鎮上的十二封信。",
+    "mood": "normal"
+  }],
+  "nodes": [{
+    "id": "clock_stopped",
+    "title": "鐘塔為什麼停了",
+    "summary": "先問阿齒，再看看鐘聲紀錄。",
+    "place": "鐘塔",
+    "pos": [50, 35],
+    "route": [[22, 90], [40, 60], [50, 35]],
+    "implemented": true
+  }, {
+    "id": "twelve_letters",
+    "title": "十二封信是誰寫的",
+    "summary": "小梅找到十二封一樣字跡的信。",
+    "place": "市集",
+    "pos": [75, 65],
+    "implemented": false
+  }, {
+    "id": "thirteenth_letter",
+    "title": "第十三封信在哪裡",
+    "summary": "灰鴉夫人留下的最後一課。",
+    "place": "灰鴉偵探事務所",
+    "pos": [22, 65],
+    "implemented": false
+  }],
+  "places": [{
+    "id": "agency",
+    "name": "灰鴉偵探事務所",
+    "pos": [22, 65]
+  }, {
+    "id": "tower",
+    "name": "鐘塔",
+    "pos": [50, 35]
+  }, {
+    "id": "station",
+    "name": "舊火車站",
+    "pos": [78, 82]
+  }, {
+    "id": "market",
+    "name": "市集",
+    "pos": [75, 60]
+  }, {
+    "id": "forest",
+    "name": "森林遺跡",
+    "pos": [80, 20]
+  }],
+  "navigation": {
+    "bounds": [5, 8, 95, 94],
+    "walkable": [[[5, 8], [95, 8], [95, 94], [5, 94]]],
+    "obstacles": []
+  },
+  "stages": ["market", "fade1", "practice1", "records", "notice", "fade2", "practice2", "tavern", "garden", "ending", "complete"],
+  "requiredAnswers": ["helper", "notice", "conclusion"],
+  "firstRecords": ["E2", "E6"],
+  "requiredRecords": ["E2", "E6", "E5"],
+  "recordHotspots": {
+    "achi": "E2",
+    "log": "E6",
+    "face": "E5"
+  },
+  "recordStages": {
+    "achi": ["records"],
+    "log": ["records"],
+    "face": ["tavern"]
+  },
+  "sceneFor": {
+    "market": "tower_hall",
+    "fade1": "tower_hall",
+    "practice1": "tower_hall",
+    "records": "tower_hall",
+    "notice": "tower_hall",
+    "fade2": "tower_hall",
+    "practice2": "tower_hall",
+    "tavern": "tower_machine",
+    "garden": "tower_machine",
+    "ending": "tower_machine",
+    "complete": "tower_machine"
+  },
+  "case": {
+    "id": "clock_stopped",
+    "title": "鐘塔為什麼停了",
+    "card": {
+      "name": "阿齒",
+      "quote": "指針指的，不一定是真的時間。",
+      "note": "先找紀錄，再比對看到的線索。",
+      "who": "achi"
+    },
+    "questions": {
+      "helper": {
+        "low": {
+          "type": "choice",
+          "conceptId": "j_reading",
+          "code": "Ad-I-2",
+          "prompt": "幫阿齒記下當時的情況。",
+          "stimulus": "阿齒說：「六點上好發條，\n我離開時，鐘還在走。」",
+          "options": ["六點時，鐘還在走。", "六點時，鐘已經停了。", "阿齒沒來過鐘塔。"],
+          "answer": 0,
+          "hints": ["先找阿齒說的時間。", "把時間和鐘的樣子放在一起。", "六點時，阿齒看見鐘還在走。"]
+        },
+        "mid": {
+          "type": "choice",
+          "conceptId": "g3_reading",
+          "code": "Ad-II-2",
+          "prompt": "幫阿齒記下當時的情況。",
+          "stimulus": "阿齒說：「六點上好發條，\n我離開時，鐘還在走。」",
+          "options": ["六點時，鐘還在走。", "六點時，鐘已經停了。", "阿齒沒來過鐘塔。"],
+          "answer": 0,
+          "hints": ["先找阿齒說的時間。", "把時間和鐘的樣子放在一起。", "六點時，阿齒看見鐘還在走。"]
+        },
+        "high": {
+          "type": "choice",
+          "conceptId": "c_infer",
+          "code": "Ad-III-2",
+          "prompt": "幫阿齒記下當時的情況。",
+          "stimulus": "阿齒說：「六點上好發條，\n我離開時，鐘還在走。」",
+          "options": ["六點時，鐘還在走。", "六點時，鐘已經停了。", "阿齒沒來過鐘塔。"],
+          "answer": 0,
+          "hints": ["先找阿齒說的時間。", "把時間和鐘的樣子放在一起。", "六點時，阿齒看見鐘還在走。"]
+        }
+      },
+      "notice": {
+        "low": {
+          "type": "choice",
+          "conceptId": "g1_count100",
+          "code": "N-1-1",
+          "prompt": "短針指著哪個數字？",
+          "stimulus": "長針在十二，短針往下指。\n看看鐘面上的數字。",
+          "options": ["三", "六", "九"],
+          "answer": 1,
+          "hints": ["找到比較短的那一根指針。", "沿著短針，看它指向的數字。", "短針指著六。長針在十二，這是六點。"],
+          "figure": "clock",
+          "clock": {
+            "hour": 6,
+            "minute": 0
+          }
+        },
+        "mid": {
+          "type": "choice",
+          "conceptId": "g3_time",
+          "code": "N-3-17",
+          "prompt": "六點到六點四十分，過了多久？",
+          "stimulus": "紀錄簿寫六點，鐘面是六點四十分。\n先算兩個時間差多少。",
+          "options": ["四分鐘", "四十分鐘", "六十分鐘"],
+          "answer": 1,
+          "hints": ["兩個時間都在六點這一小時。", "從零分數到四十分。", "四十減零是四十，過了四十分鐘。"],
+          "figure": "clock",
+          "clock": {
+            "hour": 6,
+            "minute": 40
+          }
+        },
+        "high": {
+          "type": "choice",
+          "conceptId": "m_frac_ops",
+          "code": "N-5-5",
+          "prompt": "四十毫升機油，需要多少潤滑液？",
+          "stimulus": "配方：潤滑液占全部的四分之一。\n其餘是基底油。",
+          "options": ["十毫升", "二十毫升", "三十毫升"],
+          "answer": 0,
+          "hints": ["把四十毫升分成四個相等的部分。", "潤滑液只要其中一份。", "四十乘四分之一是十，需要十毫升。"],
+          "figure": "mixture",
+          "parts": [1, 3]
+        },
+        "byGrade": {
+          "6": {
+            "type": "choice",
+            "conceptId": "m_ratio",
+            "code": "N-6-6",
+            "prompt": "四十毫升機油，需要多少潤滑液？",
+            "stimulus": "潤滑液和基底油的比是一比三。\n合起來要四十毫升。",
+            "options": ["十毫升", "二十毫升", "三十毫升"],
+            "answer": 0,
+            "hints": ["一份加三份，一共幾份？", "四十毫升平均分成四份，取一份。", "一加三是四份，每份十毫升。潤滑液要十毫升。"],
+            "figure": "mixture",
+            "parts": [1, 3]
+          }
+        }
+      },
+      "conclusion": {
+        "low": {
+          "type": "choice",
+          "conceptId": "j_reading",
+          "code": "Ad-I-2",
+          "prompt": "哪個說法最有線索支持？",
+          "stimulus": "六點鐘還在走，之後沒有鐘聲。\n指針有新的刮痕，可能被撥過。",
+          "options": ["一定停在六點四十分。", "六點後就停了，還要再查。", "只看指針，就能知道全部。"],
+          "answer": 1,
+          "hints": ["比一比紀錄簿和指針的刮痕。", "指針可能被撥過，不能只看鐘面。", "六點還在走，之後沒有報時。先往六點後調查，不能認定六點四十分。"]
+        },
+        "mid": {
+          "type": "choice",
+          "conceptId": "g3_reading",
+          "code": "Ad-II-2",
+          "prompt": "哪個說法最有線索支持？",
+          "stimulus": "六點鐘還在走，之後沒有鐘聲。\n指針有新的刮痕，可能被撥過。",
+          "options": ["一定停在六點四十分。", "六點後就停了，還要再查。", "只看指針，就能知道全部。"],
+          "answer": 1,
+          "hints": ["比一比紀錄簿和指針的刮痕。", "指針可能被撥過，不能只看鐘面。", "六點還在走，之後沒有報時。先往六點後調查，不能認定六點四十分。"]
+        },
+        "high": {
+          "type": "choice",
+          "conceptId": "c_infer",
+          "code": "Ad-III-2",
+          "prompt": "哪個說法最有線索支持？",
+          "stimulus": "六點鐘還在走，之後沒有鐘聲。\n指針有新的刮痕，可能被撥過。",
+          "options": ["一定停在六點四十分。", "六點後就停了，還要再查。", "只看指針，就能知道全部。"],
+          "answer": 1,
+          "hints": ["比一比紀錄簿和指針的刮痕。", "指針可能被撥過，不能只看鐘面。", "六點還在走，之後沒有報時。先往六點後調查，不能認定六點四十分。"]
+        }
+      }
+    },
+    "records": [{
+      "id": "E2",
+      "name": "阿齒的證詞",
+      "lines": ["昨晚六點，我上好發條。", "離開時，鐘還在走。"]
+    }, {
+      "id": "E6",
+      "name": "鐘聲紀錄簿",
+      "lines": ["最後一次鐘聲是六點。", "六點半和六點四十分，沒有報時。"]
+    }, {
+      "id": "E5",
+      "name": "指針上的刮痕",
+      "lines": ["分針根部有新的刮痕。", "指針可能被工具撥過。"]
+    }, {
+      "id": "E12",
+      "name": "葛雷的鐘聲證詞",
+      "lines": ["我記得六點四十分有鐘聲。", "等等，也可能是報紙寫的。", "這段話還需要查證。"]
+    }],
+    "hotspots": {
+      "achi": "阿齒的證詞",
+      "log": "鐘聲紀錄簿",
+      "face": "指針上的刮痕",
+      "gray": "葛雷：多問一個人"
+    },
+    "hotspotLabels": {
+      "achi": "阿齒",
+      "log": "紀錄簿",
+      "face": "鐘面",
+      "gray": "葛雷"
+    },
+    "dialogues": {
+      "helperIntro": [{
+        "speaker": "achi",
+        "text": "鐘昨晚停了，我不知道怎麼辦。",
+        "mood": "normal"
+      }, {
+        "speaker": "achi",
+        "text": "六點上發條時，鐘還好好的。",
+        "mood": "normal"
+      }, {
+        "speaker": "achi",
+        "text": "你能幫我記下來嗎？",
+        "mood": "normal"
+      }],
+      "helperEnd": [{
+        "speaker": "achi",
+        "text": "謝謝！鐘聲紀錄簿就在旁邊。",
+        "mood": "normal"
+      }],
+      "liu": [{
+        "speaker": "achi",
+        "text": "一起看看鐘面和保養配方吧。",
+        "mood": "normal"
+      }, {
+        "speaker": "stone",
+        "text": "把時間看清楚，才能比對線索。",
+        "mood": "normal"
+      }],
+      "garden": [{
+        "speaker": "lead",
+        "text": "指針的刮痕，和紀錄不太一樣。",
+        "mood": "normal"
+      }, {
+        "speaker": "partner",
+        "text": "不能只看指針指在哪裡。",
+        "mood": "normal"
+      }],
+      "ending": [{
+        "speaker": "achi",
+        "text": "原來，要把線索放在一起看。",
+        "mood": "normal"
+      }, {
+        "speaker": "achi",
+        "text": "我會再查六點後發生了什麼。",
+        "mood": "normal"
+      }, {
+        "speaker": "stone",
+        "text": "把這個調查方法記在手冊吧。",
+        "mood": "normal"
+      }],
+      "gray": [{
+        "speaker": "gray",
+        "text": "我記得六點四十分有鐘聲。",
+        "mood": "normal"
+      }, {
+        "speaker": "gray",
+        "text": "等等，也可能是報紙寫的。",
+        "mood": "normal"
+      }, {
+        "speaker": "stone",
+        "text": "他可能記錯，我們再看紀錄。",
+        "mood": "normal"
+      }]
+    },
+    "tavern": [{
+      "speaker": "achi",
+      "text": "機房到了，鐘面就在這裡。",
+      "mood": "normal"
+    }, {
+      "speaker": "partner",
+      "text": "看看指針，有沒有特別的痕跡。",
+      "mood": "normal"
+    }],
+    "sources": [{
+      "title": "偵探社的原創案件",
+      "lines": ["改寫自專案原創的鐘塔鎮故事。", "阿齒的話、紀錄簿和刮痕，是三份線索。"]
+    }, {
+      "title": "線索能告訴我們多少",
+      "lines": ["紀錄支持六點後沒有再報時。", "刮痕提醒我們：鐘面可能被動過。", "還不能知道精確停鐘時間，也不能指認是誰。"]
+    }, {
+      "title": "這次練習的調查方法",
+      "lines": ["把說法和紀錄互相比對。", "記錯一件事，不代表那個人做了壞事。"]
+    }]
+  }
+};
+globalThis.BAVersion = "0.3.16";
 globalThis.BAEnergyRules = {
   "version": 2,
   "newBookCost": 16,
-  "freeBookIds": ["clock_town"],
+  "freeBookIds": ["clock_town", "clocktower"],
   "caseCost": 0,
   "caseReward": 1,
   "caseXP": 30,
@@ -2637,6 +3092,171 @@ globalThis.BAStoryConcepts = {
     "legacyKpId": "g5_decimal_reason",
     "taskEvidence": ["src/70zi_grade5_v87.js", "src/13zd_grade5_v87_bank.js"],
     "scope": "依正式課綱補充選材；由家長依已學進度加入。自然、社會、國語與英語屬第三學習階段選材，不等同完整學年或實作能力證明。"
+  }, {
+    "id": "g1_count100",
+    "subject": "math",
+    "name": "一百以內的數",
+    "curriculum": [{
+      "code": "N-1-1",
+      "level": {
+        "kind": "grade",
+        "value": 1
+      },
+      "source": {
+        "document": "math",
+        "title": "數學領域課程綱要",
+        "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+        "pdfPage": 21,
+        "printedPage": 19,
+        "checked": "2026-11-10"
+      },
+      "references": [{
+        "document": "math-manual-114",
+        "title": "數學領域課程手冊（114年1月更新版）",
+        "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/數學領域課程手冊（114年1月更新版）.pdf",
+        "pdfPage": 42,
+        "printedPage": 30,
+        "checked": "2026-11-10"
+      }]
+    }],
+    "prerequisites": [],
+    "mechs": ["grade1"],
+    "availability": "runtime-partial",
+    "taskCoverage": "一年級部分內容；不代表完整課綱或出版社學期。",
+    "humanReviewed": false,
+    "legacyKpId": "g1_count100",
+    "taskEvidence": ["src/70zc_grade1.js", "src/56_mech_grade1.jsx"],
+    "scope": "看圖、點選與拖拉；三題一關。"
+  }, {
+    "id": "g3_time",
+    "subject": "math",
+    "name": "時間換算與經過時間",
+    "curriculum": [{
+      "code": "N-3-17",
+      "level": {
+        "kind": "grade",
+        "value": 3
+      },
+      "source": {
+        "document": "math",
+        "title": "數學領域課程綱要",
+        "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+        "pdfPage": 27,
+        "printedPage": 25,
+        "checked": "2026-11-10"
+      },
+      "references": [{
+        "document": "math-manual-114",
+        "title": "數學領域課程手冊（114年1月更新版）",
+        "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/數學領域課程手冊（114年1月更新版）.pdf",
+        "pdfPage": 225,
+        "printedPage": 213,
+        "checked": "2026-11-10"
+      }]
+    }],
+    "prerequisites": [],
+    "mechs": ["pickone"],
+    "availability": "runtime-partial",
+    "taskCoverage": "三年級第一版的部分內容；三階段觀念、情境與遷移練習。英語僅認讀。",
+    "humanReviewed": false,
+    "legacyKpId": "g3_time",
+    "taskEvidence": ["src/70ze_grade3.js", "src/13s_grade3_bank.js"],
+    "scope": "三年級第一版的部分內容；可依已學進度選擇。"
+  }, {
+    "id": "m_frac_ops",
+    "subject": "math",
+    "name": "分數的加減與乘法",
+    "curriculum": [{
+      "code": "N-5-4",
+      "level": {
+        "kind": "grade",
+        "value": 5
+      },
+      "source": {
+        "document": "math",
+        "title": "數學領域課程綱要",
+        "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+        "pdfPage": 31,
+        "printedPage": 29,
+        "checked": "2026-11-10"
+      },
+      "references": [{
+        "document": "math-manual-114",
+        "title": "數學領域課程手冊（114年1月更新版）",
+        "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/數學領域課程手冊（114年1月更新版）.pdf",
+        "pdfPage": 312,
+        "printedPage": 300,
+        "checked": "2026-11-10"
+      }]
+    }, {
+      "code": "N-5-5",
+      "level": {
+        "kind": "grade",
+        "value": 5
+      },
+      "source": {
+        "document": "math",
+        "title": "數學領域課程綱要",
+        "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+        "pdfPage": 32,
+        "printedPage": 30,
+        "checked": "2026-11-10"
+      },
+      "references": [{
+        "document": "math-manual-114",
+        "title": "數學領域課程手冊（114年1月更新版）",
+        "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/數學領域課程手冊（114年1月更新版）.pdf",
+        "pdfPage": 314,
+        "printedPage": 302,
+        "checked": "2026-11-10"
+      }]
+    }],
+    "prerequisites": ["m_frac_basic", "g5_n53"],
+    "mechs": ["ribbon", "step", "v62pair"],
+    "availability": "runtime-partial",
+    "taskCoverage": "原創操作、推理與資料判讀題；僅為對應課綱的部分任務。",
+    "humanReviewed": false,
+    "legacyKpId": "m_frac_ops",
+    "taskEvidence": ["src/70_personal.js", "src/70b_bank_ext.js", "src/70d_science.js", "src/70e_social.js", "data/questions/expansion_v62.json", "src/56_mech_expansion_v62.jsx", "src/70w_expansion_v62.js"],
+    "scope": "異分母分數加減、分數乘法（五年級）。",
+    "alignmentNote": "2026-11-13 核對官方內容；第三階段自然社會供五、六年級共用，不綁出版社學期。"
+  }, {
+    "id": "m_ratio",
+    "subject": "math",
+    "name": "比與比值",
+    "curriculum": [{
+      "code": "N-6-6",
+      "level": {
+        "kind": "grade",
+        "value": 6
+      },
+      "source": {
+        "document": "math",
+        "title": "數學領域課程綱要",
+        "url": "https://edu.law.moe.gov.tw/Download.ashx?FileID=31051&id=GL001788&type=LAW",
+        "pdfPage": 35,
+        "printedPage": 33,
+        "checked": "2026-11-10"
+      },
+      "references": [{
+        "document": "math-manual-114",
+        "title": "數學領域課程手冊（114年1月更新版）",
+        "url": "https://www.naer.edu.tw/upload/1/9/doc/2021/數學領域課程手冊（114年1月更新版）.pdf",
+        "pdfPage": 374,
+        "printedPage": 362,
+        "checked": "2026-11-10"
+      }]
+    }],
+    "prerequisites": ["m_mult_div_int", "g5_n510"],
+    "mechs": ["mixer", "step"],
+    "availability": "runtime-partial",
+    "taskCoverage": "部分條目內容已有任務；不代表整條課綱已涵蓋。",
+    "humanReviewed": false,
+    "legacyKpId": "m_ratio",
+    "taskEvidence": ["src/70_personal.js", "src/70b_bank_ext.js", "src/70d_science.js", "src/70e_social.js"],
+    "scope": "認識比的意義、比值，相等的比與最簡整數比，並應用於分配問題。",
+    "previewTaskEvidence": ["src/72_paint.js", "src/89_paint.jsx"],
+    "previewNote": "#paint預覽有部分任務，正式入口未開；不是整條課綱涵蓋。"
   }]
 };
 const HINT_RULES = {
@@ -3864,22 +4484,50 @@ globalThis.BABookCatalogData = {
       "name": "建業",
       "coords": [118.78, 32.05]
     }]
+  }, {
+    "id": "clocktower",
+    "placeholder": true,
+    "width": 1024,
+    "height": 768,
+    "places": [{
+      "id": "agency",
+      "name": "灰鴉偵探事務所",
+      "pos": [22, 65]
+    }, {
+      "id": "tower",
+      "name": "鐘塔",
+      "pos": [50, 35]
+    }, {
+      "id": "station",
+      "name": "舊火車站",
+      "pos": [78, 82]
+    }, {
+      "id": "market",
+      "name": "市集",
+      "pos": [75, 60]
+    }, {
+      "id": "forest",
+      "name": "森林遺跡",
+      "pos": [80, 20]
+    }]
   }],
   "volumes": [{
     "id": "clock-town",
     "name": "鐘塔鎮的十三封信",
-    "mapId": null,
-    "storageBookId": "clock_town",
-    "status": "coming",
-    "caseIds": [],
+    "mapId": "clocktower",
+    "storageBookId": "clocktower",
+    "status": "published",
+    "caseIds": ["clock_stopped"],
     "title": "鐘塔鎮的十三封信",
     "volumeLabel": "試玩本",
-    "subtitle": "從一封神祕來信開始",
+    "subtitle": "先到鐘塔，查清楚停止的時間",
     "cover": "assets/covers/clock-town.svg",
     "coverTone": "#766147",
     "tier": "free",
     "leadHeroId": "hero1",
-    "coverPlaceholder": true
+    "coverPlaceholder": true,
+    "caseCount": 3,
+    "engine": "journey"
   }, {
     "id": "volume-1",
     "name": "三國演義・上冊",
@@ -4277,6 +4925,41 @@ globalThis.BALetters = [{
   "low": ["閱讀角要準備好了。", "請陪我看看紀錄。"],
   "thanks": "有你的幫忙，準備更順利了。",
   "bookIds": []
+}, {
+  "id": "clock-achi",
+  "lines": ["修鐘的紀錄有點亂。", "請陪我核對一下。"],
+  "low": ["修鐘的紀錄有點亂。", "請陪我核對一下。"],
+  "thanks": "記清楚，下次就能回來查看。",
+  "bookIds": ["clocktower"],
+  "from": "阿齒"
+}, {
+  "id": "clock-raven",
+  "lines": ["我留了幾個小問題。", "請用線索找出答案。"],
+  "low": ["我留了幾個小問題。", "請用線索找出答案。"],
+  "thanks": "你願意多看一步，真好。",
+  "bookIds": ["clocktower"],
+  "from": "灰鴉夫人"
+}, {
+  "id": "clock-mei",
+  "lines": ["我想把採訪的事情記好。", "請幫我仔細看一看。"],
+  "low": ["我想把採訪的事情記好。", "請幫我仔細看一看。"],
+  "thanks": "紀錄清楚，就能把消息說明白。",
+  "bookIds": ["clocktower"],
+  "from": "小梅"
+}, {
+  "id": "clock-ling",
+  "lines": ["我的小筆記需要整理。", "你願意陪我試試看嗎？"],
+  "low": ["我的小筆記需要整理。", "你願意陪我試試看嗎？"],
+  "thanks": "謝謝你陪我把事情想清楚。",
+  "bookIds": ["clocktower"],
+  "from": "小鈴"
+}, {
+  "id": "clock-gray",
+  "lines": ["我想核對今天的筆記。", "請陪我找找有沒有記錯。"],
+  "low": ["我想核對今天的筆記。", "請陪我找找有沒有記錯。"],
+  "thanks": "問清楚，再記下來，心裡就踏實了。",
+  "bookIds": ["clocktower"],
+  "from": "葛雷"
 }];
 /* 01_strings.js */
 (function () {
@@ -4471,7 +5154,10 @@ globalThis.BALetters = [{
       extraTitle: '今天多幫幾位',
       extraHint: '三封來信都回好了，可以再幫幾位朋友。',
       extraCount: '今天加班 {done}／{max} 封',
-      extraLimit: '今天的加班信也完成了，休息一下吧！',
+      extraRemaining: '今天還可以再幫 {remaining} 位。',
+      extraTarget: '再幫 {missing} 位，就能翻開這本書。',
+      extraReady: '能量夠了，可以回書架翻書！',
+      extraLimit: '今天辛苦了，明天再來。',
       extraLocked: '先完成今天的三封來信，再來幫忙吧。',
       extraDisabled: '家長已關閉加班。今天先完成三封來信吧。',
       learned: '今天練習過：',
@@ -4542,13 +5228,16 @@ globalThis.BALetters = [{
       energyLow: '能量還不夠。可以先回委託板幫忙。',
       stone: '小石',
       energyTitle: '能量還不夠！',
-      energyMissing: '還差 {missing} 點能量。',
+      energyMissing: '還差 {missing} 點。',
+      energyPlan: '再幫 {missing} 位就夠了！',
+      energyPlanTomorrow: '今天最多還能幫 {today} 位，明天再 {tomorrow} 位就夠了。',
+      energyPlanLater: '今天最多還能幫 {today} 位，剩下 {tomorrow} 位可分幾天完成。',
       energyHelp: '先讀來信、幫個忙，收集能量吧！',
       energyTomorrow: '今天的來信都完成了，明天再來收集能量吧。',
       energyBoard: '去看今天的來信',
       energyExtra: '今天多幫幾位',
       energyExtraHelp: '還想幫忙嗎？今天還有加班信。',
-      energyStay: '留在書架',
+      energyStay: '先留在書架',
       tooMany: '這本書已有兩個調查中的案件，先繼續其中一案吧。',
       caseCount: '案件',
       bookBookmark: '三國演義紀念書籤',
@@ -4854,6 +5543,72 @@ globalThis.BALetters = [{
     close: '關閉',
     positions: '地名位置為手繪地圖上的概略方位。',
     status: '桃園三結義已可試玩；其餘新結點陸續接入。'
+  };
+})(globalThis);
+
+/* 02_tutorial_strings.js */
+(function (g) {
+  'use strict';
+
+  g.BATutorialCopy = {
+    title: '初次見面',
+    skip: '跳過介紹',
+    next: '下一句',
+    ready: '知道了',
+    listen: '聽小石說',
+    shelf: '先去書架，翻開第一本書吧。',
+    boardAction: '去看看來信',
+    boardLater: '先在大廳逛逛',
+    flags: {
+      enter: '把書籤夾進書裡，我們一起出發。',
+      map: '點一個地方，我們就走過去。',
+      node: '靠近亮點，按「出發」開始調查。',
+      scene: '看到人可以問，看到東西可以點。',
+      helper: '他有困難，我們先聽他說。',
+      fade: '字褪色了，答三題把它找回來。',
+      record: '找到的東西會收進手冊。',
+      hands: '照著故事裡的線索，試著做做看。',
+      conclude: '三個說法選一個，選錯可以改。',
+      ending: '這張卡是他送你的，收進紀念冊吧。',
+      board: '板子上有人寫信來求助。幫一個忙，書籤就亮一格。亮了就能翻開下一本書。'
+    }
+  };
+  g.BAClocktowerCopy = {
+    title: '鐘塔鎮',
+    goMap: '走進鐘塔鎮',
+    backMap: '回鐘塔鎮',
+    positions: '這是鐘塔鎮的地點示意圖。',
+    mapOptions: '本書的故事',
+    gather: '問問阿齒，再看看鐘聲紀錄簿。',
+    help: '幫阿齒記下來',
+    helpDone: '阿齒的話已記好',
+    childHelped: '阿齒，已幫忙',
+    readNotice: '和阿齒一起查鐘',
+    garden: '整理三份線索',
+    card: '收到阿齒的人物卡',
+    nextScene: '前往機房',
+    conclude: '鐘面告訴我們的都是真的嗎？',
+    nextStory: '下次，再找十二封信的線索。',
+    status: '第一案已開放，後兩案正在準備。',
+    lockedFace: '先進機房，再查看鐘面。',
+    needFace: '點鐘面，找找指針上的痕跡。',
+    gray: '葛雷',
+    achi: '阿齒',
+    roles: {
+      achi: '鐘塔機關師',
+      gray: '報攤的年輕人',
+      stone: '書籤的守護者'
+    },
+    sceneNames: {
+      tower_hall: '鐘塔大廳',
+      tower_machine: '鐘塔機房'
+    },
+    placeholder: '地點示意',
+    futurePlace: '這個地方的故事正在準備。',
+    clock: '鐘面',
+    mixture: '保養機油的配方',
+    recordBefore: '先完成眼前的調查，再收集這份線索。',
+    recordSaved: '這份線索已收進手冊。'
   };
 })(globalThis);
 
@@ -5388,6 +6143,12 @@ Object.assign(globalThis.BAStrings.lobby, {
   function canOpenBook(profile, bookId) {
     return profile.mode === 'unlimited' || hasEntered(profile, bookId);
   }
+  var TUTORIAL_FLAGS = ['enter', 'map', 'node', 'scene', 'helper', 'fade', 'record', 'hands', 'conclude', 'ending', 'board'];
+  function tutorialFlags(seen) {
+    return Object.fromEntries(TUTORIAL_FLAGS.map(function (k) {
+      return [k, seen];
+    }));
+  }
   function migrateProfile(profile, at) {
     var checked = validateProfile(profile);
     if (!checked.ok) return checked;
@@ -5397,6 +6158,14 @@ Object.assign(globalThis.BAStrings.lobby, {
       next.sessions.energyPolicy = {
         version: 2,
         books: legacyEnteredBooks(next)
+      };
+      migrated = true;
+    }
+    if (!next.sessions.tutorial) {
+      next.sessions.tutorial = tutorialFlags(true);
+      next.sessions.opening = {
+        seen: true,
+        legacy: true
       };
       migrated = true;
     }
@@ -5455,6 +6224,10 @@ Object.assign(globalThis.BAStrings.lobby, {
         allowOvertime: true
       },
       sessions: {
+        tutorial: tutorialFlags(false),
+        opening: {
+          seen: true
+        },
         energyPolicy: {
           version: 2,
           books: {}
@@ -6740,7 +7513,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     return value === 'all' || data.factions.some(f => f.id === value) ? value : 'cao';
   }
   function resolveRoute(route) {
-    const v = volume(route?.volumeId) || !route?.volumeId && (['case', 'scene'].includes(route?.page) ? owner(route.id) : published()[0]);
+    const v = volume(route?.volumeId) || !route?.volumeId && (['case', 'scene'].includes(route?.page) ? owner(route.id) : volume('volume-1'));
     if (!v || v.status !== 'published' || ['case', 'scene'].includes(route.page) && !v.caseIds.includes(route.id)) return null;
     return {
       ...route,
@@ -6826,200 +7599,211 @@ Object.assign(globalThis.BAStrings.lobby, {
 (function (g) {
   'use strict';
 
-  const D = g.BAJourneyData,
-    clone = v => JSON.parse(JSON.stringify(v));
-  const bookKey = 'journey:book:' + D.bookId,
-    caseKey = D.bookId + ':' + D.case.id;
-  const stages = ['market', 'fade1', 'practice1', 'records', 'notice', 'fade2', 'practice2', 'tavern', 'garden', 'oath', 'ending', 'complete'];
-  const band = grade => grade <= 2 ? 'low' : grade <= 4 ? 'mid' : 'high';
-  const lead = g.BABookCatalog?.published().find(v => v.storageBookId === D.bookId)?.leadHeroId || D.leadHeroId || 'hero1';
-  const companions = (g.BAHeroes?.map(h => h.id) || ['hero1', 'hero2', 'hero3', 'hero4']).filter(id => id !== lead);
-  function book(p) {
-    const b = {
-      version: 1,
-      entrySeen: false,
-      intro: 0,
-      discussion: 0,
-      companion: null,
-      pos: D.start,
-      currentNode: null,
-      after: 0,
-      ...p.sessions[bookKey]
-    };
-    return {
-      ...b,
-      companion: b.companion && (companions.includes(b.companion) ? b.companion : companions[0])
-    };
-  }
-  function sessionKey(p) {
-    return 'journey:case:' + caseKey + ':' + (p.cases[caseKey]?.run || 1);
-  }
-  function flow(p) {
-    return {
-      version: 1,
-      kind: 'book-case',
-      stage: 'market',
-      records: [],
-      answers: {},
-      hints: {},
-      dialog: 0,
-      grade: p.grade,
-      ...p.sessions[sessionKey(p)]
-    };
-  }
-  function bookAction(p, patch) {
-    return {
-      type: 'SAVE_SESSION',
-      sessionId: bookKey,
-      value: {
-        ...book(p),
-        ...patch
-      }
-    };
-  }
-  function flowAction(p, patch, learning) {
-    return {
-      type: 'SAVE_SESSION',
-      sessionId: sessionKey(p),
-      value: {
-        ...flow(p),
-        ...patch
-      },
-      ...(learning ? {
-        learning
-      } : {})
-    };
-  }
-  function practiceId(p, n) {
-    return sessionKey(p) + ':practice' + n;
-  }
-  function question(p, key) {
-    const f = flow(p),
-      q = D.case.questions[key]?.[band(f.grade)];
-    if (!q) return null;
-    const concept = g.BAStoryConcepts.concepts.find(c => c.id === q.conceptId),
-      cur = concept?.curriculum.find(c => c.code === q.code);
-    if (!cur || cur.level.kind === 'grade' && cur.level.value > f.grade || cur.level.kind === 'stage' && cur.level.value !== {
-      low: 'I',
-      mid: 'II',
-      high: 'III'
-    }[band(f.grade)]) throw new Error('STORY_CURRICULUM_INVALID');
-    return {
-      ...clone(q),
-      id: 'tao-yuan:' + key + ':' + band(f.grade),
-      key,
-      subject: concept.subject,
-      curriculum: clone(cur),
-      grade: f.grade
-    };
-  }
-  function canAdvance(p, next) {
-    const f = flow(p),
-      i = stages.indexOf(f.stage);
-    if (stages[i + 1] !== next) return false;
-    if (f.stage === 'market') return !!f.answers.helper?.passed;
-    if (f.stage === 'practice1' || f.stage === 'practice2') {
-      const s = p.sessions[practiceId(p, f.stage === 'practice1' ? 1 : 2)];
-      return s?.kind === 'book-practice' && s.expectedCount === 3 && s.questions.length === 3 && s.completed && s.passed;
-    }
-    if (f.stage === 'records') return ['E1', 'E2'].every(id => f.records.includes(id));
-    if (f.stage === 'notice') return !!f.answers.notice?.passed;
-    if (f.stage === 'tavern') return f.dialog >= D.case.tavern.length;
-    if (f.stage === 'garden') return !!f.answers.conclusion?.passed;
-    if (f.stage === 'oath') return !!f.answers.oath?.passed;
-    if (f.stage === 'ending') return false; // Awards use the existing atomic COMPLETE_CASE transaction.
-    return true;
-  }
-  function advance(p, next) {
-    return canAdvance(p, next) ? flowAction(p, {
-      stage: next
-    }) : null;
-  }
-  function ready(p) {
-    const f = flow(p);
-    return f.stage === 'ending' && ['helper', 'notice', 'conclusion', 'oath'].every(k => f.answers[k]?.passed) && [1, 2].every(n => {
-      const s = p.sessions[practiceId(p, n)];
-      return s?.kind === 'book-practice' && s.questions.length === 3 && s.completed && s.passed;
-    }) && ['E1', 'E2'].every(k => f.records.includes(k)) && f.dialog >= D.case.tavern.length;
-  }
-  function answer(p, key, value, at = Date.now()) {
-    const f = flow(p),
-      q = question(p, key),
-      expected = {
-        helper: 'market',
-        notice: 'notice',
-        conclusion: 'garden',
-        oath: 'oath'
-      }[key];
-    if (!q || f.stage !== expected || f.answers[key]?.passed) return null;
-    const previous = f.answers[key] || {
-        attempts: 0,
-        passed: false
-      },
-      hints = f.hints[key] || 0;
-    const correct = JSON.stringify(value) === JSON.stringify(q.answer);
-    if (q.type === 'order' && (!Array.isArray(value) || value.length !== q.options.length || new Set(value).size !== value.length || value.some(i => !Number.isInteger(i) || i < 0 || i >= q.options.length))) return null;
-    if (q.type !== 'order' && (!Number.isInteger(value) || value < 0 || value >= q.options.length)) return null;
-    const attempts = previous.attempts + 1,
-      entry = {
-        ...previous,
-        attempts,
-        passed: correct,
-        hints,
-        fullReveal: hints >= 3,
-        firstTryCorrect: correct && attempts === 1 && !hints,
-        value,
-        at
+  const clone = v => JSON.parse(JSON.stringify(v));
+  function create(D) {
+    const bookKey = 'journey:book:' + D.bookId,
+      caseKey = D.bookId + ':' + D.case.id;
+    const stages = D.stages || ['market', 'fade1', 'practice1', 'records', 'notice', 'fade2', 'practice2', 'tavern', 'garden', 'oath', 'ending', 'complete'];
+    const band = grade => grade <= 2 ? 'low' : grade <= 4 ? 'mid' : 'high';
+    const lead = g.BABookCatalog?.published().find(v => v.storageBookId === D.bookId)?.leadHeroId || D.leadHeroId || 'hero1';
+    const companions = (g.BAHeroes?.map(h => h.id) || ['hero1', 'hero2', 'hero3', 'hero4']).filter(id => id !== lead);
+    function book(p) {
+      const b = {
+        version: 1,
+        entrySeen: false,
+        intro: 0,
+        discussion: 0,
+        companion: null,
+        pos: D.start,
+        currentNode: null,
+        after: 0,
+        ...p.sessions[bookKey]
       };
-    const learning = g.BALearning.recordStoryEvidence(p, {
-      q,
-      eventId: sessionKey(p) + ':' + key + ':a' + attempts,
-      correct,
-      attempts,
-      hints,
-      at,
-      firstTryCorrect: entry.firstTryCorrect
-    });
-    return flowAction(p, {
-      answers: {
-        ...f.answers,
-        [key]: entry
-      }
-    }, learning);
-  }
-  function pointOnPath(route, t) {
-    const distances = route.slice(1).map((p, i) => Math.hypot(p[0] - route[i][0], p[1] - route[i][1]));
-    let left = distances.reduce((a, b) => a + b, 0) * Math.max(0, Math.min(1, t));
-    for (let i = 0; i < distances.length; i++) {
-      if (left <= distances[i]) {
-        const k = distances[i] ? left / distances[i] : 1;
-        return [route[i][0] + (route[i + 1][0] - route[i][0]) * k, route[i][1] + (route[i + 1][1] - route[i][1]) * k];
-      }
-      left -= distances[i];
+      return {
+        ...b,
+        companion: b.companion && (companions.includes(b.companion) ? b.companion : companions[0])
+      };
     }
-    return [...route.at(-1)];
+    function sessionKey(p) {
+      return 'journey:case:' + caseKey + ':' + (p.cases[caseKey]?.run || 1);
+    }
+    function flow(p) {
+      return {
+        version: 1,
+        kind: 'book-case',
+        stage: 'market',
+        records: [],
+        answers: {},
+        hints: {},
+        dialog: 0,
+        grade: p.grade,
+        ...p.sessions[sessionKey(p)]
+      };
+    }
+    function bookAction(p, patch) {
+      return {
+        type: 'SAVE_SESSION',
+        sessionId: bookKey,
+        value: {
+          ...book(p),
+          ...patch
+        }
+      };
+    }
+    function flowAction(p, patch, learning) {
+      return {
+        type: 'SAVE_SESSION',
+        sessionId: sessionKey(p),
+        value: {
+          ...flow(p),
+          ...patch
+        },
+        ...(learning ? {
+          learning
+        } : {})
+      };
+    }
+    function practiceId(p, n) {
+      return sessionKey(p) + ':practice' + n;
+    }
+    function question(p, key) {
+      const f = flow(p),
+        q = D.case.questions[key]?.byGrade?.[f.grade] || D.case.questions[key]?.[band(f.grade)];
+      if (!q) return null;
+      const concept = g.BAStoryConcepts.concepts.find(c => c.id === q.conceptId),
+        cur = concept?.curriculum.find(c => c.code === q.code);
+      if (!cur || cur.level.kind === 'grade' && cur.level.value > f.grade || cur.level.kind === 'stage' && cur.level.value !== {
+        low: 'I',
+        mid: 'II',
+        high: 'III'
+      }[band(f.grade)]) throw new Error('STORY_CURRICULUM_INVALID');
+      return {
+        ...clone(q),
+        id: (D.questionPrefix || 'tao-yuan') + ':' + key + ':' + (D.case.questions[key]?.byGrade?.[f.grade] ? 'g' + f.grade : band(f.grade)),
+        key,
+        subject: concept.subject,
+        curriculum: clone(cur),
+        grade: f.grade
+      };
+    }
+    function canAdvance(p, next) {
+      const f = flow(p),
+        i = stages.indexOf(f.stage);
+      if (stages[i + 1] !== next) return false;
+      if (f.stage === 'market') return !!f.answers.helper?.passed;
+      if (f.stage === 'practice1' || f.stage === 'practice2') {
+        const s = p.sessions[practiceId(p, f.stage === 'practice1' ? 1 : 2)];
+        return s?.kind === 'book-practice' && s.expectedCount === 3 && s.questions.length === 3 && s.completed && s.passed;
+      }
+      if (f.stage === 'records') return (D.firstRecords || ['E1', 'E2']).every(id => f.records.includes(id));
+      if (f.stage === 'notice') return !!f.answers.notice?.passed;
+      if (f.stage === 'tavern') return f.dialog >= D.case.tavern.length && (D.requiredRecords || []).every(id => f.records.includes(id));
+      if (f.stage === 'garden') return !!f.answers.conclusion?.passed;
+      if (f.stage === 'oath') return !!f.answers.oath?.passed;
+      if (f.stage === 'ending') return false; // Awards use the existing atomic COMPLETE_CASE transaction.
+      return true;
+    }
+    function advance(p, next) {
+      return canAdvance(p, next) ? flowAction(p, {
+        stage: next
+      }) : null;
+    }
+    function ready(p) {
+      const f = flow(p);
+      return f.stage === 'ending' && (D.requiredAnswers || ['helper', 'notice', 'conclusion', 'oath']).every(k => f.answers[k]?.passed) && [1, 2].every(n => {
+        const s = p.sessions[practiceId(p, n)];
+        return s?.kind === 'book-practice' && s.questions.length === 3 && s.completed && s.passed;
+      }) && (D.requiredRecords || ['E1', 'E2']).every(k => f.records.includes(k)) && f.dialog >= D.case.tavern.length;
+    }
+    function answer(p, key, value, at = Date.now()) {
+      const f = flow(p),
+        q = question(p, key),
+        expected = {
+          helper: 'market',
+          notice: 'notice',
+          conclusion: 'garden',
+          oath: 'oath'
+        }[key];
+      if (!q || f.stage !== expected || f.answers[key]?.passed) return null;
+      const previous = f.answers[key] || {
+          attempts: 0,
+          passed: false
+        },
+        hints = f.hints[key] || 0;
+      const correct = JSON.stringify(value) === JSON.stringify(q.answer);
+      if (q.type === 'order' && (!Array.isArray(value) || value.length !== q.options.length || new Set(value).size !== value.length || value.some(i => !Number.isInteger(i) || i < 0 || i >= q.options.length))) return null;
+      if (q.type !== 'order' && (!Number.isInteger(value) || value < 0 || value >= q.options.length)) return null;
+      const attempts = previous.attempts + 1,
+        entry = {
+          ...previous,
+          attempts,
+          passed: correct,
+          hints,
+          fullReveal: hints >= 3,
+          firstTryCorrect: correct && attempts === 1 && !hints,
+          value,
+          at
+        };
+      const learning = g.BALearning.recordStoryEvidence(p, {
+        q,
+        eventId: sessionKey(p) + ':' + key + ':a' + attempts,
+        correct,
+        attempts,
+        hints,
+        at,
+        firstTryCorrect: entry.firstTryCorrect
+      });
+      return flowAction(p, {
+        answers: {
+          ...f.answers,
+          [key]: entry
+        }
+      }, learning);
+    }
+    function pointOnPath(route, t) {
+      const distances = route.slice(1).map((p, i) => Math.hypot(p[0] - route[i][0], p[1] - route[i][1]));
+      let left = distances.reduce((a, b) => a + b, 0) * Math.max(0, Math.min(1, t));
+      for (let i = 0; i < distances.length; i++) {
+        if (left <= distances[i]) {
+          const k = distances[i] ? left / distances[i] : 1;
+          return [route[i][0] + (route[i + 1][0] - route[i][0]) * k, route[i][1] + (route[i + 1][1] - route[i][1]) * k];
+        }
+        left -= distances[i];
+      }
+      return [...route.at(-1)];
+    }
+    return Object.freeze({
+      data: D,
+      lead,
+      companions,
+      bookKey,
+      caseKey,
+      stages,
+      band,
+      book,
+      flow,
+      sessionKey,
+      bookAction,
+      flowAction,
+      practiceId,
+      question,
+      canAdvance,
+      advance,
+      ready,
+      answer,
+      pointOnPath,
+      scene: stage => D.sceneFor?.[stage] || (stage === 'tavern' ? 'tavern' : ['garden', 'oath', 'ending', 'complete'].includes(stage) ? 'garden' : 'market')
+    });
   }
-  g.BAJourney = Object.freeze({
-    data: D,
-    lead,
-    companions,
-    bookKey,
-    caseKey,
-    stages,
-    band,
-    book,
-    flow,
-    sessionKey,
-    bookAction,
-    flowAction,
-    practiceId,
-    question,
-    canAdvance,
-    advance,
-    ready,
-    answer,
-    pointOnPath
-  });
+  g.BACreateJourney = create;
+  g.BAJourney = create(g.BAJourneyData);
+  if (g.BAClocktowerData) g.BAClocktower = create(g.BAClocktowerData);
+  g.BAJourneys = {
+    sanguo: g.BAJourney,
+    ...(g.BAClocktower ? {
+      clocktower: g.BAClocktower
+    } : {})
+  };
 })(globalThis);
 
 /* 16_map_walking.js */
@@ -7234,14 +8018,16 @@ Object.assign(globalThis.BAStrings.lobby, {
   function assetsFor(next, profile) {
     const a = g.BAAssets || {},
       p = next.page,
-      values = [];
+      values = [],
+      j = g.BAJourneys?.[next.bookId || 'sanguo'];
     const add = (...xs) => values.push(...xs.filter(Boolean));
     if (['title', 'profiles', 'create', 'lobby'].includes(p)) add(a.team, a.hero1, p === 'lobby' && a.lobby);
     if (['books', 'book-entry', 'book-exit'].includes(p)) add(a.team, ...Object.values(a.covers || {}));
-    if (['journey-map', 'cases'].includes(p)) add(a.team, a.sanguoMap, a.caoChong);
-    if (p === 'journey-case') add(a.team, ...['liu', 'zhang', 'guan', 'child'].map(k => a.journey[k]), a.journey[scene(next.stage || g.BAJourney.flow(profile).stage)]);
-    if (['album', 'manual', 'journey-manual'].includes(p)) add(a.caoChong, a.journey?.liu, a.sanguoMap);
+    if (p === 'cases' || p === 'journey-map' && !j?.data.placeholder) add(a.team, a.sanguoMap, a.caoChong);
+    if (p === 'journey-case' && !j?.data.placeholder) add(a.team, ...['liu', 'zhang', 'guan', 'child'].map(k => a.journey[k]), a.journey[scene(next.stage || j.flow(profile).stage)]);
+    if (['album', 'manual'].includes(p) || p === 'journey-manual' && !j?.data.placeholder) add(a.caoChong, a.journey?.liu, a.sanguoMap);
     if (['scene', 'case'].includes(p)) add(a.team, a.hero1, a.caoChong, a.riverBoat);
+    if (j?.data.placeholder && p.startsWith('journey-')) add(a.team, a.hero1, ...['hero2', 'hero3', 'hero4'].map(k => a.journey[k]));
     if (p === 'commission') add(...Object.values(a.words || {}));
     return [...new Set(values)];
   }
@@ -166915,9 +167701,21 @@ Object.assign(globalThis.BAStrings.lobby, {
     profile,
     onNavigate,
     onLeader,
-    onArrival
+    onArrival,
+    commit,
+    notify
   }) {
     var s = text();
+    const firstGuide = globalThis.BATutorial.pending(profile, 'map'),
+      boardGuide = globalThis.BATutorial.pending(profile, 'board') && profile.cases['clocktower:clock_stopped']?.completedRuns > 0;
+    const [showGuide, setShowGuide] = React.useState(boardGuide);
+    function finishGuide(go) {
+      const r = commit?.(globalThis.BATutorial.action(profile, 'board'));
+      if (r?.ok) {
+        setShowGuide(false);
+        if (go) onNavigate('board');
+      }
+    }
     var sceneRef = React.useRef(null);
     var stageRef = React.useRef(null);
     React.useLayoutEffect(() => {
@@ -167072,7 +167870,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       profile: profile
     }))), /*#__PURE__*/React.createElement("button", {
       type: "button",
-      className: "ba-hotspot ba-hotspot-books",
+      className: 'ba-hotspot ba-hotspot-books' + (firstGuide ? ' ba-tutorial-focus' : ''),
       onClick: function () {
         navigate("books");
       },
@@ -167154,7 +167952,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       "aria-live": "polite",
       "aria-atomic": "true"
     }, /*#__PURE__*/React.createElement(Readable, {
-      value: stoneMessage || (arrival?.kind === 'paused' ? s.lobby.paused : arrival?.kind === 'completed' ? profile?.mode === 'unlimited' ? s.lobby.returnUnlimited : arrival.energyDelta ? s.lobby.returnReward : s.lobby.returnReplay : s.lobby.stoneHint),
+      value: stoneMessage || (firstGuide ? globalThis.BATutorialCopy.shelf : arrival?.kind === 'paused' ? s.lobby.paused : arrival?.kind === 'completed' ? profile?.mode === 'unlimited' ? s.lobby.returnUnlimited : arrival.energyDelta ? s.lobby.returnReward : s.lobby.returnReplay : s.lobby.stoneHint),
       profile: profile
     })), /*#__PURE__*/React.createElement("button", {
       type: "button",
@@ -167200,7 +167998,42 @@ Object.assign(globalThis.BAStrings.lobby, {
           value: arrival.energyDelta
         }))
       }))
-    })))));
+    })))), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: showGuide && /*#__PURE__*/React.createElement(Modal, {
+        title: /*#__PURE__*/React.createElement(Readable, {
+          value: s.lobby.stone,
+          profile: profile
+        }),
+        className: "ba-stone-energy-modal",
+        dismissOnBackdrop: false,
+        onClose: () => finishGuide(false)
+      }, /*#__PURE__*/React.createElement("section", {
+        "data-testid": "tutorial-hint",
+        "data-tutorial": "board"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-stone-energy-body"
+      }, /*#__PURE__*/React.createElement(Stone, {
+        size: 130
+      }), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Readable, {
+        value: globalThis.BATutorialCopy.flags.board,
+        profile: profile
+      }))), /*#__PURE__*/React.createElement("div", {
+        className: "ba-actions"
+      }, /*#__PURE__*/React.createElement("button", {
+        className: "ba-button primary",
+        "data-testid": "tutorial-board",
+        onClick: () => finishGuide(true)
+      }, /*#__PURE__*/React.createElement(Readable, {
+        value: globalThis.BATutorialCopy.boardAction,
+        profile: profile
+      })), /*#__PURE__*/React.createElement("button", {
+        className: "ba-button ghost",
+        onClick: () => finishGuide(false)
+      }, /*#__PURE__*/React.createElement(Readable, {
+        value: globalThis.BATutorialCopy.boardLater,
+        profile: profile
+      })))))
+    }));
   }
   function Modal({
     title,
@@ -171472,7 +172305,8 @@ Object.assign(globalThis.BAStrings.lobby, {
       letters = lettersForDay(day),
       done = g.BAState.getDay(profile, day).commissions,
       extraRef = React.useRef(null);
-    const extraLetter = extraLettersForDay(profile, day, bookId)[status.extra];
+    const extraLetter = extraLettersForDay(profile, day, bookId)[status.extra],
+      missing = bookId ? Math.max(0, g.BAState.entryCost(profile, bookId) - profile.energy) : null;
     React.useEffect(() => {
       if (extraRequested) extraRef.current?.scrollIntoView?.({
         block: 'start'
@@ -171487,7 +172321,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     }, /*#__PURE__*/React.createElement(Icon, {
       name: done.includes(slot) ? 'check' : 'mail'
     })), /*#__PURE__*/React.createElement("p", {
-      className: "ba-kicker"
+      className: 'ba-kicker' + (extra ? ' ba-extra-badge' : '')
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: extra ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Txt, {
         text: S.board.extra
@@ -171546,8 +172380,14 @@ Object.assign(globalThis.BAStrings.lobby, {
         text: S.board.extraTitle
       })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
         text: S.board.extraCount.replace('{done}', status.extra).replace('{max}', g.BAState.RULES.extraCommissionsPerDay)
-      })), status.remaining > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-        text: S.board.extraHint
+      })), status.remaining > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+        "data-testid": "overtime-remaining"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: S.board.extraRemaining.replace('{remaining}', status.remaining)
+      })), missing !== null && /*#__PURE__*/React.createElement("p", {
+        "data-testid": "overtime-target"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: missing ? S.board.extraTarget.replace('{missing}', missing) : S.board.extraReady
       })), card(extraLetter, status.nextSlot, true)) : /*#__PURE__*/React.createElement(Notice, null, S.board.extraLimit)) : extraRequested && /*#__PURE__*/React.createElement(Notice, null, status.allowed ? S.board.extraLocked : S.board.extraDisabled)
     })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: status.baseDone === status.base && /*#__PURE__*/React.createElement("div", {
@@ -171692,7 +172532,12 @@ Object.assign(globalThis.BAStrings.lobby, {
     }), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: S.album.cards
     })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: profile.rewardedCases.includes(g.BAJourney.caseKey) && /*#__PURE__*/React.createElement(g.BAJourneyUI.Card, null)
+      value: Object.entries(g.BAJourneys).filter(([, j]) => profile.rewardedCases.includes(j.caseKey)).map(([id]) => {
+        const UI = g.BAJourneyUIs[id];
+        return /*#__PURE__*/React.createElement(UI.Card, {
+          key: id
+        });
+      })
     }), /*#__PURE__*/React.createElement("div", {
       className: "ba-album-grid"
     }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
@@ -171789,6 +172634,25 @@ Object.assign(globalThis.BAStrings.lobby, {
         text: c.step >= 5 || c.firstCompletedAt ? d.conclusion[profile.grade <= 2 ? 'simple' : 'options'][d.conclusion.answer] : S.manual.pending,
         profile: profile
       }))))
+    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: Object.values(g.BAJourneys).filter(j => profile.cases[j.caseKey]).map(j => /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper",
+        key: j.caseKey
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: j.data.case.title
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: j.data.case.records.filter(r => j.flow(profile).records.includes(r.id)).map(r => /*#__PURE__*/React.createElement("div", {
+          key: r.id
+        }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: r.name
+        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: r.lines.map((t, i) => /*#__PURE__*/React.createElement("p", {
+            key: i
+          }, /*#__PURE__*/React.createElement(Txt, {
+            text: t
+          })))
+        })))
+      })))
     }), /*#__PURE__*/React.createElement("div", {
       className: "ba-actions"
     }, /*#__PURE__*/React.createElement(Button, {
@@ -172386,7 +173250,9 @@ Object.assign(globalThis.BAStrings.lobby, {
   }) {
     const status = g.BAState.commissionStatus(profile),
       allDone = status.baseDone === status.base,
-      canExtra = status.allowed && status.remaining > 0;
+      canExtra = status.allowed && status.remaining > 0,
+      today = status.base - status.baseDone + (status.allowed ? status.remaining : 0),
+      plan = missing <= today ? S.books.energyPlan.replace('{missing}', missing) : (missing - today <= status.base + (status.allowed ? g.BAState.RULES.extraCommissionsPerDay : 0) ? S.books.energyPlanTomorrow : S.books.energyPlanLater).replace('{today}', today).replace('{tomorrow}', missing - today);
     return /*#__PURE__*/React.createElement(g.BAUI.Modal, {
       title: /*#__PURE__*/React.createElement(Txt, {
         text: S.books.stone
@@ -172411,22 +173277,24 @@ Object.assign(globalThis.BAStrings.lobby, {
     })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
       text: S.books.energyMissing.replace('{missing}', missing)
     })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-      text: allDone ? canExtra ? S.books.energyExtraHelp : S.books.energyTomorrow : S.books.energyHelp
+      text: plan
     })))), /*#__PURE__*/React.createElement("div", {
       className: "ba-actions ba-stone-energy-actions"
-    }, /*#__PURE__*/React.createElement(Button, {
-      kind: "primary",
-      "data-testid": "energy-go-board",
-      onClick: onBoard
-    }, /*#__PURE__*/React.createElement(Txt, {
-      text: S.books.energyBoard
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
       value: canExtra && /*#__PURE__*/React.createElement(Button, {
-        kind: "sage",
+        kind: "primary",
         "data-testid": "energy-go-extra",
         onClick: onExtra
       }, /*#__PURE__*/React.createElement(Txt, {
         text: S.books.energyExtra
+      }))
+    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+      value: !allDone && /*#__PURE__*/React.createElement(Button, {
+        kind: "sage",
+        "data-testid": "energy-go-board",
+        onClick: onBoard
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: S.books.energyBoard
       }))
     }), /*#__PURE__*/React.createElement(Button, {
       kind: "ghost",
@@ -172686,1358 +173554,1745 @@ Object.assign(globalThis.BAStrings.lobby, {
   };
 })(globalThis);
 
+/* 53_tutorial.jsx */
+(function (g) {
+  'use strict';
+
+  const {
+      Txt,
+      Button
+    } = g.BAFlowKit,
+    S = g.BATutorialCopy;
+  const pending = (p, key) => !!p?.sessions.tutorial && p.sessions.tutorial[key] === false;
+  const action = (p, key) => ({
+    type: 'SAVE_SESSION',
+    sessionId: 'tutorial',
+    value: {
+      ...p.sessions.tutorial,
+      [key]: true
+    }
+  });
+  function Hint({
+    profile,
+    flag,
+    commit,
+    notify,
+    onDone
+  }) {
+    if (!pending(profile, flag)) return null;
+    const next = () => {
+      const r = commit(action(profile, flag));
+      if (r.ok) onDone?.();
+    };
+    return /*#__PURE__*/React.createElement(g.BAUI.Modal, {
+      title: /*#__PURE__*/React.createElement(Txt, {
+        text: g.BAStrings.books.stone
+      }),
+      className: "ba-stone-energy-modal",
+      dismissOnBackdrop: false,
+      onClose: next
+    }, /*#__PURE__*/React.createElement("section", {
+      "data-testid": "tutorial-hint",
+      "data-tutorial": flag
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-body"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-portrait"
+    }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+      size: 130
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "ba-stone-energy-speech"
+    }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+      text: S.flags[flag]
+    })))), /*#__PURE__*/React.createElement("div", {
+      className: "ba-actions"
+    }, /*#__PURE__*/React.createElement(Button, {
+      kind: "primary",
+      "data-testid": "tutorial-next",
+      onClick: next
+    }, S.ready), /*#__PURE__*/React.createElement(Button, {
+      kind: "ghost",
+      onClick: () => {
+        if (!g.BAPlatform.speech.speak(S.flags[flag]).ok) notify?.(g.BAStrings.flow.voiceUnavailable);
+      }
+    }, S.listen))));
+  }
+  function Opening({
+    onDone,
+    notify
+  }) {
+    const [index, setIndex] = React.useState(0),
+      [history, setHistory] = React.useState(false),
+      lines = g.BAOpeningData.lines;
+    const speaker = lines[index].speaker;
+    return /*#__PURE__*/React.createElement(g.BAVisualNovel.Frame, {
+      mobileFill: true,
+      "data-testid": "opening",
+      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(Txt, {
+        text: S.title
+      })), /*#__PURE__*/React.createElement(Button, {
+        kind: "ghost",
+        "data-testid": "opening-skip",
+        onClick: onDone
+      }, S.skip)),
+      stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("img", {
+        className: "ba-opening-background",
+        src: g.BAAssets.lobby,
+        alt: ""
+      }), /*#__PURE__*/React.createElement(g.BAUI.FullTeam, {
+        profile: null
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "ba-opening-stone"
+      }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+        size: 150
+      }))),
+      footer: /*#__PURE__*/React.createElement(g.BAVisualNovel.DialogueBox, {
+        lines: lines,
+        index: index,
+        onNext: () => index + 1 < lines.length ? setIndex(index + 1) : onDone(),
+        renderText: t => /*#__PURE__*/React.createElement(Txt, {
+          text: t
+        }),
+        renderAvatar: who => who === 'stone' ? /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+          size: 58
+        }) : /*#__PURE__*/React.createElement("span", {
+          "aria-hidden": "true"
+        }),
+        name: who => g.BAJourneyCopy[who] || '',
+        role: () => '',
+        copy: g.BAJourneyCopy,
+        onHistory: () => setHistory(true),
+        onSpeak: t => {
+          if (!g.BAPlatform.speech.speak(t).ok) notify(g.BAStrings.flow.voiceUnavailable);
+        }
+      }),
+      sheet: history && /*#__PURE__*/React.createElement(g.BAVisualNovel.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: g.BAJourneyCopy.history
+        }),
+        label: g.BAJourneyCopy.history,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: g.BAJourneyCopy.close
+        }),
+        onClose: () => setHistory(false)
+      }, lines.slice(0, index + 1).map((l, i) => /*#__PURE__*/React.createElement("p", {
+        key: i
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: l.text
+      }))))
+    });
+  }
+  g.BATutorial = {
+    pending,
+    action,
+    Hint,
+    Opening
+  };
+})(globalThis);
+
 /* 54_journey.jsx */
 (function (g) {
   'use strict';
 
-  const J = g.BAJourney,
-    D = J.data,
-    C = D.case,
-    S = g.BAJourneyCopy,
-    {
-      Txt,
-      Button,
-      Heading,
-      Notice
-    } = g.BAFlowKit,
-    G = g.BAArtGeometry;
-  function useReduced() {
-    const [v, set] = React.useState(() => g.matchMedia?.('(prefers-reduced-motion: reduce)').matches || false);
-    React.useEffect(() => {
-      const m = g.matchMedia?.('(prefers-reduced-motion: reduce)'),
-        fn = () => set(m.matches);
-      m?.addEventListener('change', fn);
-      return () => m?.removeEventListener('change', fn);
-    }, []);
-    return v;
-  }
-  function Lines({
-    lines
-  }) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "ba-j-lines"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: lines.map((line, i) => /*#__PURE__*/React.createElement("p", {
-        key: i
-      }, /*#__PURE__*/React.createElement(Txt, {
-        text: line
-      })))
-    }));
-  }
-  function Avatar({
-    who = J.lead
-  }) {
-    if (who === 'stone') return /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-      size: 60
-    });
-    const historical = g.BAJourneyArt.characters[who];
-    if (historical?.avatar) return /*#__PURE__*/React.createElement("svg", {
-      className: "ba-j-avatar ba-j-history-avatar",
-      "data-portrait": who,
-      "aria-hidden": "true",
-      viewBox: G.rect(historical, 'avatar').join(' ')
-    }, /*#__PURE__*/React.createElement("image", {
-      href: historical.asset ? g.BAAssets[historical.asset] : g.BAAssets.journey[who],
-      width: G.size(historical)[0],
-      height: G.size(historical)[1]
-    }));
-    const crop = {
-      hero1: [145, 10, 230],
-      hero2: [445, 0, 230],
-      hero3: [785, 0, 280],
-      hero4: [1163, 25, 244]
-    }[who];
-    if (crop) return /*#__PURE__*/React.createElement("svg", {
-      className: "ba-j-avatar",
-      "aria-hidden": "true",
-      viewBox: crop[0] + ' ' + crop[1] + ' ' + crop[2] + ' ' + crop[2]
-    }, /*#__PURE__*/React.createElement("image", {
-      href: g.BAAssets.team,
-      width: "1536",
-      height: "1024"
-    }));
-    return /*#__PURE__*/React.createElement("div", {
-      className: 'ba-j-portrait ' + who,
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement("i", null), /*#__PURE__*/React.createElement("b", null));
-  }
-  const VN = g.BAVisualNovel;
-  const normalize = value => Array.isArray(value) ? {
-    speaker: value[0],
-    text: value[1],
-    mood: 'normal'
-  } : value;
-  const resolve = (value, companion) => {
-    const line = normalize(value);
-    return {
-      ...line,
-      speaker: line.speaker === 'lead' ? J.lead : ['partner', 'companion'].includes(line.speaker) ? companion : line.speaker
-    };
-  };
-  const role = who => who === 'narrator' ? '' : S.roles[who] || (who?.startsWith('hero') ? S.teamRole : S.storyRole);
-  function Sheet({
-    title,
-    onClose,
-    children,
-    testId
-  }) {
-    return /*#__PURE__*/React.createElement(VN.Sheet, {
-      title: /*#__PURE__*/React.createElement(Txt, {
-        text: title
-      }),
-      label: title,
-      closeLabel: /*#__PURE__*/React.createElement(Txt, {
-        text: S.close
-      }),
-      onClose: onClose,
-      testId: testId
-    }, children);
-  }
-  function Dialog({
-    lines,
-    index,
-    onNext,
-    profile,
-    companion,
-    notify,
-    onHistory
-  }) {
-    const resolved = lines.map(l => resolve(l, companion || J.book(profile).companion || J.companions[0]));
-    return /*#__PURE__*/React.createElement(VN.DialogueBox, {
-      lines: resolved,
-      index: index,
-      onNext: onNext,
-      renderText: text => /*#__PURE__*/React.createElement(Txt, {
-        text: text
-      }),
-      renderAvatar: who => /*#__PURE__*/React.createElement(Avatar, {
-        who: who
-      }),
-      name: who => S[who] || S.companion,
-      role: role,
-      copy: S,
-      onSpeak: text => {
-        if (!g.BAPlatform.speech.speak(text).ok) notify(S.voiceUnavailable);
+  function createUI(J) {
+    const D = J.data,
+      C = D.case,
+      S = {
+        ...g.BAJourneyCopy,
+        ...(D.placeholder ? g.BAClocktowerCopy : {})
       },
-      onHistory: () => onHistory(resolved.slice(0, index + 1))
-    });
-  }
-  function History({
-    lines,
-    onClose
-  }) {
-    return /*#__PURE__*/React.createElement(Sheet, {
-      title: S.history,
-      onClose: onClose,
-      testId: "dialog-history-sheet"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "vn-history"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: lines.map((l, i) => /*#__PURE__*/React.createElement("article", {
-        key: i
-      }, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(Txt, {
-        text: S[l.speaker] || S.companion
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-        text: l.text
-      }))))
-    })));
-  }
-  function Bust({
-    who,
-    side,
-    speaking
-  }) {
-    const art = g.BAJourneyArt.characters[who],
-      clip = React.useId(),
-      stage = VN.useStage();
-    if (who === 'narrator') return null;
-    if (who === 'stone') return /*#__PURE__*/React.createElement("div", {
-      className: 'vn-bust stone ' + side + (speaking ? ' speaking' : ''),
-      "data-bust": who
-    }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-      size: 180
-    }));
-    if (!art) return null;
-    const frame = G.rect(art);
-    frame[3] *= .62;
-    const source = art.asset ? g.BAAssets[art.asset] : g.BAAssets.journey[who];
-    const ratio = frame[2] / frame[3],
-      height = Math.min(stage.height * (speaking ? art.talkScale || .85 : .7), stage.width * .94 / ratio);
-    return /*#__PURE__*/React.createElement("div", {
-      style: {
-        height,
-        width: height * ratio
-      },
-      className: 'vn-bust ' + (side || art.talkSide || 'right') + (speaking ? ' speaking' : ''),
-      "data-bust": who,
-      "data-mood": "normal"
-    }, /*#__PURE__*/React.createElement("svg", {
-      viewBox: frame.join(' ')
-    }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
-      id: clip
-    }, /*#__PURE__*/React.createElement("rect", {
-      x: frame[0],
-      y: frame[1],
-      width: frame[2],
-      height: frame[3]
-    }))), /*#__PURE__*/React.createElement("image", {
-      href: source,
-      width: G.size(art)[0],
-      height: G.size(art)[1],
-      clipPath: 'url(#' + clip + ')'
-    })));
-  }
-  function Portraits({
-    dialogue,
-    profile
-  }) {
-    if (!dialogue) return null;
-    const partner = J.book(profile).companion || J.companions[0],
-      line = resolve(dialogue.lines[dialogue.index], partner),
-      other = line.speaker === partner ? J.lead : partner,
-      side = g.BAJourneyArt.characters[line.speaker]?.talkSide || line.side || 'right';
-    return /*#__PURE__*/React.createElement("div", {
-      className: "vn-portraits",
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement(Bust, {
-      who: other,
-      side: side === 'left' ? 'right' : 'left',
-      speaking: false
-    }), /*#__PURE__*/React.createElement(Bust, {
-      key: line.speaker,
-      who: line.speaker,
-      side: side,
-      speaking: true
-    }));
-  }
-  function Companion({
-    profile,
-    commit
-  }) {
-    const b = J.book(profile);
-    return /*#__PURE__*/React.createElement("section", {
-      className: "ba-card ba-j-companion"
-    }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.choose
-    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.chooseHint
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "ba-actions"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: J.companions.map(id => /*#__PURE__*/React.createElement(Button, {
-        key: id,
-        kind: "ghost",
-        "aria-pressed": b.companion === id,
-        "data-companion": id,
-        onClick: () => commit(J.bookAction(profile, {
-          companion: id
-        }))
-      }, /*#__PURE__*/React.createElement(Avatar, {
-        who: id
-      }), S[id]))
-    })));
-  }
-  function Entry({
-    profile,
-    commit,
-    onDone,
-    notify
-  }) {
-    const b = J.book(profile),
-      reduced = useReduced(),
-      [history, setHistory] = React.useState(null),
-      line = b.entryLine || 0;
-    const done = () => {
-      if (!g.BAStage.isBusy()) return onDone();
-    };
-    React.useEffect(() => {
-      if (b.entrySeen && !reduced && b.companion) {
-        const id = setTimeout(done, 1500);
-        return () => clearTimeout(id);
-      }
-    }, [b.entrySeen, reduced, b.companion]);
-    if (!b.companion) return /*#__PURE__*/React.createElement("main", {
-      className: "ba-page narrow",
-      "data-testid": "book-entry"
-    }, /*#__PURE__*/React.createElement(Heading, {
-      title: D.title
-    }), /*#__PURE__*/React.createElement(Companion, {
-      profile: profile,
-      commit: commit
-    }));
-    const dialogue = !b.entrySeen ? {
-      lines: D.entry,
-      index: line,
-      onNext: () => {
-        if (line + 1 < D.entry.length) commit(J.bookAction(profile, {
-          entryLine: line + 1
-        }));else done();
-      }
-    } : null;
-    return /*#__PURE__*/React.createElement(VN.Frame, {
-      mobileFill: true,
-      "data-testid": "book-entry",
-      "data-repeat": b.entrySeen,
-      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: D.title
-      })), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "data-testid": "entry-skip",
-        onClick: done
-      }, reduced ? S.goMap : S.skip)),
-      stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(g.BABookTravel.Scene, {
+      {
+        Txt,
+        Button,
+        Heading,
+        Notice
+      } = g.BAFlowKit,
+      G = g.BAArtGeometry;
+    const firstRecords = D.firstRecords || ['E1', 'E2'];
+    function tutorial(profile, commit, notify, keys) {
+      const key = D.tutorial && keys.find(k => g.BATutorial.pending(profile, k));
+      return key ? /*#__PURE__*/React.createElement(g.BATutorial.Hint, {
         profile: profile,
-        direction: "in",
-        reduced: reduced
-      }), /*#__PURE__*/React.createElement(Portraits, {
-        dialogue: dialogue,
-        profile: profile
-      })),
-      footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
-        profile: profile,
+        commit: commit,
         notify: notify,
-        onHistory: setHistory
-      })) : /*#__PURE__*/React.createElement("div", {
-        className: "vn-dock"
-      }, /*#__PURE__*/React.createElement(Txt, {
-        text: S.goMap
-      })),
-      sheet: history && /*#__PURE__*/React.createElement(History, {
-        lines: history,
-        onClose: () => setHistory(null)
-      })
-    });
-  }
-  function Party({
-    pos,
-    moving = false,
-    companion
-  }) {
-    const order = [companion || J.companions[0], J.lead, ...J.companions.filter(id => id !== companion && id !== (companion ? null : J.companions[0]))];
-    return /*#__PURE__*/React.createElement("div", {
-      className: 'ba-j-party ' + (moving ? 'moving' : ''),
-      style: {
-        left: 'clamp(58px, ' + pos[0] + '%, calc(100% - 58px))',
-        top: 'max(58px, ' + pos[1] + '%)'
-      },
-      "data-position": pos.join(','),
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: order.map(id => /*#__PURE__*/React.createElement("span", {
-        key: id,
-        "data-party-member": id
-      }, /*#__PURE__*/React.createElement(Sprite, {
-        who: id
-      })))
-    }), /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-      size: 22
-    }));
-  }
-  function ManualContent({
-    profile
-  }) {
-    const f = J.flow(profile);
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.records
-    })), !f.records.length && /*#__PURE__*/React.createElement(Notice, null, S.empty), C.records.filter(r => f.records.includes(r.id)).map(r => /*#__PURE__*/React.createElement("section", {
-      className: "ba-story-paper",
-      key: r.id
-    }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: r.name
-    })), /*#__PURE__*/React.createElement(Lines, {
-      lines: r.lines
-    }))), /*#__PURE__*/React.createElement("details", {
-      className: "ba-story-paper"
-    }, /*#__PURE__*/React.createElement("summary", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.background
-    })), /*#__PURE__*/React.createElement(Lines, {
-      lines: D.background.map(l => normalize(l).text)
-    })), profile.rewardedCases.includes(J.caseKey) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null)));
-  }
-  function Map({
-    profile,
-    commit,
-    notify,
-    onOpen,
-    onLegacy,
-    onBack
-  }) {
-    const b = J.book(profile),
-      reduced = useReduced(),
-      [near, setNear] = React.useState(null),
-      [dismissed, setDismissed] = React.useState(null),
-      [panel, setPanel] = React.useState(null),
-      [history, setHistory] = React.useState(null),
-      [showFactions, setShowFactions] = React.useState(false);
-    const latest = React.useRef({
-      profile,
-      commit
-    });
-    latest.current = {
-      profile,
-      commit
-    };
-    const done = profile.cases[J.caseKey]?.completedRuns > 0,
-      ready = b.intro >= D.background.length && b.discussion >= D.discussion.length,
-      nodes = ready ? D.nodes.slice(0, done ? 2 : 1) : [];
-    const intro = !ready ? b.intro < D.background.length ? {
-      lines: D.background,
-      key: 'intro',
-      index: b.intro
-    } : {
-      lines: D.discussion,
-      key: 'discussion',
-      index: b.discussion
-    } : done && b.after < D.afterCase.length ? {
-      lines: D.afterCase,
-      key: 'after',
-      index: b.after
-    } : null;
-    const walking = g.BAUseMapWalking({
-      initial: b.pos,
-      world: D.navigation,
-      enabled: !intro && !panel && !history,
-      reduced,
-      nodes,
-      onSave: pos => {
-        const live = latest.current;
-        live.commit(J.bookAction(live.profile, {
-          pos
-        }));
-      },
-      onNear: id => {
-        setNear(id);
-        if (!id) setDismissed(null);
-      }
-    });
-    React.useEffect(() => {
-      if (!intro && !panel && !history && walking.element.current) {
-        const node = nodes.find(n => g.BAMapNavigation.distance(n.pos, walking.pos, walking.size()) <= 40);
-        setNear(node?.id || null);
-      }
-    }, [!!intro, panel, history]);
-    const selected = near !== dismissed ? nodes.find(n => n.id === near) : null;
-    function depart() {
-      if (intro || !selected?.implemented || g.BAStage.isBusy()) return;
-      walking.stop();
-      const live = latest.current;
-      const saved = live.commit(J.bookAction(live.profile, {
-        pos: walking.pos,
-        currentNode: selected.id
-      }));
-      if (saved.ok) onOpen(walking.element.current?.querySelector('[data-node="' + selected.id + '"]'));
+        flag: key
+      }) : null;
     }
-    const K = g.BABookCatalog,
-      map = K.data.maps[0];
-    const dialogue = intro ? {
-      ...intro,
-      onNext: () => commit(J.bookAction(profile, {
-        [intro.key]: intro.index + 1
-      }))
-    } : null;
-    return /*#__PURE__*/React.createElement(VN.Frame, {
-      mobileFill: true,
-      aspect: 6 / 5,
-      className: dialogue ? 'has-dialog' : '',
-      "data-testid": "journey-map",
-      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.title
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "ba-actions"
-      }, /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.choose,
-        onClick: () => setPanel('team')
-      }, S.chooseShort), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.manual,
-        onClick: () => setPanel('manual')
-      }, S.manualShort), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.backShelf,
-        onClick: onBack
-      }, S.backShelfShort))),
-      stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-        className: "ba-j-map",
-        ref: walking.element,
-        tabIndex: intro ? -1 : 0,
-        "aria-label": S.mapHelp,
-        "data-testid": "walkable-map",
-        onKeyDown: e => {
-          if (e.target !== e.currentTarget) return;
-          if (e.key === 'Enter' && !e.repeat && selected) {
-            e.preventDefault();
-            depart();
-          }
-          if (e.key === 'Escape') {
-            e.preventDefault();
-            setDismissed(near);
-          }
-        },
-        onClick: e => {
-          if (e.target.closest('button,.vn-node-card')) return;
-          const r = e.currentTarget.querySelector('[data-map-world]').getBoundingClientRect();
-          if (!walking.walk(g.BAStageCamera.point(e.clientX, e.clientY, r)) && !intro) notify(S.water);
-        }
-      }, /*#__PURE__*/React.createElement(VN.Camera, {
-        aspect: 6 / 5,
-        focus: walking.pos,
-        worldProps: {
-          'data-map-world': true
-        }
-      }, /*#__PURE__*/React.createElement("img", {
-        className: "ba-j-map-image",
-        src: g.BAAssets.sanguoMap,
-        alt: "",
-        draggable: "false"
-      }), showFactions && /*#__PURE__*/React.createElement("div", {
-        className: "ba-j-factions",
-        "aria-label": S.later
-      }, /*#__PURE__*/React.createElement("svg", {
-        className: "ba-j-route",
-        viewBox: "0 0 1200 1000",
-        "aria-hidden": "true"
-      }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
-        id: "journey-land"
-      }, /*#__PURE__*/React.createElement("path", {
-        d: map.landClip
-      }))), /*#__PURE__*/React.createElement("g", {
-        clipPath: "url(#journey-land)"
-      }, K.data.factions.map(f => /*#__PURE__*/React.createElement("polygon", {
-        key: f.id,
-        points: f.outline.map(K.point).map(p => p.join(',')).join(' '),
-        fill: f.color,
-        opacity: ".24"
-      })))), /*#__PURE__*/React.createElement("span", {
-        className: "wei"
+    function useReduced() {
+      const [v, set] = React.useState(() => g.matchMedia?.('(prefers-reduced-motion: reduce)').matches || false);
+      React.useEffect(() => {
+        const m = g.matchMedia?.('(prefers-reduced-motion: reduce)'),
+          fn = () => set(m.matches);
+        m?.addEventListener('change', fn);
+        return () => m?.removeEventListener('change', fn);
+      }, []);
+      return v;
+    }
+    function Lines({
+      lines
+    }) {
+      return /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-lines"
       }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.wei
-      })), /*#__PURE__*/React.createElement("span", {
-        className: "shu"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.shu
-      })), /*#__PURE__*/React.createElement("span", {
-        className: "wu"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.wu
-      }))), !intro && nodes.map(n => /*#__PURE__*/React.createElement("button", {
-        type: "button",
-        key: n.id,
-        "data-node": n.id,
-        className: 'ba-j-node ' + (n.id === 'tao_yuan' && done ? 'completed' : ''),
-        style: {
-          left: n.pos[0] + '%',
-          top: n.pos[1] + '%'
-        },
-        onClick: () => {
-          setDismissed(null);
-          walking.walk(n.pos);
-        },
-        "aria-label": n.title
-      }, /*#__PURE__*/React.createElement("span", {
-        "aria-hidden": "true"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: n.id === 'tao_yuan' && done ? '▰' : '•'
-      })), /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: n.place
-      })))), /*#__PURE__*/React.createElement("div", {
-        className: "ba-j-place-labels"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: map.labels.map(l => {
-          const p = K.point(l.coords);
-          return /*#__PURE__*/React.createElement("span", {
-            key: l.name,
-            style: {
-              left: p[0] / 12 + '%',
-              top: p[1] / 10 + '%'
-            }
-          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-            value: l.name
-          }));
-        })
-      })), /*#__PURE__*/React.createElement(Party, {
-        pos: walking.pos,
-        moving: walking.moving,
-        companion: b.companion
-      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: selected && !intro && /*#__PURE__*/React.createElement("section", {
-          className: "vn-node-card",
-          "data-testid": "node-detail"
-        }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: selected.title
-        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: selected.summary
-        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: done && selected.id === 'tao_yuan' && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-            text: S.done + '・' + S.replayReward
-          }))
-        }), /*#__PURE__*/React.createElement("div", {
-          className: "ba-actions"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: selected.implemented ? /*#__PURE__*/React.createElement(Button, {
-            kind: "primary",
-            "data-testid": "depart",
-            onClick: depart
-          }, done ? S.replay : profile.cases[J.caseKey] ? S.resume : S.depart) : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-            value: S.soon
-          }))
-        }), /*#__PURE__*/React.createElement(Button, {
-          kind: "ghost",
-          "data-testid": "node-dismiss",
-          onClick: () => {
-            setDismissed(near);
-            walking.element.current?.focus();
-          }
-        }, S.wander)))
-      })), /*#__PURE__*/React.createElement(Portraits, {
-        dialogue: dialogue,
-        profile: profile
-      })),
-      footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
-        profile: profile,
-        notify: notify,
-        onHistory: setHistory
-      })) : /*#__PURE__*/React.createElement("div", {
-        className: "vn-dock"
-      }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-        text: S.mapHelp
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "ba-actions"
-      }, /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        onClick: () => setPanel('options')
-      }, S.mapOptions), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "data-testid": "legacy-stories",
-        onClick: onLegacy
-      }, S.legacy))),
-      sheet: history ? /*#__PURE__*/React.createElement(History, {
-        lines: history,
-        onClose: () => setHistory(null)
-      }) : panel && /*#__PURE__*/React.createElement(Sheet, {
-        title: panel === 'team' ? S.choose : panel === 'manual' ? S.manual : S.mapOptions,
-        onClose: () => setPanel(null)
-      }, panel === 'team' ? /*#__PURE__*/React.createElement(Companion, {
-        profile: profile,
-        commit: commit
-      }) : panel === 'manual' ? /*#__PURE__*/React.createElement(ManualContent, {
-        profile: profile
-      }) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("label", {
-        className: "ba-check"
-      }, /*#__PURE__*/React.createElement("input", {
-        type: "checkbox",
-        checked: showFactions,
-        onChange: e => setShowFactions(e.target.checked)
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.later
-      })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.stories
-      })), D.nodes.map((n, i) => /*#__PURE__*/React.createElement("p", {
-        key: n.id
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: i === 0 ? n.title : i === 1 && done ? n.title : S.locked
-      }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: i === 0 && done ? S.done : i === 1 && done ? S.soon : ''
-      }))), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.positions
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.legacyNote
-      }))))
-    });
-  }
-  function Sprite({
-    who,
-    className = ''
-  }) {
-    const art = g.BAJourneyArt.characters[who];
-    const clip = React.useId(),
-      frame = G.rect(art);
-    const source = art.asset ? g.BAAssets[art.asset] : who === 'hero1' ? g.BAAssets.hero1 : g.BAAssets.journey[who];
-    return /*#__PURE__*/React.createElement("svg", {
-      className: className,
-      "data-character-art": who,
-      viewBox: frame.join(' '),
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
-      id: clip
-    }, /*#__PURE__*/React.createElement("rect", {
-      x: frame[0],
-      y: frame[1],
-      width: frame[2],
-      height: frame[3]
-    }))), /*#__PURE__*/React.createElement("image", {
-      href: source,
-      width: G.size(art)[0],
-      height: G.size(art)[1],
-      clipPath: 'url(#' + clip + ')'
-    }));
-  }
-  function SceneArt({
-    scene
-  }) {
-    return /*#__PURE__*/React.createElement("img", {
-      className: "ba-j-scene-background",
-      src: g.BAAssets.journey[g.BAJourneyArt.scenes[scene].background],
-      alt: "",
-      draggable: "false"
-    });
-  }
-  function Scene({
-    scene,
-    profile,
-    onHotspot,
-    speaker
-  }) {
-    const f = J.flow(profile),
-      art = g.BAJourneyArt.scenes[scene],
-      isMarket = scene === 'market';
-    const helped = !!f.answers.helper?.passed,
-      locked = id => id === 'child' && helped || id === 'guan' && J.stages.indexOf(f.stage) < J.stages.indexOf('records');
-    const labelFor = id => id === 'child' && helped ? S.helped : C.hotspotLabels[id];
-    const accessibleLabel = id => id === 'child' && helped ? S.childHelped : C.hotspots[id];
-    const actorStyle = actor => ({
-      left: actor.x + '%',
-      top: actor.foot + '%',
-      height: actor.height + '%',
-      aspectRatio: G.aspect(g.BAJourneyArt.characters[actor.who || J.book(profile).companion || J.companions[0]])
-    });
-    const focusActor = art.cast.find(a => a.who === speaker) || art.hero;
-    const focus = [focusActor.x, focusActor.foot - focusActor.height / 2];
-    return /*#__PURE__*/React.createElement("section", {
-      className: "ba-j-scene-section"
-    }, /*#__PURE__*/React.createElement(VN.Camera, {
-      aspect: 1672 / 941,
-      focus: focus
-    }, /*#__PURE__*/React.createElement("div", {
-      className: 'ba-j-scene ' + scene,
-      "data-testid": 'scene-' + scene
-    }, /*#__PURE__*/React.createElement(SceneArt, {
-      scene: scene
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: art.cast.map(actor => {
-        const label = actor.hotspot ? labelFor(actor.hotspot) : S[actor.who];
-        const content = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Sprite, {
-          who: actor.who
-        }), /*#__PURE__*/React.createElement("span", {
-          className: "ba-j-actor-label"
-        }, /*#__PURE__*/React.createElement(Txt, {
-          text: label
-        })));
-        return actor.hotspot ? /*#__PURE__*/React.createElement("button", {
-          type: "button",
-          key: actor.who,
-          className: "ba-j-scene-actor interactive",
-          "data-scene-target": actor.hotspot,
-          "aria-label": accessibleLabel(actor.hotspot),
-          disabled: locked(actor.hotspot),
-          style: actorStyle(actor),
-          onClick: () => onHotspot(actor.hotspot)
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: content
-        })) : /*#__PURE__*/React.createElement("div", {
-          key: actor.who,
-          className: "ba-j-scene-actor",
-          style: actorStyle(actor)
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: content
-        }));
-      })
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "ba-j-scene-actor ba-j-scene-hero",
-      style: actorStyle(art.hero)
-    }, /*#__PURE__*/React.createElement(Sprite, {
-      who: J.book(profile).companion || J.companions[0]
-    })), /*#__PURE__*/React.createElement("div", {
-      className: "ba-j-scene-stone",
-      style: {
-        left: art.hero.x + 7 + '%',
-        top: art.hero.foot + '%'
-      },
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-      size: 40
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: art.objects.map(object => /*#__PURE__*/React.createElement("button", {
-        type: "button",
-        className: "ba-j-object-target",
-        "data-scene-target": object.id,
-        key: object.id,
-        style: {
-          left: object.x + '%',
-          top: object.y + '%'
-        },
-        "aria-label": C.hotspots[object.id],
-        onClick: () => onHotspot(object.id)
-      }, /*#__PURE__*/React.createElement("span", {
-        "aria-hidden": "true"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: object.id === 'notice' ? '▤' : '⌁'
-      })), /*#__PURE__*/React.createElement(Txt, {
-        text: C.hotspotLabels[object.id]
-      })))
-    }))));
-  }
-  function OathPicture({
-    index
-  }) {
-    return /*#__PURE__*/React.createElement("svg", {
-      className: "ba-j-oath-picture",
-      viewBox: "0 0 100 65",
-      "aria-hidden": "true"
-    }, index === 1 ? /*#__PURE__*/React.createElement("g", {
-      fill: "#858e72"
-    }, [24, 50, 76].map(x => /*#__PURE__*/React.createElement("g", {
-      key: x
-    }, /*#__PURE__*/React.createElement("circle", {
-      cx: x,
-      cy: "16",
-      r: "9"
-    }), /*#__PURE__*/React.createElement("path", {
-      d: 'M' + (x - 10) + ' 29h20v28h-20z'
-    })))) : index === 2 ? /*#__PURE__*/React.createElement("g", {
-      fill: "none",
-      stroke: "#aa8255",
-      strokeWidth: "10",
-      strokeLinecap: "round"
-    }, /*#__PURE__*/React.createElement("path", {
-      d: "M12 18L43 42L58 29M88 18L57 42L42 29"
-    })) : /*#__PURE__*/React.createElement("g", {
-      fill: "#8d9d7c"
-    }, /*#__PURE__*/React.createElement("path", {
-      d: "M20 34L50 10L80 34V57H20z"
-    }), /*#__PURE__*/React.createElement("path", {
-      d: "M44 38h14v19H44z",
-      fill: "#e9ddc2"
-    })));
-  }
-  function StoryQuestion({
-    profile,
-    commit,
-    qkey,
-    onComplete,
-    notify
-  }) {
-    const f = J.flow(profile),
-      q = J.question(profile, qkey),
-      answer = f.answers[qkey],
-      hints = f.hints[qkey] || 0;
-    const [selected, setSelected] = React.useState(q.type === 'order' ? [] : null);
-    const submit = () => {
-      const action = J.answer(profile, qkey, selected);
-      if (action) commit(action);
-    };
-    const hint = () => commit(J.flowAction(profile, {
-      hints: {
-        ...f.hints,
-        [qkey]: Math.min(3, hints + 1)
-      }
-    }));
-    return /*#__PURE__*/React.createElement(g.BAReading.Provider, {
-      guard: q.guard || ''
-    }, /*#__PURE__*/React.createElement("section", {
-      className: "ba-story-paper ba-j-question",
-      "data-testid": "story-question",
-      "data-story-question": qkey
-    }, /*#__PURE__*/React.createElement("p", {
-      className: "ba-kicker"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.evidence
-    })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(Txt, {
-      text: q.prompt,
-      question: true
-    })), /*#__PURE__*/React.createElement("p", {
-      className: "ba-j-stimulus"
-    }, /*#__PURE__*/React.createElement(Txt, {
-      text: q.stimulus
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: q.figure === 'coins' && /*#__PURE__*/React.createElement("div", {
-        className: "ba-j-coins",
-        "aria-label": q.stimulus
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: [10, 5, 1].map(n => /*#__PURE__*/React.createElement("span", {
-          key: n
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: n
-        }), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: S.yuan
-        }))))
-      }))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: q.type === 'order' && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.order
-      }))
-    }), /*#__PURE__*/React.createElement("div", {
-      className: 'ba-options ' + (q.type === 'order' ? 'ba-j-order' : '')
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: q.options.map((opt, i) => /*#__PURE__*/React.createElement("button", {
-        key: i,
-        type: "button",
-        className: 'ba-option ' + ((q.type === 'order' ? selected.includes(i) : selected === i) ? 'selected' : ''),
-        "data-story-option": i,
-        disabled: answer?.passed,
-        "aria-pressed": q.type === 'order' ? selected.includes(i) : selected === i,
-        onClick: () => setSelected(q.type === 'order' ? selected.includes(i) ? selected.filter(n => n !== i) : [...selected, i] : i)
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: q.type === 'order' && /*#__PURE__*/React.createElement("b", {
-          className: "ba-j-order-number"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: selected.includes(i) ? selected.indexOf(i) + 1 : '○'
-        }))
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: q.figure === 'oath' && J.band(f.grade) === 'low' && /*#__PURE__*/React.createElement(OathPicture, {
-          index: i
-        })
-      }), /*#__PURE__*/React.createElement(Txt, {
-        text: opt
-      })))
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: q.type === 'order' && selected.length > 0 && /*#__PURE__*/React.createElement("div", {
-        className: "ba-j-ordered",
-        "aria-live": "polite"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: selected.map(i => /*#__PURE__*/React.createElement("p", {
+        value: lines.map((line, i) => /*#__PURE__*/React.createElement("p", {
           key: i
         }, /*#__PURE__*/React.createElement(Txt, {
-          text: q.options[i]
+          text: line
         })))
-      }))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: answer && /*#__PURE__*/React.createElement("p", {
-        role: "status",
-        className: 'ba-feedback ' + (answer.passed ? 'success' : '')
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: answer.passed ? S.correct : S.retry
-      }))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: answer?.passed && /*#__PURE__*/React.createElement("p", {
-        "data-story-evidence": g.BALearning.storyEvidenceLevel(answer)
-      }, /*#__PURE__*/React.createElement(Txt, {
-        text: S.evidenceLevels[g.BALearning.storyEvidenceLevel(answer)]
-      }))
-    }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: Array.from({
-        length: hints
-      }, (_, i) => /*#__PURE__*/React.createElement("div", {
-        className: "ba-hint",
-        key: i
-      }, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.hintLabels[i]
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
-        text: q.hints[i]
-      }))))
-    }), /*#__PURE__*/React.createElement("div", {
-      className: "ba-actions"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: answer?.passed ? /*#__PURE__*/React.createElement(Button, {
-        kind: "primary",
-        "data-testid": "story-continue",
-        onClick: onComplete
-      }, S.continue) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
-        kind: "primary",
-        "data-testid": "story-submit",
-        disabled: q.type === 'order' ? selected.length !== q.options.length : selected === null,
-        onClick: submit
-      }, S.submit), q.type === 'order' && /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        onClick: () => setSelected([])
-      }, S.reset), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        disabled: hints === 3,
-        "data-testid": "story-hint",
-        onClick: hint
-      }, S.hint))
-    }), /*#__PURE__*/React.createElement(Button, {
-      kind: "ghost",
-      onClick: () => {
-        if (q.guard) {
-          notify(S.guarded);
-          return;
-        }
-        if (!g.BAPlatform.speech.speak(q.prompt + '。' + q.stimulus).ok) notify(S.voiceUnavailable);
-      }
-    }, S.listen))));
-  }
-  function Card() {
-    return /*#__PURE__*/React.createElement("section", {
-      className: "ba-card ba-j-earned",
-      "data-testid": "liu-card"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "ba-j-card-art"
-    }, /*#__PURE__*/React.createElement(Sprite, {
-      who: "liu"
-    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
-      className: "ba-kicker"
-    }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.earned
-    })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.card.name
-    })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.card.quote
-    })), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.card.note
-    }))));
-  }
-  function Sources() {
-    return /*#__PURE__*/React.createElement("section", {
-      className: "ba-story-paper"
-    }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: S.source
-    })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.sources.map((s, i) => /*#__PURE__*/React.createElement("div", {
-        className: "ba-record",
-        key: i
-      }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: s.title
-      })), /*#__PURE__*/React.createElement(Lines, {
-        lines: s.lines
-      })))
-    }));
-  }
-  function Manual({
-    profile,
-    onBack
-  }) {
-    return /*#__PURE__*/React.createElement(g.BABookStage.Panel, {
-      title: S.manual,
-      testId: "journey-manual",
-      aspect: 6 / 5,
-      onBack: onBack,
-      stage: /*#__PURE__*/React.createElement("img", {
-        className: "ba-book-stage-map",
-        src: g.BAAssets.sanguoMap,
-        alt: ""
-      })
-    }, /*#__PURE__*/React.createElement(ManualContent, {
-      profile: profile
-    }));
-  }
-  function Case({
-    profile,
-    commit,
-    notify,
-    onBack,
-    onExit,
-    changeScene
-  }) {
-    const f = J.flow(profile),
-      [panel, setPanel] = React.useState(null),
-      [closed, setClosed] = React.useState(false),
-      [history, setHistory] = React.useState(null),
-      [busy, setBusy] = React.useState(false),
-      [panelLine, setPanelLine] = React.useState(0),
-      c = profile.cases[J.caseKey];
-    React.useEffect(() => {
-      setClosed(false);
-      setPanel(null);
-      setHistory(null);
-    }, [f.stage]);
-    const go = stage => {
-      if (g.BAStage.isBusy()) return;
-      const action = J.advance(profile, stage),
-        after = () => {
-          setPanel(null);
-          setClosed(false);
-        };
-      if (!action) return;
-      if (g.BAStage.scene(stage) !== g.BAStage.scene(f.stage)) return changeScene(stage, after);
-      if (commit(action).ok) after();
-    };
-    const scene = f.stage === 'tavern' ? 'tavern' : ['garden', 'oath', 'ending', 'complete'].includes(f.stage) ? 'garden' : 'market';
-    const open = id => {
-      setPanelLine(0);
-      if (id === 'child') {
-        if (f.stage === 'market' && !f.answers.helper?.passed) {
-          setPanel('child');
-          setClosed(false);
-        }
-        return;
-      }
-      if (['notice', 'shoes'].includes(id) && f.stage === 'records') {
-        const record = id === 'notice' ? 'E1' : 'E2';
-        commit(J.flowAction(profile, {
-          records: [...new Set([...f.records, record])]
-        }));
-      }
-      setPanel(id);
-    };
-    function practice(n) {
-      try {
-        const sid = J.practiceId(profile, n),
-          {
-            value,
-            learning
-          } = g.BAAppComponents.createSession(profile, {
-            id: sid,
-            kind: 'book-practice',
-            caseId: C.id
-          });
-        const next = J.advance(profile, 'practice' + n);
-        if (!next) return;
-        const sessions = {
-          ...profile.sessions,
-          [sid]: value,
-          [next.sessionId]: next.value
-        };
-        commit({
-          type: 'UPDATE_PROGRESS',
-          progress: {
-            sessions,
-            ...(learning ? {
-              learning
-            } : {})
-          }
-        });
-      } catch (e) {
-        console.error('Book practice unavailable', e);
-        notify(g.BAStrings.learning.noQuestion);
-      }
+      }));
     }
-    function finish() {
-      if (busy || !J.ready(profile)) return;
-      setBusy(true);
-      let current = profile;
-      for (let step = c.step; step < 5; step++) {
-        const r = commit({
-          type: 'ADVANCE_CASE',
-          bookId: D.bookId,
-          caseId: C.id,
-          fromStep: step
-        });
-        if (!r.ok) {
-          setBusy(false);
-          return;
-        }
-        if (r.profile) current = r.profile;
-      }
-      const r = commit({
-        type: 'COMPLETE_CASE',
-        bookId: D.bookId,
-        caseId: C.id
+    function Avatar({
+      who = J.lead
+    }) {
+      if (who === 'stone') return /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+        size: 60
       });
-      if (r.ok) {
-        current = r.profile || current;
-        commit(J.flowAction(current, {
-          stage: 'complete'
-        }));
-      }
-      setBusy(false);
+      const historical = g.BAJourneyArt.characters[who];
+      if (historical?.avatar) return /*#__PURE__*/React.createElement("svg", {
+        className: "ba-j-avatar ba-j-history-avatar",
+        "data-portrait": who,
+        "aria-hidden": "true",
+        viewBox: G.rect(historical, 'avatar').join(' ')
+      }, /*#__PURE__*/React.createElement("image", {
+        href: historical.asset ? g.BAAssets[historical.asset] : g.BAAssets.journey[who],
+        width: G.size(historical)[0],
+        height: G.size(historical)[1]
+      }));
+      const crop = {
+        hero1: [145, 10, 230],
+        hero2: [445, 0, 230],
+        hero3: [785, 0, 280],
+        hero4: [1163, 25, 244]
+      }[who];
+      if (crop) return /*#__PURE__*/React.createElement("svg", {
+        className: "ba-j-avatar",
+        "aria-hidden": "true",
+        viewBox: crop[0] + ' ' + crop[1] + ' ' + crop[2] + ' ' + crop[2]
+      }, /*#__PURE__*/React.createElement("image", {
+        href: g.BAAssets.team,
+        width: "1536",
+        height: "1024"
+      }));
+      return /*#__PURE__*/React.createElement("div", {
+        className: 'ba-j-portrait ' + who,
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement("i", null), /*#__PURE__*/React.createElement("b", null));
     }
-    const presentation = f.presentation || {};
-    const sequence = f.stage === 'market' && !f.answers.helper?.passed ? 'helperIntro' : f.stage === 'fade1' ? 'helperEnd' : f.stage === 'notice' ? 'liu' : f.stage === 'garden' ? 'garden' : f.stage === 'ending' ? 'ending' : null;
-    const lines = sequence ? C.dialogues[sequence] : null,
-      index = sequence ? presentation[sequence] || 0 : 0;
-    let dialogue = f.stage === 'tavern' && f.dialog < C.tavern.length ? {
-      lines: C.tavern,
-      index: f.dialog,
-      onNext: () => commit(J.flowAction(profile, {
-        dialog: f.dialog + 1
-      }))
-    } : lines && index < lines.length ? {
+    const VN = g.BAVisualNovel;
+    function MapCamera({
+      children,
+      focus,
+      worldProps
+    }) {
+      const box = VN.useStage();
+      return /*#__PURE__*/React.createElement(VN.Camera, {
+        aspect: D.placeholder && box.mobile ? box.width / box.height : D.aspect || 6 / 5,
+        focus: focus,
+        worldProps: worldProps
+      }, children);
+    }
+    const normalize = value => Array.isArray(value) ? {
+      speaker: value[0],
+      text: value[1],
+      mood: 'normal'
+    } : value;
+    const resolve = (value, companion) => {
+      const line = normalize(value);
+      return {
+        ...line,
+        speaker: line.speaker === 'lead' ? J.lead : ['partner', 'companion'].includes(line.speaker) ? companion : line.speaker
+      };
+    };
+    const role = who => who === 'narrator' ? '' : S.roles[who] || (who?.startsWith('hero') ? S.teamRole : S.storyRole);
+    function Sheet({
+      title,
+      onClose,
+      children,
+      testId
+    }) {
+      return /*#__PURE__*/React.createElement(VN.Sheet, {
+        title: /*#__PURE__*/React.createElement(Txt, {
+          text: title
+        }),
+        label: title,
+        closeLabel: /*#__PURE__*/React.createElement(Txt, {
+          text: S.close
+        }),
+        onClose: onClose,
+        testId: testId
+      }, children);
+    }
+    function Dialog({
       lines,
       index,
-      onNext: () => commit(J.flowAction(profile, {
-        presentation: {
-          ...presentation,
-          [sequence]: index + 1
-        }
-      }))
-    } : null;
-    if (['zhang', 'guan'].includes(panel)) {
-      const npcLines = panel === 'zhang' ? C.dialogues.zhang : [normalize(C.tavern[2])];
-      dialogue = {
-        lines: npcLines,
-        index: panelLine,
-        onNext: () => {
-          if (panelLine + 1 < npcLines.length) setPanelLine(panelLine + 1);else setPanel(null);
-        }
-      };
-    }
-    const question = f.stage === 'market' ? 'helper' : f.stage === 'notice' ? 'notice' : f.stage === 'garden' ? 'conclusion' : f.stage === 'oath' ? 'oath' : null;
-    const nextStage = {
-      helper: 'fade1',
-      notice: 'fade2',
-      conclusion: 'oath',
-      oath: 'ending'
-    };
-    let content = null;
-    if (!dialogue) {
-      if (question && (f.stage !== 'market' || panel === 'child')) content = /*#__PURE__*/React.createElement(StoryQuestion, {
-        key: question,
-        profile: profile,
-        commit: commit,
-        qkey: question,
-        notify: notify,
-        onComplete: () => go(nextStage[question])
+      onNext,
+      profile,
+      companion,
+      notify,
+      onHistory
+    }) {
+      const resolved = lines.map(l => resolve(l, companion || J.book(profile).companion || J.companions[0]));
+      return /*#__PURE__*/React.createElement(VN.DialogueBox, {
+        lines: resolved,
+        index: index,
+        onNext: onNext,
+        renderText: text => /*#__PURE__*/React.createElement(Txt, {
+          text: text
+        }),
+        renderAvatar: who => /*#__PURE__*/React.createElement(Avatar, {
+          who: who
+        }),
+        name: who => S[who] || S.companion,
+        role: role,
+        copy: S,
+        onSpeak: text => {
+          if (!g.BAPlatform.speech.speak(text).ok) notify(S.voiceUnavailable);
+        },
+        onHistory: () => onHistory(resolved.slice(0, index + 1))
       });
-      if (['fade1', 'fade2'].includes(f.stage)) content = /*#__PURE__*/React.createElement("section", {
-        className: "ba-j-faded ba-story-paper"
+    }
+    function History({
+      lines,
+      onClose
+    }) {
+      return /*#__PURE__*/React.createElement(Sheet, {
+        title: S.history,
+        onClose: onClose,
+        testId: "dialog-history-sheet"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "vn-history"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: lines.map((l, i) => /*#__PURE__*/React.createElement("article", {
+          key: i
+        }, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(Txt, {
+          text: S[l.speaker] || S.companion
+        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+          text: l.text
+        }))))
+      })));
+    }
+    function Bust({
+      who,
+      side,
+      speaking
+    }) {
+      const art = g.BAJourneyArt.characters[who],
+        clip = React.useId(),
+        stage = VN.useStage();
+      if (who === 'narrator') return null;
+      if (who === 'stone') return /*#__PURE__*/React.createElement("div", {
+        className: 'vn-bust stone ' + side + (speaking ? ' speaking' : ''),
+        "data-bust": who
       }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
-        size: 60
-      }), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.practice
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: profile.grade <= 2 ? S.fadeLow : S.fade
-      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: S.practiceNote
-      })), /*#__PURE__*/React.createElement(Button, {
-        kind: "primary",
-        "data-testid": "start-practice",
-        onClick: () => practice(f.stage === 'fade1' ? 1 : 2)
-      }, S.startPractice));
-      if (['practice1', 'practice2'].includes(f.stage)) content = /*#__PURE__*/React.createElement(g.BAAppComponents.SessionPlayer, {
-        profile: profile,
-        commit: commit,
-        notify: notify,
-        sessionId: J.practiceId(profile, f.stage === 'practice1' ? 1 : 2),
-        onComplete: () => go(f.stage === 'practice1' ? 'records' : 'tavern')
-      });
-      if (['ending', 'complete'].includes(f.stage)) content = /*#__PURE__*/React.createElement(React.Fragment, null, (f.stage === 'complete' || c.status === 'completed') && /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null), f.stage === 'ending' && c.status !== 'completed' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: profile.rewardedCases.includes(J.caseKey) ? S.replayReward : S.reward
-      })), /*#__PURE__*/React.createElement(Button, {
-        kind: "primary",
-        disabled: busy,
-        "data-testid": "collect-card",
-        onClick: finish
-      }, S.collect)) : /*#__PURE__*/React.createElement(Button, {
-        kind: "primary",
-        "data-testid": "leave-book",
-        onClick: onExit
-      }, g.BATravelCopy.leave));
+        size: 180
+      }));
+      if (!art) return /*#__PURE__*/React.createElement("div", {
+        className: 'vn-bust ' + (side || 'right') + (speaking ? ' speaking' : ''),
+        "data-bust": who
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-clock-nameplate"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: S[who] || who
+      })));
+      const frame = G.rect(art);
+      frame[3] *= .62;
+      const source = art.asset ? g.BAAssets[art.asset] : g.BAAssets.journey[who];
+      const ratio = frame[2] / frame[3],
+        height = Math.min(stage.height * (speaking ? art.talkScale || .85 : .7), stage.width * .94 / ratio);
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          height,
+          width: height * ratio
+        },
+        className: 'vn-bust ' + (side || art.talkSide || 'right') + (speaking ? ' speaking' : ''),
+        "data-bust": who,
+        "data-mood": "normal"
+      }, /*#__PURE__*/React.createElement("svg", {
+        viewBox: frame.join(' ')
+      }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
+        id: clip
+      }, /*#__PURE__*/React.createElement("rect", {
+        x: frame[0],
+        y: frame[1],
+        width: frame[2],
+        height: frame[3]
+      }))), /*#__PURE__*/React.createElement("image", {
+        href: source,
+        width: G.size(art)[0],
+        height: G.size(art)[1],
+        clipPath: 'url(#' + clip + ')'
+      })));
     }
-    let auxiliary = null;
-    if (panel === 'manual') auxiliary = /*#__PURE__*/React.createElement(ManualContent, {
-      profile: profile
-    });else if (panel === 'team') auxiliary = /*#__PURE__*/React.createElement(Companion, {
-      profile: profile,
-      commit: commit
-    });else if (panel && !['child', 'zhang', 'guan'].includes(panel)) auxiliary = /*#__PURE__*/React.createElement("section", {
-      className: "ba-story-paper",
-      "data-testid": "scene-record"
-    }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-      value: C.hotspots[panel]
-    })), /*#__PURE__*/React.createElement(Lines, {
-      lines: panel === 'notice' ? C.notice : panel === 'shoes' ? C.records[1].lines : panel === 'zhang' ? C.zhang : [normalize(C.tavern[2]).text]
-    }));
-    const closePanel = () => {
-      setPanel(null);
-      setClosed(true);
-    };
-    const sheet = history ? /*#__PURE__*/React.createElement(History, {
-      lines: history,
-      onClose: () => setHistory(null)
-    }) : auxiliary ? /*#__PURE__*/React.createElement(Sheet, {
-      title: panel === 'manual' ? S.manual : panel === 'team' ? S.choose : C.hotspots[panel],
-      onClose: closePanel
-    }, auxiliary) : content && !closed ? /*#__PURE__*/React.createElement(Sheet, {
-      title: question ? S.evidence : ['practice1', 'practice2', 'fade1', 'fade2'].includes(f.stage) ? S.practice : S.source,
-      onClose: closePanel
-    }, content) : null;
-    const helped = !!f.answers.helper?.passed,
-      locked = id => id === 'child' && helped || id === 'guan' && J.stages.indexOf(f.stage) < J.stages.indexOf('records');
-    return /*#__PURE__*/React.createElement(VN.Frame, {
-      mobileFill: true,
-      aspect: 1672 / 941,
-      className: 'ba-j-case ' + (dialogue ? 'has-dialog' : ''),
-      "data-testid": "journey-case",
-      "data-journey-stage": f.stage,
-      header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: C.title
+    function Portraits({
+      dialogue,
+      profile
+    }) {
+      if (!dialogue) return null;
+      const partner = J.book(profile).companion || J.companions[0],
+        line = resolve(dialogue.lines[dialogue.index], partner),
+        other = line.speaker === partner ? J.lead : partner,
+        side = g.BAJourneyArt.characters[line.speaker]?.talkSide || line.side || 'right';
+      return /*#__PURE__*/React.createElement("div", {
+        className: "vn-portraits",
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(Bust, {
+        who: other,
+        side: side === 'left' ? 'right' : 'left',
+        speaking: false
+      }), /*#__PURE__*/React.createElement(Bust, {
+        key: line.speaker,
+        who: line.speaker,
+        side: side,
+        speaking: true
+      }));
+    }
+    function Companion({
+      profile,
+      commit
+    }) {
+      const b = J.book(profile);
+      return /*#__PURE__*/React.createElement("section", {
+        className: "ba-card ba-j-companion"
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.choose
+      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.chooseHint
       })), /*#__PURE__*/React.createElement("div", {
         className: "ba-actions"
-      }, /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.choose,
-        onClick: () => setPanel('team')
-      }, S.chooseShort), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.manual,
-        onClick: () => setPanel('manual')
-      }, S.manualShort), /*#__PURE__*/React.createElement(Button, {
-        kind: "ghost",
-        "aria-label": S.backMap,
-        onClick: onBack
-      }, S.backMapShort))),
-      stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Scene, {
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: J.companions.map(id => /*#__PURE__*/React.createElement(Button, {
+          key: id,
+          kind: "ghost",
+          "aria-pressed": b.companion === id,
+          "data-companion": id,
+          onClick: () => commit(J.bookAction(profile, {
+            companion: id
+          }))
+        }, /*#__PURE__*/React.createElement(Avatar, {
+          who: id
+        }), S[id]))
+      })));
+    }
+    function Entry({
+      profile,
+      commit,
+      onDone,
+      notify
+    }) {
+      const b = J.book(profile),
+        reduced = useReduced(),
+        [history, setHistory] = React.useState(null),
+        line = b.entryLine || 0;
+      const done = () => {
+        if (!g.BAStage.isBusy()) return onDone();
+      };
+      React.useEffect(() => {
+        if (b.entrySeen && !reduced && b.companion) {
+          const id = setTimeout(done, 1500);
+          return () => clearTimeout(id);
+        }
+      }, [b.entrySeen, reduced, b.companion]);
+      if (!b.companion) return /*#__PURE__*/React.createElement("main", {
+        className: "ba-page narrow",
+        "data-testid": "book-entry"
+      }, /*#__PURE__*/React.createElement(Heading, {
+        title: D.title
+      }), /*#__PURE__*/React.createElement(Companion, {
+        profile: profile,
+        commit: commit
+      }));
+      const dialogue = !b.entrySeen ? {
+        lines: D.entry,
+        index: line,
+        onNext: () => {
+          if (line + 1 < D.entry.length) commit(J.bookAction(profile, {
+            entryLine: line + 1
+          }));else done();
+        }
+      } : null;
+      return /*#__PURE__*/React.createElement(VN.Frame, {
+        mobileFill: true,
+        "data-testid": "book-entry",
+        "data-repeat": b.entrySeen,
+        header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: D.title
+        })), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "data-testid": "entry-skip",
+          onClick: done
+        }, reduced ? S.goMap : S.skip)),
+        stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(g.BABookTravel.Scene, {
+          profile: profile,
+          direction: "in",
+          reduced: reduced,
+          volumeId: D.volumeId
+        }), /*#__PURE__*/React.createElement(Portraits, {
+          dialogue: dialogue,
+          profile: profile
+        })),
+        footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
+          profile: profile,
+          notify: notify,
+          onHistory: setHistory
+        })) : /*#__PURE__*/React.createElement("div", {
+          className: "vn-dock"
+        }, /*#__PURE__*/React.createElement(Txt, {
+          text: S.goMap
+        })),
+        sheet: tutorial(profile, commit, notify, ['enter']) || history && /*#__PURE__*/React.createElement(History, {
+          lines: history,
+          onClose: () => setHistory(null)
+        })
+      });
+    }
+    function Party({
+      pos,
+      moving = false,
+      companion
+    }) {
+      const order = [companion || J.companions[0], J.lead, ...J.companions.filter(id => id !== companion && id !== (companion ? null : J.companions[0]))];
+      return /*#__PURE__*/React.createElement("div", {
+        className: 'ba-j-party ' + (moving ? 'moving' : ''),
+        style: {
+          left: 'clamp(58px, ' + pos[0] + '%, calc(100% - 58px))',
+          top: 'max(58px, ' + pos[1] + '%)'
+        },
+        "data-position": pos.join(','),
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: order.map(id => /*#__PURE__*/React.createElement("span", {
+          key: id,
+          "data-party-member": id
+        }, /*#__PURE__*/React.createElement(Sprite, {
+          who: id
+        })))
+      }), /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+        size: 22
+      }));
+    }
+    function ManualContent({
+      profile
+    }) {
+      const f = J.flow(profile);
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.records
+      })), !f.records.length && /*#__PURE__*/React.createElement(Notice, null, S.empty), C.records.filter(r => f.records.includes(r.id)).map(r => /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper",
+        key: r.id
+      }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: r.name
+      })), /*#__PURE__*/React.createElement(Lines, {
+        lines: r.lines
+      }))), /*#__PURE__*/React.createElement("details", {
+        className: "ba-story-paper"
+      }, /*#__PURE__*/React.createElement("summary", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.background
+      })), /*#__PURE__*/React.createElement(Lines, {
+        lines: D.background.map(l => normalize(l).text)
+      })), profile.rewardedCases.includes(J.caseKey) && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null)));
+    }
+    function Map({
+      profile,
+      commit,
+      notify,
+      onOpen,
+      onLegacy,
+      onBack
+    }) {
+      const b = J.book(profile),
+        reduced = useReduced(),
+        [near, setNear] = React.useState(null),
+        [dismissed, setDismissed] = React.useState(null),
+        [panel, setPanel] = React.useState(null),
+        [history, setHistory] = React.useState(null),
+        [showFactions, setShowFactions] = React.useState(false);
+      const latest = React.useRef({
+        profile,
+        commit
+      });
+      latest.current = {
+        profile,
+        commit
+      };
+      const done = profile.cases[J.caseKey]?.completedRuns > 0,
+        ready = b.intro >= D.background.length && b.discussion >= D.discussion.length,
+        nodes = ready ? D.nodes.slice(0, done ? 2 : 1) : [];
+      const intro = !ready ? b.intro < D.background.length ? {
+        lines: D.background,
+        key: 'intro',
+        index: b.intro
+      } : {
+        lines: D.discussion,
+        key: 'discussion',
+        index: b.discussion
+      } : done && b.after < D.afterCase.length ? {
+        lines: D.afterCase,
+        key: 'after',
+        index: b.after
+      } : null;
+      const walking = g.BAUseMapWalking({
+        initial: b.pos,
+        world: D.navigation,
+        enabled: !intro && !panel && !history,
+        reduced,
+        nodes,
+        onSave: pos => {
+          const live = latest.current;
+          live.commit(J.bookAction(live.profile, {
+            pos
+          }));
+        },
+        onNear: id => {
+          setNear(id);
+          if (!id) setDismissed(null);
+        }
+      });
+      React.useEffect(() => {
+        if (!intro && !panel && !history && walking.element.current) {
+          const node = nodes.find(n => g.BAMapNavigation.distance(n.pos, walking.pos, walking.size()) <= 40);
+          setNear(node?.id || null);
+        }
+      }, [!!intro, panel, history]);
+      const selected = near !== dismissed ? nodes.find(n => n.id === near) : null;
+      function depart() {
+        if (intro || !selected?.implemented || g.BAStage.isBusy()) return;
+        walking.stop();
+        const live = latest.current;
+        const saved = live.commit(J.bookAction(live.profile, {
+          pos: walking.pos,
+          currentNode: selected.id
+        }));
+        if (saved.ok) onOpen(walking.element.current?.querySelector('[data-node="' + selected.id + '"]'));
+      }
+      const K = g.BABookCatalog,
+        map = K.data.maps.find(m => m.id === K.volume(D.volumeId).mapId) || K.data.maps[0],
+        aspect = D.aspect || 6 / 5;
+      const dialogue = intro ? {
+        ...intro,
+        onNext: () => commit(J.bookAction(profile, {
+          [intro.key]: intro.index + 1
+        }))
+      } : null;
+      return /*#__PURE__*/React.createElement(VN.Frame, {
+        mobileFill: true,
+        aspect: D.aspect || 6 / 5,
+        className: dialogue ? 'has-dialog' : '',
+        "data-testid": "journey-map",
+        header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.title
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.choose,
+          onClick: () => setPanel('team')
+        }, S.chooseShort), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.manual,
+          onClick: () => setPanel('manual')
+        }, S.manualShort), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.backShelf,
+          onClick: onBack
+        }, S.backShelfShort))),
+        stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+          className: "ba-j-map",
+          ref: walking.element,
+          tabIndex: intro ? -1 : 0,
+          "aria-label": S.mapHelp,
+          "data-testid": "walkable-map",
+          onKeyDown: e => {
+            if (e.target !== e.currentTarget) return;
+            if (e.key === 'Enter' && !e.repeat && selected) {
+              e.preventDefault();
+              depart();
+            }
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              setDismissed(near);
+            }
+          },
+          onClick: e => {
+            if (e.target.closest('button,.vn-node-card')) return;
+            const r = e.currentTarget.querySelector('[data-map-world]').getBoundingClientRect();
+            if (!walking.walk(g.BAStageCamera.point(e.clientX, e.clientY, r)) && !intro) notify(S.water);
+          }
+        }, /*#__PURE__*/React.createElement(MapCamera, {
+          focus: walking.pos,
+          worldProps: {
+            'data-map-world': true
+          }
+        }, D.placeholder ? /*#__PURE__*/React.createElement("div", {
+          className: "ba-clock-map",
+          "data-placeholder": "clocktower-map"
+        }, /*#__PURE__*/React.createElement("span", {
+          className: "ba-clock-map-label"
+        }, /*#__PURE__*/React.createElement(Txt, {
+          text: S.title
+        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: D.places.filter(p => !nodes.some(n => n.pos[0] === p.pos[0] && n.pos[1] === p.pos[1])).map(p => /*#__PURE__*/React.createElement("button", {
+            type: "button",
+            key: p.id,
+            "data-place": p.id,
+            className: "ba-clock-place",
+            style: {
+              left: p.pos[0] + '%',
+              top: p.pos[1] + '%'
+            },
+            onClick: () => {
+              walking.walk(p.pos);
+              if (ready) notify(S.futurePlace);
+            }
+          }, /*#__PURE__*/React.createElement(Txt, {
+            text: p.name
+          })))
+        })) : /*#__PURE__*/React.createElement("img", {
+          className: "ba-j-map-image",
+          src: g.BAAssets.sanguoMap,
+          alt: "",
+          draggable: "false"
+        }), showFactions && /*#__PURE__*/React.createElement("div", {
+          className: "ba-j-factions",
+          "aria-label": S.later
+        }, /*#__PURE__*/React.createElement("svg", {
+          className: "ba-j-route",
+          viewBox: "0 0 1200 1000",
+          "aria-hidden": "true"
+        }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
+          id: "journey-land"
+        }, /*#__PURE__*/React.createElement("path", {
+          d: map.landClip
+        }))), /*#__PURE__*/React.createElement("g", {
+          clipPath: "url(#journey-land)"
+        }, K.data.factions.map(f => /*#__PURE__*/React.createElement("polygon", {
+          key: f.id,
+          points: f.outline.map(K.point).map(p => p.join(',')).join(' '),
+          fill: f.color,
+          opacity: ".24"
+        })))), /*#__PURE__*/React.createElement("span", {
+          className: "wei"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.wei
+        })), /*#__PURE__*/React.createElement("span", {
+          className: "shu"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.shu
+        })), /*#__PURE__*/React.createElement("span", {
+          className: "wu"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.wu
+        }))), !intro && nodes.map(n => /*#__PURE__*/React.createElement("button", {
+          type: "button",
+          key: n.id,
+          "data-node": n.id,
+          className: 'ba-j-node ' + (n.id === C.id && done ? 'completed' : ''),
+          style: {
+            left: n.pos[0] + '%',
+            top: n.pos[1] + '%'
+          },
+          onClick: () => {
+            setDismissed(null);
+            walking.walk(n.pos);
+          },
+          "aria-label": n.title
+        }, /*#__PURE__*/React.createElement("span", {
+          "aria-hidden": "true"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: n.id === C.id && done ? '▰' : '•'
+        })), /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: n.place
+        })))), /*#__PURE__*/React.createElement("div", {
+          className: "ba-j-place-labels"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: (map.labels || []).map(l => {
+            const p = K.point(l.coords);
+            return /*#__PURE__*/React.createElement("span", {
+              key: l.name,
+              style: {
+                left: p[0] / 12 + '%',
+                top: p[1] / 10 + '%'
+              }
+            }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+              value: l.name
+            }));
+          })
+        })), /*#__PURE__*/React.createElement(Party, {
+          pos: walking.pos,
+          moving: walking.moving,
+          companion: b.companion
+        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: selected && !intro && /*#__PURE__*/React.createElement("section", {
+            className: "vn-node-card",
+            "data-testid": "node-detail"
+          }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: selected.title
+          })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: selected.summary
+          })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: done && selected.id === C.id && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+              text: S.done + '・' + S.replayReward
+            }))
+          }), /*#__PURE__*/React.createElement("div", {
+            className: "ba-actions"
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: selected.implemented ? /*#__PURE__*/React.createElement(Button, {
+              kind: "primary",
+              "data-testid": "depart",
+              onClick: depart
+            }, done ? S.replay : profile.cases[J.caseKey] ? S.resume : S.depart) : /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+              value: S.soon
+            }))
+          }), /*#__PURE__*/React.createElement(Button, {
+            kind: "ghost",
+            "data-testid": "node-dismiss",
+            onClick: () => {
+              setDismissed(near);
+              walking.element.current?.focus();
+            }
+          }, S.wander)))
+        })), /*#__PURE__*/React.createElement(Portraits, {
+          dialogue: dialogue,
+          profile: profile
+        })),
+        footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
+          profile: profile,
+          notify: notify,
+          onHistory: setHistory
+        })) : /*#__PURE__*/React.createElement("div", {
+          className: "vn-dock"
+        }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+          text: S.mapHelp
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          onClick: () => setPanel('options')
+        }, S.mapOptions), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: !D.placeholder && /*#__PURE__*/React.createElement(Button, {
+            kind: "ghost",
+            "data-testid": "legacy-stories",
+            onClick: onLegacy
+          }, S.legacy)
+        }))),
+        sheet: tutorial(profile, commit, notify, ['map', ...(ready ? ['node'] : [])]) || (history ? /*#__PURE__*/React.createElement(History, {
+          lines: history,
+          onClose: () => setHistory(null)
+        }) : panel && /*#__PURE__*/React.createElement(Sheet, {
+          title: panel === 'team' ? S.choose : panel === 'manual' ? S.manual : S.mapOptions,
+          onClose: () => setPanel(null)
+        }, panel === 'team' ? /*#__PURE__*/React.createElement(Companion, {
+          profile: profile,
+          commit: commit
+        }) : panel === 'manual' ? /*#__PURE__*/React.createElement(ManualContent, {
+          profile: profile
+        }) : /*#__PURE__*/React.createElement(React.Fragment, null, !D.placeholder && /*#__PURE__*/React.createElement("label", {
+          className: "ba-check"
+        }, /*#__PURE__*/React.createElement("input", {
+          type: "checkbox",
+          checked: showFactions,
+          onChange: e => setShowFactions(e.target.checked)
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.later
+        })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.stories
+        })), D.nodes.map((n, i) => /*#__PURE__*/React.createElement("p", {
+          key: n.id
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: i === 0 ? n.title : i === 1 && done ? n.title : S.locked
+        }), " ", /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: i === 0 && done ? S.done : i === 1 && done ? S.soon : ''
+        }))), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.positions
+        })), !D.placeholder && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.legacyNote
+        })))))
+      });
+    }
+    function Sprite({
+      who,
+      className = ''
+    }) {
+      const art = g.BAJourneyArt.characters[who];
+      const clip = React.useId(),
+        frame = G.rect(art);
+      const source = art.asset ? g.BAAssets[art.asset] : who === 'hero1' ? g.BAAssets.hero1 : g.BAAssets.journey[who];
+      return /*#__PURE__*/React.createElement("svg", {
+        className: className,
+        "data-character-art": who,
+        viewBox: frame.join(' '),
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("clipPath", {
+        id: clip
+      }, /*#__PURE__*/React.createElement("rect", {
+        x: frame[0],
+        y: frame[1],
+        width: frame[2],
+        height: frame[3]
+      }))), /*#__PURE__*/React.createElement("image", {
+        href: source,
+        width: G.size(art)[0],
+        height: G.size(art)[1],
+        clipPath: 'url(#' + clip + ')'
+      }));
+    }
+    function SceneArt({
+      scene
+    }) {
+      return /*#__PURE__*/React.createElement("img", {
+        className: "ba-j-scene-background",
+        src: g.BAAssets.journey[g.BAJourneyArt.scenes[scene].background],
+        alt: "",
+        draggable: "false"
+      });
+    }
+    function ClockScene({
+      scene,
+      profile,
+      onHotspot
+    }) {
+      const machine = scene === 'tower_machine',
+        f = J.flow(profile),
+        spots = machine ? [['face', 38, 45], ['achi', 70, 58], ['gray', 85, 70]] : [['achi', 35, 57], ['log', 66, 52], ['gray', 82, 69]];
+      return /*#__PURE__*/React.createElement("section", {
+        className: "ba-j-scene-section"
+      }, /*#__PURE__*/React.createElement(VN.Camera, {
+        aspect: 4 / 3,
+        focus: [50, 52]
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-clock-scene",
+        "data-testid": 'scene-' + scene,
+        "data-placeholder": scene
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(Txt, {
+        text: S.sceneNames[scene]
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: spots.map(([id, x, y]) => /*#__PURE__*/React.createElement("button", {
+          type: "button",
+          key: id,
+          className: "ba-clock-object",
+          "data-scene-target": id,
+          style: {
+            left: x + '%',
+            top: y + '%'
+          },
+          onClick: () => onHotspot(id)
+        }, /*#__PURE__*/React.createElement(Txt, {
+          text: C.hotspotLabels[id]
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: f.records.includes(D.recordHotspots[id]) && /*#__PURE__*/React.createElement("span", {
+            "aria-hidden": "true"
+          }, " \u2713")
+        })))
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-scene-actor ba-j-scene-hero",
+        style: {
+          left: '16%',
+          top: '92%',
+          height: '35%',
+          aspectRatio: G.aspect(g.BAJourneyArt.characters[J.book(profile).companion || J.companions[0]])
+        }
+      }, /*#__PURE__*/React.createElement(Sprite, {
+        who: J.book(profile).companion || J.companions[0]
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-scene-stone",
+        style: {
+          left: '27%',
+          top: '90%'
+        }
+      }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+        size: 42
+      })))));
+    }
+    function Scene({
+      scene,
+      profile,
+      onHotspot,
+      speaker
+    }) {
+      if (D.placeholder) return /*#__PURE__*/React.createElement(ClockScene, {
         scene: scene,
         profile: profile,
-        onHotspot: open,
-        speaker: dialogue ? resolve(dialogue.lines[dialogue.index], J.book(profile).companion || J.companions[0]).speaker : null
-      }), /*#__PURE__*/React.createElement(Portraits, {
-        dialogue: dialogue,
-        profile: profile
-      })),
-      footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
-        profile: profile,
-        notify: notify,
-        onHistory: setHistory
-      })) : /*#__PURE__*/React.createElement("div", {
-        className: "vn-dock"
+        onHotspot: onHotspot
+      });
+      const f = J.flow(profile),
+        art = g.BAJourneyArt.scenes[scene],
+        isMarket = scene === 'market';
+      const helped = !!f.answers.helper?.passed,
+        locked = id => id === 'child' && helped || id === 'guan' && J.stages.indexOf(f.stage) < J.stages.indexOf('records');
+      const labelFor = id => id === 'child' && helped ? S.helped : C.hotspotLabels[id];
+      const accessibleLabel = id => id === 'child' && helped ? S.childHelped : C.hotspots[id];
+      const actorStyle = actor => ({
+        left: actor.x + '%',
+        top: actor.foot + '%',
+        height: actor.height + '%',
+        aspectRatio: G.aspect(g.BAJourneyArt.characters[actor.who || J.book(profile).companion || J.companions[0]])
+      });
+      const focusActor = art.cast.find(a => a.who === speaker) || art.hero;
+      const focus = [focusActor.x, focusActor.foot - focusActor.height / 2];
+      return /*#__PURE__*/React.createElement("section", {
+        className: "ba-j-scene-section"
+      }, /*#__PURE__*/React.createElement(VN.Camera, {
+        aspect: 1672 / 941,
+        focus: focus
       }, /*#__PURE__*/React.createElement("div", {
-        className: "ba-actions"
-      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: f.stage === 'market' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
-          kind: "primary",
-          "data-testid": "help-child",
-          disabled: helped,
-          onClick: () => open('child')
-        }, helped ? S.helped : S.help), helped && panel !== 'child' && /*#__PURE__*/React.createElement(Button, {
-          kind: "primary",
-          "data-testid": "story-continue",
-          onClick: () => go('fade1')
-        }, S.continue))
+        className: 'ba-j-scene ' + scene,
+        "data-testid": 'scene-' + scene
+      }, /*#__PURE__*/React.createElement(SceneArt, {
+        scene: scene
       }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: f.stage === 'records' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: S.gather
-        })), ['E1', 'E2'].every(id => f.records.includes(id)) && /*#__PURE__*/React.createElement(Button, {
-          kind: "primary",
-          "data-testid": "read-notice",
-          onClick: () => go('notice')
-        }, S.readNotice))
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: f.stage === 'tavern' && /*#__PURE__*/React.createElement(Button, {
-          kind: "primary",
-          "data-testid": "to-garden",
-          onClick: () => go('garden')
-        }, S.garden)
-      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: content && closed && /*#__PURE__*/React.createElement(Button, {
-          kind: "primary",
-          "data-testid": "reopen-panel",
-          onClick: () => {
-            setClosed(false);
-            if (f.stage === 'market') setPanel('child');
-          }
-        }, S.openPanel)
-      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-        value: scene === 'market' && ['market', 'records'].includes(f.stage) && /*#__PURE__*/React.createElement("div", {
-          className: "ba-j-scene-actions"
-        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
-          value: g.BAJourneyArt.hotspots.map(id => /*#__PURE__*/React.createElement("button", {
-            type: "button",
-            key: id,
-            "data-hotspot": id,
-            className: "ba-j-scene-action",
-            "aria-label": id === 'child' && helped ? S.childHelped : C.hotspots[id],
-            disabled: locked(id),
-            onClick: () => open(id)
+        value: art.cast.map(actor => {
+          const label = actor.hotspot ? labelFor(actor.hotspot) : S[actor.who];
+          const content = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Sprite, {
+            who: actor.who
+          }), /*#__PURE__*/React.createElement("span", {
+            className: "ba-j-actor-label"
           }, /*#__PURE__*/React.createElement(Txt, {
-            text: id === 'child' && helped ? S.helped : C.hotspotLabels[id]
+            text: label
+          })));
+          return actor.hotspot ? /*#__PURE__*/React.createElement("button", {
+            type: "button",
+            key: actor.who,
+            className: "ba-j-scene-actor interactive",
+            "data-scene-target": actor.hotspot,
+            "aria-label": accessibleLabel(actor.hotspot),
+            disabled: locked(actor.hotspot),
+            style: actorStyle(actor),
+            onClick: () => onHotspot(actor.hotspot)
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: content
+          })) : /*#__PURE__*/React.createElement("div", {
+            key: actor.who,
+            className: "ba-j-scene-actor",
+            style: actorStyle(actor)
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: content
+          }));
+        })
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-scene-actor ba-j-scene-hero",
+        style: actorStyle(art.hero)
+      }, /*#__PURE__*/React.createElement(Sprite, {
+        who: J.book(profile).companion || J.companions[0]
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-scene-stone",
+        style: {
+          left: art.hero.x + 7 + '%',
+          top: art.hero.foot + '%'
+        },
+        "aria-hidden": "true"
+      }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+        size: 40
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: art.objects.map(object => /*#__PURE__*/React.createElement("button", {
+          type: "button",
+          className: "ba-j-object-target",
+          "data-scene-target": object.id,
+          key: object.id,
+          style: {
+            left: object.x + '%',
+            top: object.y + '%'
+          },
+          "aria-label": C.hotspots[object.id],
+          onClick: () => onHotspot(object.id)
+        }, /*#__PURE__*/React.createElement("span", {
+          "aria-hidden": "true"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: object.id === 'notice' ? '▤' : '⌁'
+        })), /*#__PURE__*/React.createElement(Txt, {
+          text: C.hotspotLabels[object.id]
+        })))
+      }))));
+    }
+    function ClockFigure({
+      q
+    }) {
+      return q.figure === 'clock' ? /*#__PURE__*/React.createElement("svg", {
+        className: "ba-clock-figure",
+        viewBox: "0 0 220 220",
+        role: "img",
+        "aria-label": q.stimulus
+      }, /*#__PURE__*/React.createElement("circle", {
+        cx: "110",
+        cy: "110",
+        r: "100",
+        fill: "#fff8e6",
+        stroke: "#8b7556",
+        strokeWidth: "4"
+      }), Array.from({
+        length: 12
+      }, (_, i) => {
+        const a = (i + 1) * Math.PI / 6;
+        return /*#__PURE__*/React.createElement("text", {
+          key: i,
+          x: 110 + 82 * Math.sin(a),
+          y: 117 - 82 * Math.cos(a),
+          textAnchor: "middle",
+          fontSize: "20",
+          fill: "#334854"
+        }, i + 1);
+      }), /*#__PURE__*/React.createElement("g", {
+        strokeLinecap: "round"
+      }, /*#__PURE__*/React.createElement("line", {
+        x1: "110",
+        y1: "110",
+        x2: "110",
+        y2: "54",
+        stroke: "#344e55",
+        strokeWidth: "8",
+        transform: 'rotate(' + (q.clock.hour * 30 + q.clock.minute * .5) + ' 110 110)'
+      }), /*#__PURE__*/React.createElement("line", {
+        x1: "110",
+        y1: "110",
+        x2: "110",
+        y2: "32",
+        stroke: "#aa6b44",
+        strokeWidth: "5",
+        transform: 'rotate(' + q.clock.minute * 6 + ' 110 110)'
+      })), /*#__PURE__*/React.createElement("circle", {
+        cx: "110",
+        cy: "110",
+        r: "6",
+        fill: "#344e55"
+      })) : q.figure === 'mixture' ? /*#__PURE__*/React.createElement("div", {
+        className: "ba-clock-mixture",
+        role: "img",
+        "aria-label": q.stimulus
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: [0, 1, 2, 3].map(i => /*#__PURE__*/React.createElement("i", {
+          key: i
+        }))
+      })) : null;
+    }
+    function OathPicture({
+      index
+    }) {
+      return /*#__PURE__*/React.createElement("svg", {
+        className: "ba-j-oath-picture",
+        viewBox: "0 0 100 65",
+        "aria-hidden": "true"
+      }, index === 1 ? /*#__PURE__*/React.createElement("g", {
+        fill: "#858e72"
+      }, [24, 50, 76].map(x => /*#__PURE__*/React.createElement("g", {
+        key: x
+      }, /*#__PURE__*/React.createElement("circle", {
+        cx: x,
+        cy: "16",
+        r: "9"
+      }), /*#__PURE__*/React.createElement("path", {
+        d: 'M' + (x - 10) + ' 29h20v28h-20z'
+      })))) : index === 2 ? /*#__PURE__*/React.createElement("g", {
+        fill: "none",
+        stroke: "#aa8255",
+        strokeWidth: "10",
+        strokeLinecap: "round"
+      }, /*#__PURE__*/React.createElement("path", {
+        d: "M12 18L43 42L58 29M88 18L57 42L42 29"
+      })) : /*#__PURE__*/React.createElement("g", {
+        fill: "#8d9d7c"
+      }, /*#__PURE__*/React.createElement("path", {
+        d: "M20 34L50 10L80 34V57H20z"
+      }), /*#__PURE__*/React.createElement("path", {
+        d: "M44 38h14v19H44z",
+        fill: "#e9ddc2"
+      })));
+    }
+    function StoryQuestion({
+      profile,
+      commit,
+      qkey,
+      onComplete,
+      notify
+    }) {
+      const f = J.flow(profile),
+        q = J.question(profile, qkey),
+        answer = f.answers[qkey],
+        hints = f.hints[qkey] || 0;
+      const [selected, setSelected] = React.useState(q.type === 'order' ? [] : null);
+      const submit = () => {
+        const action = J.answer(profile, qkey, selected);
+        if (action) commit(action);
+      };
+      const hint = () => commit(J.flowAction(profile, {
+        hints: {
+          ...f.hints,
+          [qkey]: Math.min(3, hints + 1)
+        }
+      }));
+      return /*#__PURE__*/React.createElement(g.BAReading.Provider, {
+        guard: q.guard || ''
+      }, /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper ba-j-question",
+        "data-testid": "story-question",
+        "data-story-question": qkey
+      }, /*#__PURE__*/React.createElement("p", {
+        className: "ba-kicker"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.evidence
+      })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(Txt, {
+        text: q.prompt,
+        question: true
+      })), /*#__PURE__*/React.createElement("p", {
+        className: "ba-j-stimulus"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: q.stimulus
+      })), /*#__PURE__*/React.createElement(ClockFigure, {
+        q: q
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: q.figure === 'coins' && /*#__PURE__*/React.createElement("div", {
+          className: "ba-j-coins",
+          "aria-label": q.stimulus
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: [10, 5, 1].map(n => /*#__PURE__*/React.createElement("span", {
+            key: n
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: n
+          }), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: S.yuan
+          }))))
+        }))
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: q.type === 'order' && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.order
+        }))
+      }), /*#__PURE__*/React.createElement("div", {
+        className: 'ba-options ' + (q.type === 'order' ? 'ba-j-order' : '')
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: q.options.map((opt, i) => /*#__PURE__*/React.createElement("button", {
+          key: i,
+          type: "button",
+          className: 'ba-option ' + ((q.type === 'order' ? selected.includes(i) : selected === i) ? 'selected' : ''),
+          "data-story-option": i,
+          disabled: answer?.passed,
+          "aria-pressed": q.type === 'order' ? selected.includes(i) : selected === i,
+          onClick: () => setSelected(q.type === 'order' ? selected.includes(i) ? selected.filter(n => n !== i) : [...selected, i] : i)
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: q.type === 'order' && /*#__PURE__*/React.createElement("b", {
+            className: "ba-j-order-number"
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: selected.includes(i) ? selected.indexOf(i) + 1 : '○'
+          }))
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: q.figure === 'oath' && J.band(f.grade) === 'low' && /*#__PURE__*/React.createElement(OathPicture, {
+            index: i
+          })
+        }), /*#__PURE__*/React.createElement(Txt, {
+          text: opt
+        })))
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: q.type === 'order' && selected.length > 0 && /*#__PURE__*/React.createElement("div", {
+          className: "ba-j-ordered",
+          "aria-live": "polite"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: selected.map(i => /*#__PURE__*/React.createElement("p", {
+            key: i
+          }, /*#__PURE__*/React.createElement(Txt, {
+            text: q.options[i]
           })))
         }))
-      })),
-      sheet: sheet
-    });
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: answer && /*#__PURE__*/React.createElement("p", {
+          role: "status",
+          className: 'ba-feedback ' + (answer.passed ? 'success' : '')
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: answer.passed ? S.correct : S.retry
+        }))
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: answer?.passed && /*#__PURE__*/React.createElement("p", {
+          "data-story-evidence": g.BALearning.storyEvidenceLevel(answer)
+        }, /*#__PURE__*/React.createElement(Txt, {
+          text: S.evidenceLevels[g.BALearning.storyEvidenceLevel(answer)]
+        }))
+      }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: Array.from({
+          length: hints
+        }, (_, i) => /*#__PURE__*/React.createElement("div", {
+          className: "ba-hint",
+          key: i
+        }, /*#__PURE__*/React.createElement("b", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.hintLabels[i]
+        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(Txt, {
+          text: q.hints[i]
+        }))))
+      }), /*#__PURE__*/React.createElement("div", {
+        className: "ba-actions"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: answer?.passed ? /*#__PURE__*/React.createElement(Button, {
+          kind: "primary",
+          "data-testid": "story-continue",
+          onClick: onComplete
+        }, S.continue) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
+          kind: "primary",
+          "data-testid": "story-submit",
+          disabled: q.type === 'order' ? selected.length !== q.options.length : selected === null,
+          onClick: submit
+        }, S.submit), q.type === 'order' && /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          onClick: () => setSelected([])
+        }, S.reset), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          disabled: hints === 3,
+          "data-testid": "story-hint",
+          onClick: hint
+        }, S.hint))
+      }), /*#__PURE__*/React.createElement(Button, {
+        kind: "ghost",
+        onClick: () => {
+          if (q.guard) {
+            notify(S.guarded);
+            return;
+          }
+          if (!g.BAPlatform.speech.speak(q.prompt + '。' + q.stimulus).ok) notify(S.voiceUnavailable);
+        }
+      }, S.listen))));
+    }
+    function Card() {
+      if (D.placeholder) return /*#__PURE__*/React.createElement("section", {
+        className: "ba-card ba-clock-card",
+        "data-testid": "achi-card"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-clock-nameplate"
+      }, /*#__PURE__*/React.createElement(Txt, {
+        text: C.card.name
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.earned
+      })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.name
+      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.quote
+      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.note
+      }))));
+      return /*#__PURE__*/React.createElement("section", {
+        className: "ba-card ba-j-earned",
+        "data-testid": "liu-card"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "ba-j-card-art"
+      }, /*#__PURE__*/React.createElement(Sprite, {
+        who: "liu"
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+        className: "ba-kicker"
+      }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.earned
+      })), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.name
+      })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.quote
+      })), /*#__PURE__*/React.createElement("small", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.card.note
+      }))));
+    }
+    function Sources() {
+      return /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper"
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.source
+      })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.sources.map((s, i) => /*#__PURE__*/React.createElement("div", {
+          className: "ba-record",
+          key: i
+        }, /*#__PURE__*/React.createElement("h3", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: s.title
+        })), /*#__PURE__*/React.createElement(Lines, {
+          lines: s.lines
+        })))
+      }));
+    }
+    function Manual({
+      profile,
+      onBack
+    }) {
+      return /*#__PURE__*/React.createElement(g.BABookStage.Panel, {
+        title: S.manual,
+        testId: "journey-manual",
+        aspect: D.aspect || 6 / 5,
+        onBack: onBack,
+        stage: D.placeholder ? /*#__PURE__*/React.createElement("div", {
+          className: "ba-clock-map"
+        }) : /*#__PURE__*/React.createElement("img", {
+          className: "ba-book-stage-map",
+          src: g.BAAssets.sanguoMap,
+          alt: ""
+        })
+      }, /*#__PURE__*/React.createElement(ManualContent, {
+        profile: profile
+      }));
+    }
+    function Case({
+      profile,
+      commit,
+      notify,
+      onBack,
+      onExit,
+      changeScene
+    }) {
+      const f = J.flow(profile),
+        [panel, setPanel] = React.useState(null),
+        [closed, setClosed] = React.useState(false),
+        [history, setHistory] = React.useState(null),
+        [busy, setBusy] = React.useState(false),
+        [panelLine, setPanelLine] = React.useState(0),
+        c = profile.cases[J.caseKey];
+      React.useEffect(() => {
+        setClosed(false);
+        setPanel(null);
+        setHistory(null);
+      }, [f.stage]);
+      const go = stage => {
+        if (g.BAStage.isBusy()) return;
+        const action = J.advance(profile, stage),
+          after = () => {
+            setPanel(null);
+            setClosed(false);
+          };
+        if (!action) return;
+        if (J.scene(stage) !== J.scene(f.stage)) return changeScene(stage, after);
+        if (commit(action).ok) after();
+      };
+      const scene = J.scene(f.stage);
+      const open = id => {
+        setPanelLine(0);
+        if (D.placeholder) {
+          if ((id === 'achi' || id === 'child') && f.stage === 'market') {
+            setPanel('child');
+            setClosed(false);
+            return;
+          }
+          if (id === 'gray') {
+            commit(J.flowAction(profile, {
+              records: [...new Set([...f.records, 'E12'])]
+            }));
+            setPanel('gray');
+            return;
+          }
+          const record = D.recordHotspots[id];
+          if (record && D.recordStages[id]?.includes(f.stage)) {
+            commit(J.flowAction(profile, {
+              records: [...new Set([...f.records, record])]
+            }));
+            setPanel(id);
+          } else if (record && f.records.includes(record)) setPanel(id);else notify(S.recordBefore);
+          return;
+        }
+        if (id === 'child') {
+          if (f.stage === 'market' && !f.answers.helper?.passed) {
+            setPanel('child');
+            setClosed(false);
+          }
+          return;
+        }
+        if (['notice', 'shoes'].includes(id) && f.stage === 'records') {
+          const record = id === 'notice' ? 'E1' : 'E2';
+          commit(J.flowAction(profile, {
+            records: [...new Set([...f.records, record])]
+          }));
+        }
+        setPanel(id);
+      };
+      function practice(n) {
+        try {
+          const sid = J.practiceId(profile, n),
+            {
+              value,
+              learning
+            } = g.BAAppComponents.createSession(profile, {
+              id: sid,
+              kind: 'book-practice',
+              caseId: C.id
+            });
+          const next = J.advance(profile, 'practice' + n);
+          if (!next) return;
+          const sessions = {
+            ...profile.sessions,
+            [sid]: value,
+            [next.sessionId]: next.value
+          };
+          commit({
+            type: 'UPDATE_PROGRESS',
+            progress: {
+              sessions,
+              ...(learning ? {
+                learning
+              } : {})
+            }
+          });
+        } catch (e) {
+          console.error('Book practice unavailable', e);
+          notify(g.BAStrings.learning.noQuestion);
+        }
+      }
+      function finish() {
+        if (busy || !J.ready(profile)) return;
+        setBusy(true);
+        let current = profile;
+        for (let step = c.step; step < 5; step++) {
+          const r = commit({
+            type: 'ADVANCE_CASE',
+            bookId: D.bookId,
+            caseId: C.id,
+            fromStep: step
+          });
+          if (!r.ok) {
+            setBusy(false);
+            return;
+          }
+          if (r.profile) current = r.profile;
+        }
+        const r = commit({
+          type: 'COMPLETE_CASE',
+          bookId: D.bookId,
+          caseId: C.id
+        });
+        if (r.ok) {
+          current = r.profile || current;
+          commit(J.flowAction(current, {
+            stage: 'complete'
+          }));
+        }
+        setBusy(false);
+      }
+      const presentation = f.presentation || {};
+      const sequence = f.stage === 'market' && !f.answers.helper?.passed ? 'helperIntro' : f.stage === 'fade1' ? 'helperEnd' : f.stage === 'notice' ? 'liu' : f.stage === 'garden' ? 'garden' : f.stage === 'ending' ? 'ending' : null;
+      const lines = sequence ? C.dialogues[sequence] : null,
+        index = sequence ? presentation[sequence] || 0 : 0;
+      let dialogue = f.stage === 'tavern' && f.dialog < C.tavern.length ? {
+        lines: C.tavern,
+        index: f.dialog,
+        onNext: () => commit(J.flowAction(profile, {
+          dialog: f.dialog + 1
+        }))
+      } : lines && index < lines.length ? {
+        lines,
+        index,
+        onNext: () => commit(J.flowAction(profile, {
+          presentation: {
+            ...presentation,
+            [sequence]: index + 1
+          }
+        }))
+      } : null;
+      if ((D.placeholder ? ['gray'] : ['zhang', 'guan']).includes(panel)) {
+        const npcLines = D.placeholder ? C.dialogues.gray : panel === 'zhang' ? C.dialogues.zhang : [normalize(C.tavern[2])];
+        dialogue = {
+          lines: npcLines,
+          index: panelLine,
+          onNext: () => {
+            if (panelLine + 1 < npcLines.length) setPanelLine(panelLine + 1);else setPanel(null);
+          }
+        };
+      }
+      const question = f.stage === 'market' ? 'helper' : f.stage === 'notice' ? 'notice' : f.stage === 'garden' ? 'conclusion' : f.stage === 'oath' ? 'oath' : null;
+      const nextStage = {
+        helper: 'fade1',
+        notice: 'fade2',
+        conclusion: D.placeholder ? 'ending' : 'oath',
+        oath: 'ending'
+      };
+      let content = null;
+      if (!dialogue) {
+        if (question && (f.stage !== 'market' || panel === 'child')) content = /*#__PURE__*/React.createElement(StoryQuestion, {
+          key: question,
+          profile: profile,
+          commit: commit,
+          qkey: question,
+          notify: notify,
+          onComplete: () => go(nextStage[question])
+        });
+        if (['fade1', 'fade2'].includes(f.stage)) content = /*#__PURE__*/React.createElement("section", {
+          className: "ba-j-faded ba-story-paper"
+        }, /*#__PURE__*/React.createElement(g.BAUI.Stone, {
+          size: 60
+        }), /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.practice
+        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: profile.grade <= 2 ? S.fadeLow : S.fade
+        })), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: S.practiceNote
+        })), /*#__PURE__*/React.createElement(Button, {
+          kind: "primary",
+          "data-testid": "start-practice",
+          onClick: () => practice(f.stage === 'fade1' ? 1 : 2)
+        }, S.startPractice));
+        if (['practice1', 'practice2'].includes(f.stage)) content = /*#__PURE__*/React.createElement(g.BAAppComponents.SessionPlayer, {
+          profile: profile,
+          commit: commit,
+          notify: notify,
+          sessionId: J.practiceId(profile, f.stage === 'practice1' ? 1 : 2),
+          onComplete: () => go(f.stage === 'practice1' ? 'records' : 'tavern')
+        });
+        if (['ending', 'complete'].includes(f.stage)) content = /*#__PURE__*/React.createElement(React.Fragment, null, (f.stage === 'complete' || c.status === 'completed') && /*#__PURE__*/React.createElement(Card, null), /*#__PURE__*/React.createElement(Sources, null), f.stage === 'ending' && c.status !== 'completed' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: profile.rewardedCases.includes(J.caseKey) ? S.replayReward : S.reward
+        })), /*#__PURE__*/React.createElement(Button, {
+          kind: "primary",
+          disabled: busy,
+          "data-testid": "collect-card",
+          onClick: finish
+        }, S.collect)) : /*#__PURE__*/React.createElement(Button, {
+          kind: "primary",
+          "data-testid": "leave-book",
+          onClick: onExit
+        }, g.BATravelCopy.leave));
+      }
+      let auxiliary = null;
+      if (panel === 'manual') auxiliary = /*#__PURE__*/React.createElement(ManualContent, {
+        profile: profile
+      });else if (panel === 'team') auxiliary = /*#__PURE__*/React.createElement(Companion, {
+        profile: profile,
+        commit: commit
+      });else if (D.placeholder && panel && !['child', 'gray'].includes(panel)) auxiliary = /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper",
+        "data-testid": "scene-record"
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.hotspots[panel]
+      })), /*#__PURE__*/React.createElement(Lines, {
+        lines: C.records.find(r => r.id === D.recordHotspots[panel])?.lines || []
+      }), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: S.recordSaved
+      })));else if (!D.placeholder && panel && !['child', 'zhang', 'guan'].includes(panel)) auxiliary = /*#__PURE__*/React.createElement("section", {
+        className: "ba-story-paper",
+        "data-testid": "scene-record"
+      }, /*#__PURE__*/React.createElement("h2", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+        value: C.hotspots[panel]
+      })), /*#__PURE__*/React.createElement(Lines, {
+        lines: panel === 'notice' ? C.notice : panel === 'shoes' ? C.records[1].lines : panel === 'zhang' ? C.zhang : [normalize(C.tavern[2]).text]
+      }));
+      const closePanel = () => {
+        setPanel(null);
+        setClosed(true);
+      };
+      const sheet = history ? /*#__PURE__*/React.createElement(History, {
+        lines: history,
+        onClose: () => setHistory(null)
+      }) : auxiliary ? /*#__PURE__*/React.createElement(Sheet, {
+        title: panel === 'manual' ? S.manual : panel === 'team' ? S.choose : C.hotspots[panel],
+        onClose: closePanel
+      }, auxiliary) : content && !closed ? /*#__PURE__*/React.createElement(Sheet, {
+        key: f.stage,
+        title: question ? S.evidence : ['practice1', 'practice2', 'fade1', 'fade2'].includes(f.stage) ? S.practice : S.source,
+        onClose: closePanel
+      }, content) : null;
+      const helped = !!f.answers.helper?.passed,
+        locked = id => id === 'child' && helped || id === 'guan' && J.stages.indexOf(f.stage) < J.stages.indexOf('records');
+      return /*#__PURE__*/React.createElement(VN.Frame, {
+        mobileFill: true,
+        aspect: 1672 / 941,
+        className: 'ba-j-case ' + (dialogue ? 'has-dialog' : ''),
+        "data-testid": "journey-case",
+        "data-journey-stage": f.stage,
+        header: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: C.title
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.choose,
+          onClick: () => setPanel('team')
+        }, S.chooseShort), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.manual,
+          onClick: () => setPanel('manual')
+        }, S.manualShort), /*#__PURE__*/React.createElement(Button, {
+          kind: "ghost",
+          "aria-label": S.backMap,
+          onClick: onBack
+        }, S.backMapShort))),
+        stage: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Scene, {
+          scene: scene,
+          profile: profile,
+          onHotspot: open,
+          speaker: dialogue ? resolve(dialogue.lines[dialogue.index], J.book(profile).companion || J.companions[0]).speaker : null
+        }), /*#__PURE__*/React.createElement(Portraits, {
+          dialogue: dialogue,
+          profile: profile
+        })),
+        footer: dialogue ? /*#__PURE__*/React.createElement(Dialog, _extends({}, dialogue, {
+          profile: profile,
+          notify: notify,
+          onHistory: setHistory
+        })) : /*#__PURE__*/React.createElement("div", {
+          className: "vn-dock"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "ba-actions"
+        }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: f.stage === 'market' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
+            kind: "primary",
+            "data-testid": "help-child",
+            disabled: helped,
+            onClick: () => open('child')
+          }, helped ? S.helped : S.help), helped && panel !== 'child' && /*#__PURE__*/React.createElement(Button, {
+            kind: "primary",
+            "data-testid": "story-continue",
+            onClick: () => go('fade1')
+          }, S.continue))
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: f.stage === 'records' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: S.gather
+          })), firstRecords.every(id => f.records.includes(id)) && /*#__PURE__*/React.createElement(Button, {
+            kind: "primary",
+            "data-testid": "read-notice",
+            onClick: () => go('notice')
+          }, S.readNotice))
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: f.stage === 'tavern' && /*#__PURE__*/React.createElement(React.Fragment, null, D.placeholder && !(D.requiredRecords || []).every(id => f.records.includes(id)) && /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: S.needFace
+          })), /*#__PURE__*/React.createElement(Button, {
+            kind: "primary",
+            disabled: !J.canAdvance(profile, 'garden'),
+            "data-testid": "to-garden",
+            onClick: () => go('garden')
+          }, S.garden))
+        }), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: content && closed && /*#__PURE__*/React.createElement(Button, {
+            kind: "primary",
+            "data-testid": "reopen-panel",
+            onClick: () => {
+              setClosed(false);
+              if (f.stage === 'market') setPanel('child');
+            }
+          }, S.openPanel)
+        })), /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+          value: (scene === 'market' || D.placeholder) && ['market', 'records', 'tavern'].includes(f.stage) && /*#__PURE__*/React.createElement("div", {
+            className: "ba-j-scene-actions"
+          }, /*#__PURE__*/React.createElement(globalThis.BAReading.Copy, {
+            value: (D.placeholder ? f.stage === 'tavern' ? ['face', 'gray'] : ['achi', 'log', 'gray'] : g.BAJourneyArt.hotspots).map(id => /*#__PURE__*/React.createElement("button", {
+              type: "button",
+              key: id,
+              "data-hotspot": id,
+              className: "ba-j-scene-action",
+              "aria-label": id === 'child' && helped ? S.childHelped : C.hotspots[id],
+              disabled: locked(id),
+              onClick: () => open(id)
+            }, /*#__PURE__*/React.createElement(Txt, {
+              text: id === 'child' && helped ? S.helped : C.hotspotLabels[id]
+            })))
+          }))
+        })),
+        sheet: tutorial(profile, commit, notify, ['scene', ...({
+          market: ['helper'],
+          fade1: ['fade'],
+          records: ['record'],
+          notice: ['hands'],
+          garden: ['conclude'],
+          ending: ['ending']
+        }[f.stage] || [])]) || sheet
+      });
+    }
+    return {
+      Entry,
+      Map,
+      Case,
+      Manual,
+      Card,
+      StoryQuestion,
+      SceneArt,
+      Sprite,
+      Bust
+    };
   }
-  g.BAJourneyUI = {
-    Entry,
-    Map,
-    Case,
-    Manual,
-    Card,
-    StoryQuestion,
-    SceneArt,
-    Sprite,
-    Bust
+  g.BACreateJourneyUI = createUI;
+  g.BAJourneyUI = createUI(g.BAJourney);
+  g.BAClocktowerUI = createUI(g.BAClocktower);
+  g.BAJourneyUIs = {
+    sanguo: g.BAJourneyUI,
+    clocktower: g.BAClocktowerUI
   };
 })(globalThis);
 
@@ -174064,7 +175319,8 @@ Object.assign(globalThis.BAStrings.lobby, {
   function Scene({
     profile,
     direction = 'out',
-    reduced = false
+    reduced = false,
+    volumeId
   }) {
     return /*#__PURE__*/React.createElement("section", {
       className: 'ba-book-travel ' + direction + (reduced ? ' reduced' : ''),
@@ -174081,7 +175337,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       className: "ba-travel-book",
       "aria-hidden": "true"
     }, /*#__PURE__*/React.createElement("i", null, /*#__PURE__*/React.createElement(g.BABookMap.Cover, {
-      volume: g.BABookCatalog.volume('volume-1'),
+      volume: g.BABookCatalog.volume(volumeId) || g.BABookCatalog.published().find(v => v.storageBookId === profile?.sessions.bookExit?.bookId) || g.BABookCatalog.volume('volume-1'),
       small: true
     })), /*#__PURE__*/React.createElement("i", null), /*#__PURE__*/React.createElement("b", null)), /*#__PURE__*/React.createElement("div", {
       className: "ba-travel-stone",
@@ -174248,14 +175504,21 @@ Object.assign(globalThis.BAStrings.lobby, {
       page: 'board'
     };
     if (r.page.startsWith('journey-') || r.page === 'book-entry') {
-      if (!g.BAState.canOpenBook(profile, 'sanguo')) return {
+      const j = g.BAJourneys[r.bookId || 'sanguo'];
+      if (!j || !g.BAState.canOpenBook(profile, j.data.bookId)) return {
         page: 'books'
       };
-      if (r.page === 'journey-case' && !profile.cases[g.BAJourney.caseKey]) return {
-        page: 'journey-map'
+      if (r.page === 'journey-case' && !profile.cases[j.caseKey]) return {
+        page: 'journey-map',
+        ...(r.bookId ? {
+          bookId: r.bookId
+        } : {})
       };
       return {
         page: r.page,
+        ...(r.bookId ? {
+          bookId: r.bookId
+        } : {}),
         ...(r.page === 'journey-manual' ? {
           returnJourney: r.returnJourney === 'journey-case' ? 'journey-case' : 'journey-map'
         } : {})
@@ -174317,6 +175580,14 @@ Object.assign(globalThis.BAStrings.lobby, {
       [day, setDay] = React.useState(() => g.BAState.dayKey());
     const current = React.useRef(null),
       lastRoute = React.useRef('');
+    const J = g.BAJourneys[route.bookId || 'sanguo'] || g.BAJourney,
+      JUI = g.BAJourneyUIs[J.data.bookId],
+      journeyRoute = page => ({
+        page,
+        ...(J.data.bookId !== 'sanguo' ? {
+          bookId: J.data.bookId
+        } : {})
+      });
     const notify = text => setNotice(text);
     function currentProfile(p) {
       current.current = p;
@@ -174377,7 +175648,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     function changeScene(stage, after, anchor) {
       g.BAPlatform.speech.cancel();
       return g.BAStage.run({
-        page: 'journey-case',
+        ...journeyRoute('journey-case'),
         stage
       }, current.current, {
         transition: 'iris',
@@ -174388,7 +175659,7 @@ Object.assign(globalThis.BAStrings.lobby, {
             ok: false
           };
           ReactDOM.flushSync(() => {
-            const action = g.BAJourney.advance(current.current, stage);
+            const action = J.advance(current.current, stage);
             if (action) {
               result = commit(action);
               if (result.ok) after?.();
@@ -174444,7 +175715,7 @@ Object.assign(globalThis.BAStrings.lobby, {
       const action = {
         type: 'ENTER_BOOK',
         bookId: v.storageBookId,
-        caseCount: v.caseIds.length
+        caseCount: v.caseCount || v.caseIds.length
       };
       // Read-only preflight: denied entry never starts decode, a page turn or a transaction.
       const check = g.BAState.apply(current.current, action).result;
@@ -174458,8 +175729,11 @@ Object.assign(globalThis.BAStrings.lobby, {
         } else notify(S.errors[check.code] || S.flow.genericError);
         return Promise.resolve(check);
       }
-      return navigate(v.id === 'volume-1' ? {
-        page: 'book-entry'
+      return navigate(g.BAJourneys[v.storageBookId] ? {
+        page: 'book-entry',
+        ...(v.storageBookId !== 'sanguo' ? {
+          bookId: v.storageBookId
+        } : {})
       } : {
         page: 'cases',
         volumeId: v.id,
@@ -174471,16 +175745,16 @@ Object.assign(globalThis.BAStrings.lobby, {
     }
     function openJourney(anchor) {
       const p = current.current,
-        c = p.cases[g.BAJourney.caseKey];
-      return navigate('journey-case', {
+        c = p.cases[J.caseKey];
+      return navigate(journeyRoute('journey-case'), {
         transition: 'iris',
         anchor,
-        stage: c?.status === 'completed' ? 'market' : g.BAJourney.flow(p).stage,
+        stage: c?.status === 'completed' ? 'market' : J.flow(p).stage,
         before: () => commit({
           type: 'OPEN_CASE',
-          bookId: 'sanguo',
-          caseId: 'tao_yuan',
-          replay: current.current.cases[g.BAJourney.caseKey]?.status === 'completed'
+          bookId: J.data.bookId,
+          caseId: J.data.case.id,
+          replay: current.current.cases[J.caseKey]?.status === 'completed'
         })
       });
     }
@@ -174667,7 +175941,7 @@ Object.assign(globalThis.BAStrings.lobby, {
         return;
       }
       const pending = current.current?.sessions.bookExit;
-      const cardIsOpen = pending && (route.page === 'journey-case' ? pending.bookId === 'sanguo' && pending.caseId === 'tao_yuan' : ['case', 'scene'].includes(route.page) && pending.caseId === route.id && pending.bookId === K.volume(route.volumeId)?.storageBookId);
+      const cardIsOpen = pending && (route.page === 'journey-case' ? pending.bookId === J.data.bookId && pending.caseId === J.data.case.id : ['case', 'scene'].includes(route.page) && pending.caseId === route.id && pending.bookId === K.volume(route.volumeId)?.storageBookId);
       if (cardIsOpen) {
         beginExit();
         return;
@@ -174703,8 +175977,11 @@ Object.assign(globalThis.BAStrings.lobby, {
     if (route.page === 'title' || route.page === 'profiles') screen = /*#__PURE__*/React.createElement(U.Title, {
       profiles: index.profiles || [],
       onContinue: enterProfile,
-      onCreate: () => navigate('create'),
+      onCreate: () => navigate(index.profiles?.length ? 'create' : 'opening'),
       onParents: parentEntry
+    });else if (route.page === 'opening') screen = /*#__PURE__*/React.createElement(g.BATutorial.Opening, {
+      notify: notify,
+      onDone: () => navigate('create')
     });else if (route.page === 'create') screen = /*#__PURE__*/React.createElement(C.CreateProfile, {
       onCreate: createProfile,
       onBack: () => navigate('title'),
@@ -174718,7 +175995,7 @@ Object.assign(globalThis.BAStrings.lobby, {
     }));else if (!profile) screen = /*#__PURE__*/React.createElement(U.Title, {
       profiles: index.profiles || [],
       onContinue: enterProfile,
-      onCreate: () => navigate('create'),
+      onCreate: () => navigate(index.profiles?.length ? 'create' : 'opening'),
       onParents: parentEntry
     });else if (route.page === 'lobby') screen = /*#__PURE__*/React.createElement(U.Lobby, {
       profile: profile,
@@ -174728,7 +176005,9 @@ Object.assign(globalThis.BAStrings.lobby, {
         type: 'SAVE_SESSION',
         sessionId: 'lobbyArrival',
         value: null
-      })
+      }),
+      commit: commit,
+      notify: notify
     });else if (route.page === 'board') screen = /*#__PURE__*/React.createElement(C.Board, {
       profile: profile,
       day: day,
@@ -174760,16 +176039,16 @@ Object.assign(globalThis.BAStrings.lobby, {
     });else if (route.page === 'book-exit') screen = /*#__PURE__*/React.createElement(g.BABookTravel.Exit, {
       profile: profile,
       onDone: finishExit
-    });else if (route.page === 'book-entry') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Entry, _extends({}, shared, {
-      onDone: () => navigate('journey-map', {
+    });else if (route.page === 'book-entry') screen = /*#__PURE__*/React.createElement(JUI.Entry, _extends({}, shared, {
+      onDone: () => navigate(journeyRoute('journey-map'), {
         transition: 'iris',
         anchor: document.querySelector('.ba-travel-book'),
-        before: () => commit(g.BAJourney.bookAction(current.current, {
+        before: () => commit(J.bookAction(current.current, {
           entrySeen: true,
           entryLine: 0
         }))
       })
-    }));else if (route.page === 'journey-map') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Map, _extends({}, shared, {
+    }));else if (route.page === 'journey-map') screen = /*#__PURE__*/React.createElement(JUI.Map, _extends({}, shared, {
       onOpen: openJourney,
       onLegacy: () => navigate({
         page: 'cases',
@@ -174778,19 +176057,19 @@ Object.assign(globalThis.BAStrings.lobby, {
       }),
       onBack: () => navigate('books'),
       onManual: () => navigate({
-        page: 'journey-manual',
+        ...journeyRoute('journey-manual'),
         returnJourney: 'journey-map'
       })
-    }));else if (route.page === 'journey-case') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Case, _extends({}, shared, {
+    }));else if (route.page === 'journey-case') screen = /*#__PURE__*/React.createElement(JUI.Case, _extends({}, shared, {
       onExit: beginExit,
-      onBack: () => navigate('journey-map'),
+      onBack: () => navigate(journeyRoute('journey-map')),
       onManual: () => navigate({
-        page: 'journey-manual',
+        ...journeyRoute('journey-manual'),
         returnJourney: 'journey-case'
       })
-    }));else if (route.page === 'journey-manual') screen = /*#__PURE__*/React.createElement(g.BAJourneyUI.Manual, {
+    }));else if (route.page === 'journey-manual') screen = /*#__PURE__*/React.createElement(JUI.Manual, {
       profile: profile,
-      onBack: () => navigate(route.returnJourney === 'journey-case' ? 'journey-case' : 'journey-map')
+      onBack: () => navigate(journeyRoute(route.returnJourney === 'journey-case' ? 'journey-case' : 'journey-map'))
     });else if (route.page === 'cases') screen = /*#__PURE__*/React.createElement(g.BABookMap.MapBoard, {
       profile: profile,
       volumeId: route.volumeId,
