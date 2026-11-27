@@ -1,6 +1,6 @@
 /* Built separately: never concatenate this worker into the application bundle. */
 'use strict';
-const ROOT=new URL('./',self.location.href),PREFIX='ba-shell-'+encodeURIComponent(ROOT.pathname)+'-',CACHE=PREFIX+'348e0c8a362e24f75d83',FILES={"index.html": "095d7b5b46371343d069f1e8cb36f142c0895468bdeb020b6706327b36caf9a0", "manifest.webmanifest": "24183ccdaf123686805b529efaef8a8a766fd94853566e5cc9e33b6bf99abcca", "packs/catalog.json": "2432f13261993e56247616d69c4829ed7e069e62fb3b0db3b78a50bd424125bf", "icons/bookmark-192.png": "0da186bb4d842fe7dfc6757abc70efe735a742f2a56e8d3c8d566a42cbf1a067", "icons/bookmark-512.png": "776bfb5278682ace1d7cdca894e8ace13220f378c9dd0b8e1bd548d8cf9685c6"};
+const ROOT=new URL('./',self.location.href),PREFIX='ba-shell-'+encodeURIComponent(ROOT.pathname)+'-',CACHE=PREFIX+'d66e2526dced96f5354e',FILES={"index.html": "1d517c39d3409b6a61f19ecf0875c83df19929764a307b5a247aff10b761ddb0", "manifest.webmanifest": "24183ccdaf123686805b529efaef8a8a766fd94853566e5cc9e33b6bf99abcca", "packs/catalog.json": "a8780785d468e7ba35b76af7b971ff1916778d733b4b42ffb843e09b4673937c", "icons/bookmark-192.png": "0da186bb4d842fe7dfc6757abc70efe735a742f2a56e8d3c8d566a42cbf1a067", "icons/bookmark-512.png": "776bfb5278682ace1d7cdca894e8ace13220f378c9dd0b8e1bd548d8cf9685c6"};
 const url=path=>new URL(path,ROOT).href;
 const sha=async buffer=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',buffer)),n=>n.toString(16).padStart(2,'0')).join('');
 self.addEventListener('install',event=>event.waitUntil((async()=>{
